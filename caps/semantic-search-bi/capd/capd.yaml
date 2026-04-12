@@ -1,0 +1,36 @@
+capability:
+  kind: contract-only
+  name: semantic.search
+  version: 0.1.0
+  title: "Semantic Search (Contract Only)"
+  description: >
+    Contract-only capability package defining the triRPC surface, topic taxonomy,
+    and JSON schemas for semantic search (ingest + query + explain + status).
+    No implementation is included.
+  license: MIT
+  address:
+    scheme: merkle-placeholder
+    digest: "TODO"
+requires:
+  trirpc_bus: true
+  policy_guard: true
+  evidence_emission: true
+provides:
+  rpc:
+    - rpc/semantic.search.v0.yaml
+  topics:
+    - topics/semantic.search.topics.v0.yaml
+  schemas:
+    - schemas/ingest_document.schema.json
+    - schemas/query_request.schema.json
+    - schemas/query_response.schema.json
+    - schemas/explain_request.schema.json
+    - schemas/explain_response.schema.json
+    - schemas/status_request.schema.json
+    - schemas/status_response.schema.json
+    - schemas/backends_request.schema.json
+    - schemas/backends_response.schema.json
+    - schemas/evidence_event.schema.json
+policy:
+  default_decision: deny
+  guard: policy/guard-dsl-v0.yaml
