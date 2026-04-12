@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.org/schemas/recommendation_objects/recommendation_object.schema.json",
+  "title": "recommendation_object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ro_id",
+    "created_time",
+    "scope",
+    "evidence",
+    "proposal",
+    "risk",
+    "rollback",
+    "validation"
+  ],
+  "properties": {
+    "ro_id": {"type": "string"},
+    "created_time": {"type": "string", "format": "date-time"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "surface_ids"],
+      "properties": {
+        "domain": {"type": "string", "description": "Domain or system scope (web, email, social, repo, etc.)."},
+        "surface_ids": {"type": "array", "items": {"type": "string"}},
+        "time_window": {"type": "string", "description": "Optional window identifier (e.g., 2026-W10)."}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Evidence pointers and summarized metrics supporting the recommendation.",
+      "additionalProperties": true
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "parameters"],
+      "properties": {
+        "action": {"type": "string", "description": "Proposed action type (fix_robots, canonicalize, disavow_cluster, shift_budget, etc.)."},
+        "parameters": {"type": "object", "additionalProperties": true}
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_score", "risk_factors"],
+      "properties": {
+        "risk_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "risk_factors": {"type": "array", "items": {"type": "string"}},
+        "guardrails": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy"],
+      "properties": {
+        "strategy": {"type": "string"},
+        "steps": {"type": "array", "items": {"type": "string"}},
+        "ledger_pointer": {"type": "string", "description": "Optional pointer to a hash-ledger entry."}
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "primary_metric"],
+      "properties": {
+        "method": {"type": "string", "description": "A/B, geo_holdout, time_holdout, diff_in_diff, etc."},
+        "primary_metric": {"type": "string"},
+        "success_criteria": {"type": "string"},
+        "followup_metrics": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
