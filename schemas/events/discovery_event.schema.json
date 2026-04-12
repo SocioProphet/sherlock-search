@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.org/schemas/events/discovery_event.schema.json",
+  "title": "discovery_event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_time",
+    "actor_id",
+    "channel",
+    "surface_id",
+    "query_class",
+    "sampling_mode",
+    "outcome"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "description": "Unique event identifier."},
+    "event_time": {"type": "string", "format": "date-time"},
+    "actor_id": {"type": "string", "description": "Pseudonymous actor/session ID."},
+    "channel": {
+      "type": "string",
+      "description": "Distribution channel (search, newsletter, social, referral, direct, etc.)."
+    },
+    "property_id": {"type": "string", "description": "Publisher/platform property identifier."},
+    "surface_id": {"type": "string", "description": "Surface identifier (property + placement/path)."},
+    "query": {"type": "string", "description": "Raw query text (optional; redact if sensitive)."},
+    "query_class": {
+      "type": "string",
+      "description": "Normalized intent/task class (learn, build, evaluate, deploy, audit, etc.)."
+    },
+    "modality_set": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Modalities used/seen (text, image, audio, video, code)."
+    },
+    "persona_tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Assigned persona/tag bundle (optional)."
+    },
+    "sampling_mode": {
+      "type": "string",
+      "enum": ["uniform", "opportunistic", "targeted"],
+      "description": "How exposure/observation was sampled (required for bias correction)."
+    },
+    "degree_proxy": {
+      "type": "number",
+      "description": "Optional degree proxy used for bias correction (exposure frequency, follower bucket, etc.)."
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verified", "ttv_ms"],
+      "properties": {
+        "verified": {"type": "boolean", "description": "Whether the task reached a verified success state."},
+        "ttv_ms": {"type": "integer", "minimum": 0, "description": "Time-to-verified in milliseconds."},
+        "success_metric": {"type": "number", "description": "Optional scalar outcome (CTR, signup rate, etc.)."}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Optional evidence bundle pointers (hashes, URLs, logs)."
+    }
+  }
+}
