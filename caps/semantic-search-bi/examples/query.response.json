@@ -1,0 +1,23 @@
+{
+  "correlation_id": "corr-query-0001",
+  "trace_id": "trace-query-0001",
+  "results": [
+    {
+      "doc_id": "doc-001",
+      "score": 0.98,
+      "snippet": "Hybrid retrieval combines lexical and vector ranking.",
+      "metadata": {
+        "title": "Hybrid Retrieval Overview"
+      },
+      "attribution": {
+        "source_uri": "file:///docs/hybrid-retrieval.md",
+        "ingest_ts": "2026-04-12T16:00:00Z"
+      }
+    }
+  ],
+  "backend": {
+    "mode": "hybrid",
+    "name": "demo-hybrid",
+    "version": "0.1.0"
+  }
+}

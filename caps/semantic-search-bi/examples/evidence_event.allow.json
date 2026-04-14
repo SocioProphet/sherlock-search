@@ -1,0 +1,17 @@
+{
+  "event_id": "evt-0001",
+  "ts": "2026-04-12T16:00:00Z",
+  "actor": {
+    "id": "user:tester"
+  },
+  "action": "semantic.search.query",
+  "decision": "allow",
+  "correlation_id": "corr-query-0001",
+  "trace_id": "trace-query-0001",
+  "input_hash": "sha256:1111111111111111",
+  "output_hash": "sha256:2222222222222222",
+  "policy_id": "policy.semantic-search-bi.guard@0.1.0",
+  "rule_id": null,
+  "notes": "query allowed",
+  "attachments": []
+}

@@ -1,0 +1,25 @@
+{
+  "correlation_id": "corr-ingest-0001",
+  "trace_id": "trace-ingest-0001",
+  "actor": {
+    "id": "service:importer",
+    "roles": ["writer"]
+  },
+  "document": {
+    "doc_id": "doc-001",
+    "content": "Hybrid retrieval combines lexical, vector, and graph signals.",
+    "content_type": "text/plain",
+    "metadata": {
+      "title": "Hybrid Retrieval Overview"
+    },
+    "source_uri": "file:///docs/hybrid-retrieval.md",
+    "labels": ["search", "architecture"]
+  },
+  "options": {
+    "upsert": true,
+    "store_raw": false,
+    "index_lexical": true,
+    "index_vector": true,
+    "index_graph": false
+  }
+}

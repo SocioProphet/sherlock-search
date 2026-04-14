@@ -1,0 +1,18 @@
+{
+  "correlation_id": "corr-query-0001",
+  "trace_id": "trace-query-0001",
+  "actor": {
+    "id": "user:tester",
+    "roles": ["reader"]
+  },
+  "query": {
+    "text": "hybrid retrieval architecture",
+    "top_k": 3,
+    "mode": "hybrid"
+  },
+  "options": {
+    "include_snippets": true,
+    "include_metadata": true,
+    "redaction_level": "standard"
+  }
+}
