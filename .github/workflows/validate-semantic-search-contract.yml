@@ -30,8 +30,8 @@ jobs:
       - name: Install validator dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pyyaml
+          python -m pip install pyyaml jsonschema
 
-      - name: Validate semantic-search contract package
+      - name: Validate semantic-search contract package and examples
         run: |
           python3 caps/semantic-search-bi/tools/validate_package.py
