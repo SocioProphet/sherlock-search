@@ -1,0 +1,53 @@
+{
+  "generatedAtUtc": "2026-04-14T13:50:00Z",
+  "totals": {
+    "subjects": 120,
+    "labs": 100,
+    "models": 20,
+    "changedSubjects": 7,
+    "openEscalations": 3
+  },
+  "leaderboard": [
+    {
+      "subjectType": "Lab",
+      "subject": "OpenAI",
+      "regionOrOwner": "United States",
+      "category": "General frontier",
+      "poa": 3.48,
+      "ega": 3.43,
+      "composite": 3.46,
+      "evidenceConfidence": "High",
+      "topStrength": "Operational visibility",
+      "topRisk": "Weak re-anchoring",
+      "scoringBasis": "Calibration override"
+    },
+    {
+      "subjectType": "Model",
+      "subject": "Claude Opus 4.6",
+      "regionOrOwner": "Anthropic",
+      "category": "Frontier model family",
+      "poa": 3.78,
+      "ega": 3.32,
+      "composite": 3.55,
+      "evidenceConfidence": "High",
+      "topStrength": "Operational fit",
+      "topRisk": "Lower constitutional fit",
+      "scoringBasis": "Seed calibration"
+    }
+  ],
+  "contradictions": [
+    {
+      "subjectType": "Lab",
+      "subject": "Meta AI",
+      "regionOrOwner": "United States",
+      "category": "General frontier",
+      "poa": 2.23,
+      "ega": 1.80,
+      "composite": 2.04,
+      "evidenceConfidence": "Medium",
+      "topStrength": "Operational visibility",
+      "topRisk": "Weak re-anchoring",
+      "scoringBasis": "Calibration override"
+    }
+  ]
+}
