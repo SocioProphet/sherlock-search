@@ -1,0 +1,14 @@
+{
+  "correlation_id": "corr-explain-0001",
+  "trace_id": "trace-explain-0001",
+  "actor": {
+    "id": "user:tester",
+    "roles": ["reader"]
+  },
+  "explain": {
+    "query_text": "hybrid retrieval architecture",
+    "result_doc_ids": ["doc-001"],
+    "include_features": true,
+    "include_policy": true
+  }
+}

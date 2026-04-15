@@ -1,0 +1,24 @@
+{
+  "correlation_id": "corr-explain-0001",
+  "trace_id": "trace-explain-0001",
+  "explanation": {
+    "backend_choice": {
+      "mode": "hybrid",
+      "selected": ["lexical", "vector"]
+    },
+    "ranking_features": [
+      {
+        "name": "bm25",
+        "weight": 0.4
+      },
+      {
+        "name": "vector_similarity",
+        "weight": 0.6
+      }
+    ],
+    "policy": {
+      "decision": "allow"
+    },
+    "redactions": []
+  }
+}
