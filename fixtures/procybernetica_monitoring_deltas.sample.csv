@@ -1,0 +1,4 @@
+subject,total_change_count,open_escalation_after_repeat
+OpenAI,1,False
+Anthropic,0,False
+DeepSeek,2,True

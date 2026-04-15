@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProCybernetica Dashboard Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "generatedAtUtc": { "type": "string", "format": "date-time" },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subjects": { "type": "number" },
+        "labs": { "type": "number" },
+        "models": { "type": "number" },
+        "changedSubjects": { "type": "number" },
+        "openEscalations": { "type": "number" }
+      },
+      "required": ["subjects", "labs", "models", "changedSubjects", "openEscalations"]
+    },
+    "leaderboard": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/row"
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/row"
+      }
+    }
+  },
+  "required": ["generatedAtUtc", "totals", "leaderboard", "contradictions"],
+  "$defs": {
+    "row": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "subjectType": { "type": "string" },
+        "subject": { "type": "string" },
+        "regionOrOwner": { "type": "string" },
+        "category": { "type": "string" },
+        "poa": { "type": "number" },
+        "ega": { "type": "number" },
+        "composite": { "type": "number" },
+        "evidenceConfidence": { "type": "string" },
+        "topStrength": { "type": "string" },
+        "topRisk": { "type": "string" },
+        "scoringBasis": { "type": "string" }
+      },
+      "required": ["subjectType", "subject", "poa", "ega", "composite"]
+    }
+  }
+}

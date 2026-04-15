@@ -1,0 +1,4 @@
+Lab,Region bucket,Dossier class,POA,EGA,Composite,Evidence confidence,Scoring basis
+OpenAI,United States,General frontier,3.48,3.43,3.46,High,Calibration override
+Anthropic,United States,General frontier,3.30,3.59,3.43,High,Calibration override
+DeepSeek,China,General frontier,2.11,1.34,1.77,Medium,Calibration override
