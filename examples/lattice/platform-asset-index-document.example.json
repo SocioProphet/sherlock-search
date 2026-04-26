@@ -1,0 +1,16 @@
+{
+  "docType": "lattice.platformAssetRecord",
+  "assetId": "runtime-asset:prophet-python-ml:0.1.0",
+  "title": "prophet-python-ml 0.1.0",
+  "body": "RuntimeAsset v1 produced by SocioProphet/lattice-forge for notebook, Ray, Beam, AgentPlane, SourceOS user-plane, and Prophet Platform surfaces.",
+  "metadata": {
+    "assetKind": "runtime-asset",
+    "producerRepo": "SocioProphet/lattice-forge",
+    "promotionChannel": "dev",
+    "compatibilitySurfaces": ["jupyter", "ray", "beam", "agentplane", "sourceos-user", "prophet-platform"],
+    "slashTopics": ["/lattice", "/lattice/runtime", "/forge", "/runtime", "/supply-chain", "/policy", "/contracts", "/modeling"],
+    "policySubjectClass": "RuntimePolicySubject",
+    "contractSubjectClass": "RuntimeContractReferencedAsset",
+    "languageModelingUse": "metadata-classification-and-governance-explanation"
+  }
+}
