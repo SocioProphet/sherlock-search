@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.org/sherlock/schemas/sherlock_geospatial_result.v1.schema.json",
+  "title": "Sherlock Geospatial / Evidence Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_version",
+    "result_id",
+    "source",
+    "authority_ref",
+    "entity_type",
+    "title",
+    "score",
+    "provenance_refs"
+  ],
+  "properties": {
+    "record_version": {"type": "string", "const": "v1"},
+    "result_id": {"type": "string"},
+    "source": {"type": "string", "enum": ["GAIA", "OFIF", "LAMPSTAND", "LATTICE_FORGE", "PLATFORM", "MEMORY", "MIXED"]},
+    "authority_ref": {"type": "string"},
+    "entity_type": {"type": "string", "enum": ["DOCUMENT", "PROJECT", "MEMORY_NOTE", "WORLD_STATE_FEATURE", "EVIDENCE_ARTIFACT", "FIELD_EVENT", "OBSERVATION_EVENT", "DECISION_CARD", "MODEL_RUN", "MAP_LAYER", "RUNTIME_ASSET", "LOCAL_STATE_RECORD"]},
+    "title": {"type": "string"},
+    "snippet": {"type": "string"},
+    "path_or_uri": {"type": "string"},
+    "canonical_format": {"type": "string"},
+    "source_format": {"type": "string"},
+    "owner_ref": {"type": "string"},
+    "project_refs": {"type": "array", "items": {"type": "string"}},
+    "permission_ref": {"type": "string"},
+    "spatial_refs": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["scheme", "value"], "properties": {"scheme": {"type": "string", "enum": ["h3", "s2", "wgs84", "osm", "stac", "bbox", "geometry-ref", "other"]}, "value": {"type": "string"}, "role": {"type": "string"}}}},
+    "temporal_refs": {"type": "array", "items": {"type": "object", "additionalProperties": false, "properties": {"role": {"type": "string"}, "value": {"type": "string"}, "valid_from": {"type": "string", "format": "date-time"}, "valid_to": {"type": "string", "format": "date-time"}}}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "model_refs": {"type": "array", "items": {"type": "string"}},
+    "runtime_refs": {"type": "array", "items": {"type": "string"}},
+    "handling_tags": {"type": "array", "items": {"type": "string"}},
+    "provenance_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "score": {"type": "object", "required": ["final"], "additionalProperties": false, "properties": {"lexical": {"type": "number"}, "semantic": {"type": "number"}, "memory": {"type": "number"}, "geospatial": {"type": "number"}, "temporal": {"type": "number"}, "evidence": {"type": "number"}, "runtime": {"type": "number"}, "final": {"type": "number"}}},
+    "actions": {"type": "object", "additionalProperties": false, "properties": {"open_local": {"type": "boolean"}, "open_cloud": {"type": "boolean"}, "summarize": {"type": "boolean"}, "create_task": {"type": "boolean"}, "draft_reply": {"type": "boolean"}, "open_map": {"type": "boolean"}, "show_evidence": {"type": "boolean"}, "open_runtime": {"type": "boolean"}}}
+  }
+}
