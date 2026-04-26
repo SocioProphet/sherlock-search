@@ -1,0 +1,32 @@
+name: Geospatial Evidence Result Proof
+
+on:
+  push:
+    paths:
+      - 'schemas/sherlock_geospatial_result.v1.schema.json'
+      - 'examples/*.sherlock-result.v1.json'
+      - 'tools/validate-geospatial-result.js'
+      - '.github/workflows/geospatial-result.yml'
+  pull_request:
+    paths:
+      - 'schemas/sherlock_geospatial_result.v1.schema.json'
+      - 'examples/*.sherlock-result.v1.json'
+      - 'tools/validate-geospatial-result.js'
+      - '.github/workflows/geospatial-result.yml'
+
+jobs:
+  validate-geospatial-results:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate example geospatial result records
+        run: |
+          node tools/validate-geospatial-result.js \
+            examples/gaia-soil-intelligence-decision-card.sherlock-result.v1.json
