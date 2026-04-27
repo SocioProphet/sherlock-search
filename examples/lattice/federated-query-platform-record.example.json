@@ -1,0 +1,32 @@
+{
+  "apiVersion": "prophet.socioprophet.dev/v1",
+  "kind": "PlatformAssetRecord",
+  "assetId": "federated-query-plane:demo1234567",
+  "assetKind": "federated-query-plane",
+  "name": "lattice-studio-federated-query-plane",
+  "version": "0.1.0",
+  "sourceApiVersion": "studio.socioprophet.dev/v1",
+  "sourceKind": "FederatedQueryPlane",
+  "producerRepo": "SocioProphet/prophet-platform",
+  "policyRef": "policy://query/federated",
+  "evidenceCorrelationId": "federated-query-plane:demo1234567",
+  "promotionChannel": "dry-run",
+  "compatibilitySurfaces": [
+    "lattice-studio",
+    "apache-drill",
+    "sql",
+    "document-store",
+    "annotation-store",
+    "sparql",
+    "ontology-query",
+    "cypher",
+    "graphbrain",
+    "opencog",
+    "atomese",
+    "sherlock-search",
+    "slash-topics",
+    "new-hope",
+    "lampstand",
+    "ontogenesis"
+  ]
+}
