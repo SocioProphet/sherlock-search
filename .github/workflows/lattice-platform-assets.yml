@@ -19,3 +19,7 @@ jobs:
           python-version: "3.11"
       - name: Validate Lattice platform asset fixtures
         run: python scripts/validate_lattice_platform_asset.py
+      - name: Convert Lattice enrichment fixture
+        run: python scripts/convert_lattice_enrichments.py examples/lattice/platform-asset-enrichment-set.example.json --output build/lattice-index-documents.json
+      - name: Validate generated Sherlock index document
+        run: python scripts/validate_lattice_platform_asset.py build/lattice-index-documents.json
