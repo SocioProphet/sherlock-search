@@ -1,0 +1,61 @@
+{
+  "record_version": "v1",
+  "result_id": "search-control-tower-navigation-asset-health-demo-0001",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "DECISION_CARD",
+  "title": "Rail corridor vegetation watch with route impact",
+  "snippet": "LiDAR corridor observation detected vegetation encroachment near a demo rail segment. The route remains advisory-only and requires inspection before operational restriction.",
+  "path_or_uri": "gaia://fixtures/control-tower/navigation-asset-health-card.sample.v1.json",
+  "canonical_format": "gaia/control-tower-decision-card+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "orion-field-intelligence", "lattice-forge", "sherlock-search"],
+  "permission_ref": "demo/internal",
+  "spatial_refs": [
+    {"scheme": "h3", "value": "8928308280fffff", "role": "corridor-start"},
+    {"scheme": "h3", "value": "89283082807ffff", "role": "corridor-end"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_start", "value": "2026-04-26T15:30:00Z"},
+    {"role": "route_arrival", "value": "2026-04-26T16:42:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia-nav-lidar-rail-demo-0001",
+    "gaia-route-plan-demo-0001",
+    "ofif-asset-health-demo-0001"
+  ],
+  "model_refs": [
+    "corridor-feature-detector-demo-0.1.0",
+    "route-risk-scorer-demo-0.1.0"
+  ],
+  "runtime_refs": [
+    "gaia-navigation-lidar-feature-runtime@v0.1.0",
+    "gaia-navigation-routing-runtime@v0.1.0",
+    "gaia-control-tower-anomaly-runtime@v0.1.0"
+  ],
+  "handling_tags": ["demo", "navigation", "rail", "control-tower", "lidar"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/control-tower/navigation-asset-health-card.sample.v1.json",
+    "SocioProphet/orion-field-intelligence:fixtures/asset-health-event.sample.v1.json"
+  ],
+  "score": {
+    "lexical": 0.82,
+    "semantic": 0.84,
+    "geospatial": 0.91,
+    "temporal": 0.83,
+    "evidence": 0.88,
+    "runtime": 0.76,
+    "final": 0.85
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": true,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
