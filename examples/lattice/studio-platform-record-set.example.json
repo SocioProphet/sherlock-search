@@ -166,6 +166,21 @@
       "evidenceCorrelationId": "m2-topolvm-placement:demo1234567",
       "promotionChannel": "dry-run",
       "compatibilitySurfaces": ["sourceos-m2", "topolvm", "kubernetes", "local-vm", "inception-agent-cluster", "byoc", "cloudshell-fog", "lattice-studio", "sherlock-search"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "placement-dry-run:demo1234567",
+      "assetKind": "placement-dry-run-report",
+      "name": "lattice-studio-placement-dry-run-report",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "PlacementDryRunReport",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://placement/dry-run",
+      "evidenceCorrelationId": "placement-dry-run:demo1234567",
+      "promotionChannel": "pass",
+      "compatibilitySurfaces": ["lattice-studio", "byoc", "cloudshell-fog", "sourceos-m2", "topolvm", "notebook-launch", "notebook-promotion", "ray", "beam", "sherlock-search"]
     }
   ]
 }
