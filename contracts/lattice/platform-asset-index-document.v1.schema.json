@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.socioprophet.dev/sherlock/platform-asset-index-document.v1.schema.json",
+  "title": "PlatformAssetIndexDocument v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["docType", "assetId", "title", "body", "metadata"],
+  "properties": {
+    "docType": {"const": "lattice.platformAssetRecord"},
+    "assetId": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "body": {"type": "string"},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["assetKind", "producerRepo", "compatibilitySurfaces"],
+      "properties": {
+        "assetKind": {"type": "string"},
+        "producerRepo": {"type": "string"},
+        "promotionChannel": {"type": ["string", "null"]},
+        "compatibilitySurfaces": {"type": "array", "items": {"type": "string"}},
+        "slashTopics": {"type": "array", "items": {"type": "string"}},
+        "policySubjectClass": {"type": "string"},
+        "contractSubjectClass": {"type": "string"},
+        "languageModelingUse": {"type": "string"}
+      }
+    }
+  }
+}
