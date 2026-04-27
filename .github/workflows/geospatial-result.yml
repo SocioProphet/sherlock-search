@@ -28,5 +28,7 @@ jobs:
 
       - name: Validate example geospatial result records
         run: |
-          node tools/validate-geospatial-result.js \
-            examples/gaia-soil-intelligence-decision-card.sherlock-result.v1.json
+          set -euo pipefail
+          for record in examples/*.sherlock-result.v1.json; do
+            node tools/validate-geospatial-result.js "$record"
+          done
