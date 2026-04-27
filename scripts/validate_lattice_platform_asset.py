@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 
 def require(condition: bool, message: str) -> None:
@@ -13,8 +14,7 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def validate(path: Path) -> None:
-    doc = json.loads(path.read_text(encoding="utf-8"))
+def validate_document(doc: dict[str, Any]) -> None:
     require(doc.get("docType") == "lattice.platformAssetRecord", "docType must be lattice.platformAssetRecord")
     for key in ["assetId", "title", "body", "metadata"]:
         require(key in doc, f"missing {key}")
@@ -25,10 +25,23 @@ def validate(path: Path) -> None:
     require(isinstance(metadata["compatibilitySurfaces"], list), "compatibilitySurfaces must be a list")
 
 
+def validate(path: Path) -> None:
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(doc, dict) and "documents" in doc:
+        documents = doc["documents"]
+        require(isinstance(documents, list) and documents, "documents must be a non-empty list")
+        for index, item in enumerate(documents):
+            require(isinstance(item, dict), f"documents[{index}] must be an object")
+            validate_document(item)
+        return
+    require(isinstance(doc, dict), "fixture must be an object")
+    validate_document(doc)
+
+
 def main(argv: list[str] | None = None) -> int:
     paths = [Path(arg) for arg in (argv if argv is not None else sys.argv[1:])]
     if not paths:
-        paths = sorted(Path("examples/lattice").glob("*.json"))
+        paths = sorted(Path("examples/lattice").glob("platform-asset-index-document*.json"))
     failed = False
     for path in paths:
         try:
