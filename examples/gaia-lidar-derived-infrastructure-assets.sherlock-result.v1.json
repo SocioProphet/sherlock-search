@@ -1,0 +1,59 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-lidar-derived-infrastructure-assets-demo-0001",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "EVIDENCE_ARTIFACT",
+  "title": "GAIA LiDAR-Derived Rail Infrastructure Evidence Demo",
+  "snippet": "Advisory LiDAR-derived rail corridor assets for rail segment condition, vegetation watch, and clearance envelope review. Not validated for safety-critical navigation.",
+  "path_or_uri": "gaia://fixtures/navigation/lidar-derived-infrastructure-assets.sample.v1.json",
+  "canonical_format": "gaia/navigation-lidar-feature-extract-output+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "lattice-forge"],
+  "permission_ref": "internal/demo",
+  "spatial_refs": [
+    {"scheme": "h3", "value": "8928308280fffff", "role": "coverage"},
+    {"scheme": "h3", "value": "89283082807ffff", "role": "coverage"},
+    {"scheme": "geometry-ref", "value": "geometry://demo/rail-corridor-a/segment-001", "role": "corridor-segment"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_at", "value": "2026-04-26T15:30:00Z"},
+    {"role": "safety_case_valid_from", "value": "2026-04-26T15:30:00Z"},
+    {"role": "safety_case_valid_to", "value": "2026-04-27T15:30:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia-nav-lidar-rail-demo-0001",
+    "rail-segment-demo-a-001",
+    "vegetation-encroachment-demo-001",
+    "clearance-envelope-demo-001",
+    "navigation-safety-case-lidar-advisory-demo-0001"
+  ],
+  "model_refs": ["corridor-feature-detector-demo-0.1.0"],
+  "runtime_refs": ["gaia-navigation-lidar-feature-runtime@v0.1.0"],
+  "handling_tags": ["demo", "navigation", "lidar", "rail", "advisory", "not-safety-critical"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/navigation/rail-corridor-lidar-observation.sample.v1.json",
+    "SocioProphet/gaia-world-model:fixtures/navigation/lidar-derived-infrastructure-assets.sample.v1.json",
+    "SocioProphet/gaia-world-model:fixtures/navigation/navigation-safety-case.lidar-advisory.sample.v1.json"
+  ],
+  "score": {
+    "lexical": 0.83,
+    "semantic": 0.88,
+    "geospatial": 0.92,
+    "temporal": 0.82,
+    "evidence": 0.91,
+    "runtime": 0.76,
+    "final": 0.88
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": true,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
