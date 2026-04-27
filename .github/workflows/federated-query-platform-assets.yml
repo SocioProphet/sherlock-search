@@ -1,0 +1,23 @@
+name: federated-query-platform-assets
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Convert federated query record set
+        run: python scripts/convert_platform_records.py examples/lattice/federated-query-platform-record-set.example.json --output build/federated-query-index-documents.json
+      - name: Validate federated query index documents
+        run: python scripts/validate_lattice_platform_asset.py build/federated-query-index-documents.json
