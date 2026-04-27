@@ -196,6 +196,21 @@
       "evidenceCorrelationId": "safe-placement-execution:demo1234567",
       "promotionChannel": "not-requested",
       "compatibilitySurfaces": ["lattice-studio", "placement-decision", "safe-executor", "byoc", "cloudshell-fog", "sourceos-m2", "topolvm", "ray", "beam", "sherlock-search"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "execution-approval:demo1234567",
+      "assetKind": "execution-approval-request",
+      "name": "lattice-studio-execution-approval-request",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "ExecutionApprovalRequest",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://placement/safe-execution",
+      "evidenceCorrelationId": "execution-approval:demo1234567",
+      "promotionChannel": "requested",
+      "compatibilitySurfaces": ["lattice-studio", "safe-placement-execution", "placement-decision", "approval-workflow", "byoc", "cloudshell-fog", "sourceos-m2", "topolvm", "sherlock-search"]
     }
   ]
 }
