@@ -23,3 +23,7 @@ jobs:
         run: python scripts/convert_lattice_enrichments.py examples/lattice/platform-asset-enrichment-set.example.json --output build/lattice-index-documents.json
       - name: Validate generated Sherlock index document
         run: python scripts/validate_lattice_platform_asset.py build/lattice-index-documents.json
+      - name: Convert raw Studio PlatformAssetRecordSet fixture
+        run: python scripts/convert_platform_records.py examples/lattice/studio-platform-record-set.example.json --output build/studio-index-documents.json
+      - name: Validate generated Studio Sherlock index documents
+        run: python scripts/validate_lattice_platform_asset.py build/studio-index-documents.json
