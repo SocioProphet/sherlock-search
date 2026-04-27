@@ -121,6 +121,51 @@
       "evidenceCorrelationId": "lampstand-result:demo1234567",
       "promotionChannel": "local-candidate",
       "compatibilitySurfaces": ["lampstand-local-search", "lattice-studio", "sourceos-local", "memory-mesh", "sherlock-search", "slash-topics"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "byoc-placement:demo1234567",
+      "assetKind": "byoc-placement-plan",
+      "name": "lattice-studio-byoc-placement-plan",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "BYOCPlacementPlan",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://byoc/placement",
+      "evidenceCorrelationId": "byoc-placement:demo1234567",
+      "promotionChannel": "dry-run",
+      "compatibilitySurfaces": ["lattice-studio", "byoc", "kubernetes", "array-cluster", "ray", "beam", "sourceos-local", "cloudshell-fog", "object-storage", "websocket-pty", "sherlock-search"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "notebook-shell-placement:demo1234567",
+      "assetKind": "notebook-shell-placement-plan",
+      "name": "lattice-studio-notebook-shell-placement-plan",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "UnifiedNotebookShellPlacementPlan",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://byoc/notebook-shell-placement",
+      "evidenceCorrelationId": "notebook-shell-placement:demo1234567",
+      "promotionChannel": "dry-run",
+      "compatibilitySurfaces": ["lattice-studio", "cloudshell-fog", "sourceos-local", "socios-linux", "dnote", "jupyterlab", "zeppelin", "observable", "plutojl", "quarto", "byoc", "websocket-pty", "sherlock-search"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "m2-topolvm-placement:demo1234567",
+      "assetKind": "m2-topolvm-placement-plan",
+      "name": "sourceos-m2-topolvm-inception-placement",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "M2TopoLVMPlacementPlan",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://sourceos/m2-topolvm-placement",
+      "evidenceCorrelationId": "m2-topolvm-placement:demo1234567",
+      "promotionChannel": "dry-run",
+      "compatibilitySurfaces": ["sourceos-m2", "topolvm", "kubernetes", "local-vm", "inception-agent-cluster", "byoc", "cloudshell-fog", "lattice-studio", "sherlock-search"]
     }
   ]
 }
