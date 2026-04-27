@@ -1,0 +1,54 @@
+{
+  "record_version": "v1",
+  "result_id": "search-mesh-experiment-soil-intelligence-demo-0001",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "MODEL_RUN",
+  "title": "Soil Intelligence Mesh Experiment Demo",
+  "snippet": "Local SourceOS-capable mesh node runs OFIF observation to GAIA soil fusion to decision-card evidence, with rollback limited to stopping the local execution slice.",
+  "path_or_uri": "gaia://fixtures/mesh/soil-intelligence-mesh-experiment.sample.v1.json",
+  "canonical_format": "gaia/mesh-experiment-manifest+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "orion-field-intelligence", "sherlock-search", "meshrush"],
+  "permission_ref": "demo/internal",
+  "spatial_refs": [
+    {"scheme": "h3", "value": "8928308280fffff", "role": "experiment-scope"}
+  ],
+  "temporal_refs": [
+    {"role": "created_at", "value": "2026-04-27T00:37:00Z"}
+  ],
+  "evidence_refs": [
+    "ofif-event-0001-soil-field-demo",
+    "gaia-feature-ofif-event-0001-soil-field-demo",
+    "gaia-soil-fusion-demo-0001",
+    "gaia-decision-card-soil-demo-0001",
+    "mesh-telemetry-local-m2-demo-001"
+  ],
+  "model_refs": ["gaia-soil-intelligence-baseline-demo-0.1.0"],
+  "runtime_refs": ["gaia-soil-intelligence-baseline-runtime@v0.1.0"],
+  "handling_tags": ["demo", "mesh", "soil-intelligence", "non-actuating"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/mesh/soil-intelligence-mesh-experiment.sample.v1.json",
+    "SocioProphet/gaia-world-model:fixtures/mesh/mesh-telemetry.local-host-health.sample.v1.json"
+  ],
+  "score": {
+    "lexical": 0.78,
+    "semantic": 0.86,
+    "geospatial": 0.9,
+    "temporal": 0.82,
+    "evidence": 0.9,
+    "runtime": 0.72,
+    "final": 0.85
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": true,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
