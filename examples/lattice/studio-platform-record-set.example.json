@@ -181,6 +181,21 @@
       "evidenceCorrelationId": "placement-dry-run:demo1234567",
       "promotionChannel": "pass",
       "compatibilitySurfaces": ["lattice-studio", "byoc", "cloudshell-fog", "sourceos-m2", "topolvm", "notebook-launch", "notebook-promotion", "ray", "beam", "sherlock-search"]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "safe-placement-execution:demo1234567",
+      "assetKind": "safe-placement-execution-plan",
+      "name": "lattice-studio-safe-placement-execution-plan",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "SafePlacementExecutionPlan",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://placement/safe-execution",
+      "evidenceCorrelationId": "safe-placement-execution:demo1234567",
+      "promotionChannel": "not-requested",
+      "compatibilitySurfaces": ["lattice-studio", "placement-decision", "safe-executor", "byoc", "cloudshell-fog", "sourceos-m2", "topolvm", "ray", "beam", "sherlock-search"]
     }
   ]
 }
