@@ -5,40 +5,69 @@
   "authority_ref": "SocioProphet/gaia-world-model",
   "entity_type": "MAP_LAYER",
   "title": "GAIA OSM Demo Road Layer",
-  "snippet": "OpenStreetMap-derived GAIA demo road layer preserving OSM way identity, attribution, H3 refs, and MapLibre-compatible vector tile metadata.",
+  "snippet": "OpenStreetMap-derived GAIA demo road layer preserving OSM way identity, attribution, H3 refs, advisory route graph evidence, runtime-boundary state, governance lanes, and MapLibre-compatible vector tile metadata for the /map workbench.",
   "path_or_uri": "gaia://fixtures/geospatial/osm-derived-map-tile-layer.sample.v1.json",
   "canonical_format": "gaia/map-tile-layer-manifest+json",
   "source_format": "json",
   "owner_ref": "SocioProphet",
-  "project_refs": ["gaia-world-model", "sherlock-search", "sociosphere"],
+  "project_refs": [
+    "gaia-world-model",
+    "sherlock-search",
+    "sociosphere",
+    "prophet-platform",
+    "socioprophet-web"
+  ],
   "permission_ref": "public/demo",
   "spatial_refs": [
     {"scheme": "h3", "value": "8928308280fffff", "role": "coverage"},
     {"scheme": "h3", "value": "89283082807ffff", "role": "coverage"},
-    {"scheme": "osm", "value": "way/424242", "role": "source-feature"}
+    {"scheme": "osm", "value": "way/424242", "role": "source-feature"},
+    {"scheme": "gaia", "value": "gaia-road-segment-demo-osm-way-424242", "role": "world-model-feature"}
   ],
   "temporal_refs": [
-    {"role": "source_extract_time", "value": "2026-04-26T00:00:00Z"}
+    {"role": "source_extract_time", "value": "2026-04-26T00:00:00Z"},
+    {"role": "demo_contract_time", "value": "2026-04-28T00:00:00Z"}
   ],
   "evidence_refs": [
     "osm-binding-demo-way-424242",
-    "gaia-road-segment-demo-osm-way-424242"
+    "gaia-road-segment-demo-osm-way-424242",
+    "gaia-osm-demo-road-layer-v1",
+    "gaia-osm-route-graph-way-424242-v1",
+    "gaia-osm-runtime-boundaries-v1",
+    "gaia-ofif-meshlab-capability-map-v1"
   ],
   "model_refs": [],
-  "runtime_refs": [],
-  "handling_tags": ["demo", "osm", "maplibre", "vector-tile", "advisory"],
+  "runtime_refs": [
+    "gaia-osm-ingestion-runtime",
+    "gaia-osm-route-graph-runtime",
+    "gaia-osm-tile-export-runtime"
+  ],
+  "handling_tags": [
+    "demo",
+    "osm",
+    "maplibre",
+    "vector-tile",
+    "advisory",
+    "route-graph",
+    "runtime-boundary",
+    "governance-lane",
+    "vue-map-workbench"
+  ],
   "provenance_refs": [
     "SocioProphet/gaia-world-model:fixtures/geospatial/osm-road-feature-binding.sample.v1.json",
-    "SocioProphet/gaia-world-model:fixtures/geospatial/osm-derived-map-tile-layer.sample.v1.json"
+    "SocioProphet/gaia-world-model:fixtures/geospatial/osm-derived-map-tile-layer.sample.v1.json",
+    "SocioProphet/gaia-world-model:fixtures/geospatial/osm-route-graph.sample.v1.json",
+    "SocioProphet/prophet-platform:apps/osm-map-api",
+    "SocioProphet/sociosphere:registry/gaia-ofif-meshlab-capability-map.v1.json"
   ],
   "score": {
-    "lexical": 0.82,
-    "semantic": 0.8,
-    "geospatial": 0.92,
-    "temporal": 0.75,
-    "evidence": 0.86,
-    "runtime": 0.0,
-    "final": 0.82
+    "lexical": 0.84,
+    "semantic": 0.82,
+    "geospatial": 0.94,
+    "temporal": 0.78,
+    "evidence": 0.9,
+    "runtime": 0.62,
+    "final": 0.86
   },
   "actions": {
     "open_local": false,
@@ -48,6 +77,18 @@
     "draft_reply": false,
     "open_map": true,
     "show_evidence": true,
-    "open_runtime": false
+    "open_runtime": false,
+    "show_governance": true,
+    "inspect_h3": true,
+    "inspect_osm_feature": true
+  },
+  "safety": {
+    "route_safety_status": "advisory",
+    "prohibited_uses": [
+      "safety-critical navigation",
+      "dispatch authority",
+      "live route guidance"
+    ],
+    "note": "This result supports the GAIA /map workbench and evidence panels. It is not production navigation authority."
   }
 }
