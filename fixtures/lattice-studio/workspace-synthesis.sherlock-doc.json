@@ -1,0 +1,40 @@
+{
+  "docType": "lattice.platformAssetRecord",
+  "assetId": "workspace-synthesis:demo000000000001",
+  "title": "Demo workspace source-grounded report 0.1.0",
+  "body": "workspace-synthesis-artifact Demo workspace source-grounded report version 0.1.0 produced by SocioProphet/prophet-platform.",
+  "metadata": {
+    "assetKind": "workspace-synthesis-artifact",
+    "producerRepo": "SocioProphet/prophet-platform",
+    "promotionChannel": "workspace-demo",
+    "sourceKind": "WorkspaceSynthesisArtifact",
+    "sourceApiVersion": "studio.socioprophet.dev/v1",
+    "policyRef": "policy://workspace/demo",
+    "evidenceCorrelationId": "workspace-synthesis:demo000000000001",
+    "compatibilitySurfaces": [
+      "lattice-studio",
+      "prophet-workspace",
+      "prophet-platform",
+      "source-grounded-synthesis",
+      "workspace-publication",
+      "evidence-bundle"
+    ],
+    "slashTopics": [
+      "/lattice",
+      "/lattice/studio",
+      "/workspace",
+      "/workspace/synthesis",
+      "/source-grounded-synthesis",
+      "/workspace/publication",
+      "/evidence",
+      "/governance",
+      "/provenance"
+    ],
+    "governance": {
+      "assetClass": "workspace-source-grounding",
+      "surfaceScope": "workspace-lattice-studio",
+      "evidenceCompleteness": "policy-and-evidence-linked",
+      "searchVisibility": "policy-scoped"
+    }
+  }
+}
