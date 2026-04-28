@@ -1,0 +1,53 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-vessel-track-sample-000000000-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "OBSERVATION_EVENT",
+  "title": "GAIA Sample Vessel Track Observation 000000000",
+  "snippet": "Standards-bound GAIA vessel track observation derived from a synthetic AIS fixture with position, motion, source provenance, and governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/vessel-track-observation.sample.v1.json",
+  "canonical_format": "gaia/multidomain-vessel-track-observation+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "wgs84", "value": "40.7128,-74.006", "role": "observed-position"},
+    {"scheme": "other", "value": "mmsi:000000000", "role": "vessel-identity"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_at", "value": "2026-04-27T18:00:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:vessel-track:sample:000000000:2026-04-27T18:00:00Z",
+    "sample-ais-feed:event:0001"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:ais-ingest:v0"],
+  "handling_tags": ["sample", "maritime", "ais", "vessel-track", "standards-bound", "advisory"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/vessel-track-observation.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.77,
+    "semantic": 0.82,
+    "geospatial": 0.88,
+    "temporal": 0.86,
+    "evidence": 0.89,
+    "runtime": 0.45,
+    "final": 0.82
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
