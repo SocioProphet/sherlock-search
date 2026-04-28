@@ -1,0 +1,56 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-sensitive-geo-policy-standard-delay-mask-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "EVIDENCE_ARTIFACT",
+  "title": "GAIA Sensitive Geospatial Policy — Standard Delay and Mask",
+  "snippet": "Standards-bound GAIA sensitive geospatial policy record defining masking, delay, access-control, and audit controls for space, maritime, air-domain, and defense/public-safety lanes.",
+  "path_or_uri": "gaia://fixtures/multidomain/sensitive-geo-policy.sample.v1.json",
+  "canonical_format": "gaia/multidomain-sensitive-geo-policy-record+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge", "socioprophet-agent-standards"],
+  "permission_ref": "public/sample-policy",
+  "spatial_refs": [
+    {"scheme": "other", "value": "scope:space-telemetry", "role": "policy-domain"},
+    {"scheme": "other", "value": "scope:maritime-domain-awareness", "role": "policy-domain"},
+    {"scheme": "other", "value": "scope:air-domain-awareness", "role": "policy-domain"},
+    {"scheme": "other", "value": "scope:defense-public-safety", "role": "policy-domain"}
+  ],
+  "temporal_refs": [
+    {"role": "policy_effective_sample", "value": "2026-04-27"}
+  ],
+  "evidence_refs": [
+    "gaia:sensitive-geo-policy:standard-delay-mask-v1",
+    "policy:sensitive-geo:standard-delay-mask-v1"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:sensitive-geo-policy-eval:v0"],
+  "handling_tags": ["sample", "sensitive-geo", "policy", "masking", "delay", "audit", "standards-bound"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/sensitive-geo-policy.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md",
+    "SocioProphet/socioprophet-agent-standards:docs/standards/020-multidomain-geospatial-agent-runtime.md"
+  ],
+  "score": {
+    "lexical": 0.82,
+    "semantic": 0.9,
+    "geospatial": 0.7,
+    "temporal": 0.6,
+    "evidence": 0.92,
+    "runtime": 0.5,
+    "final": 0.82
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
