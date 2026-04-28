@@ -1,0 +1,55 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-multidomain-fusion-event-sample-001-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "DECISION_CARD",
+  "title": "GAIA Sample Multi-Domain Fusion Event",
+  "snippet": "Standards-bound GAIA fusion event joining Earth observation, field sensor, maritime, air-domain, and sensitive-geo policy inputs into an advisory environmental context artifact.",
+  "path_or_uri": "gaia://fixtures/multidomain/multi-domain-fusion-event.sample.v1.json",
+  "canonical_format": "gaia/multidomain-fusion-event+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge", "socioprophet-agent-standards"],
+  "permission_ref": "public/sample-advisory",
+  "spatial_refs": [
+    {"scheme": "h3", "value": "892a1072b59ffff", "role": "eo-context"},
+    {"scheme": "wgs84", "value": "40.102,-75.214", "role": "sensor-context"},
+    {"scheme": "other", "value": "scope:multidomain-fusion", "role": "policy-domain"}
+  ],
+  "temporal_refs": [
+    {"role": "created_at", "value": "2026-04-27T18:30:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:fusion:soil-eo-sensor-vessel-air:sample-001",
+    "decision-card:sample:soil-transport-context"
+  ],
+  "model_refs": ["fusion:sample:soil-eo-sensor-vessel-air-001"],
+  "runtime_refs": ["runtime:multidomain-fusion:v0"],
+  "handling_tags": ["sample", "fusion", "earth-observation", "sensor", "maritime", "air-domain", "sensitive-geo", "advisory"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/multi-domain-fusion-event.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md",
+    "SocioProphet/socioprophet-agent-standards:docs/standards/020-multidomain-geospatial-agent-runtime.md"
+  ],
+  "score": {
+    "lexical": 0.81,
+    "semantic": 0.9,
+    "geospatial": 0.84,
+    "temporal": 0.82,
+    "evidence": 0.92,
+    "runtime": 0.52,
+    "final": 0.86
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": true,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
