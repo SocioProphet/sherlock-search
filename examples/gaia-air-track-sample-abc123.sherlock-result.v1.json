@@ -1,0 +1,53 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-air-track-sample-abc123-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "OBSERVATION_EVENT",
+  "title": "GAIA Sample Air Track Observation ABC123",
+  "snippet": "Standards-bound GAIA air-domain observation derived from a synthetic ADS-B fixture with aircraft identity, position, motion, source provenance, and governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/air-track-observation.sample.v1.json",
+  "canonical_format": "gaia/multidomain-air-track-observation+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "wgs84", "value": "39.8729,-75.2437,12000ft", "role": "observed-position"},
+    {"scheme": "other", "value": "icao24:ABC123", "role": "aircraft-identity"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_at", "value": "2026-04-27T18:10:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:air-track:sample:ABC123:2026-04-27T18:10:00Z",
+    "sample-adsb-feed:event:0001"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:adsb-ingest:v0"],
+  "handling_tags": ["sample", "air-domain", "ads-b", "air-track", "standards-bound", "advisory"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/air-track-observation.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.76,
+    "semantic": 0.82,
+    "geospatial": 0.88,
+    "temporal": 0.88,
+    "evidence": 0.88,
+    "runtime": 0.45,
+    "final": 0.81
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
