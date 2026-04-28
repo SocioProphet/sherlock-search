@@ -1,0 +1,56 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-eo-product-sample-stac-item-001-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "EVIDENCE_ARTIFACT",
+  "title": "GAIA Sample STAC Earth Observation Product 001",
+  "snippet": "Standards-bound GAIA Earth observation product record for a synthetic STAC item with COG asset refs, spatial/temporal metadata, NDVI derivation hint, and governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/earth-observation-product.sample.v1.json",
+  "canonical_format": "gaia/multidomain-earth-observation-product-record+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "bbox", "value": "-75.0,39.5,-73.5,41.0", "role": "coverage"},
+    {"scheme": "h3", "value": "892a1072b59ffff", "role": "coverage"},
+    {"scheme": "stac", "value": "stac:item:sample-stac-item-001", "role": "source-product"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_start", "value": "2026-04-27T17:55:00Z"},
+    {"role": "observed_end", "value": "2026-04-27T18:00:00Z"},
+    {"role": "published_at", "value": "2026-04-27T18:20:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:eo-product:sample-stac-item-001",
+    "stac:item:sample-stac-item-001"
+  ],
+  "model_refs": ["derived-index:NDVI"],
+  "runtime_refs": ["runtime:stac-ingest:v0"],
+  "handling_tags": ["sample", "earth-observation", "stac", "cog", "ndvi", "standards-bound"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/earth-observation-product.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.79,
+    "semantic": 0.87,
+    "geospatial": 0.86,
+    "temporal": 0.83,
+    "evidence": 0.9,
+    "runtime": 0.5,
+    "final": 0.84
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
