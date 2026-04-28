@@ -1,0 +1,53 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-telemetry-observation-sample-sat-001-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "OBSERVATION_EVENT",
+  "title": "GAIA Sample Spacecraft Telemetry Observation",
+  "snippet": "Standards-bound GAIA telemetry observation for a synthetic Earth observation satellite, including spacecraft health measurements, link session reference, ground-station reference, provenance, and governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/telemetry-observation.sample.v1.json",
+  "canonical_format": "gaia/multidomain-telemetry-observation+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "geometry-ref", "value": "ground-station:sample-midatlantic-001", "role": "ground-station"},
+    {"scheme": "geometry-ref", "value": "link-session:sample-ground-contact-001", "role": "link-session"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_at", "value": "2026-04-27T18:05:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:telemetry:sample-sat-001:2026-04-27T18:05:00Z",
+    "sample-telemetry-stream:packet:001"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:space-telemetry-ingest:v0"],
+  "handling_tags": ["sample", "space-telemetry", "satellite", "spacecraft-health", "standards-bound", "advisory"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/telemetry-observation.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.78,
+    "semantic": 0.86,
+    "geospatial": 0.7,
+    "temporal": 0.89,
+    "evidence": 0.9,
+    "runtime": 0.55,
+    "final": 0.82
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
