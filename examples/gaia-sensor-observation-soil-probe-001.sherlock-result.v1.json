@@ -1,0 +1,53 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-sensor-observation-soil-probe-001-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "OBSERVATION_EVENT",
+  "title": "GAIA Sample Soil Probe Sensor Observation",
+  "snippet": "Standards-bound GAIA sensor observation envelope for a synthetic soil probe, including soil temperature, soil moisture, geometry reference, source provenance, and governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/sensor-observation-envelope.sample.v1.json",
+  "canonical_format": "gaia/multidomain-sensor-observation-envelope+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "wgs84", "value": "40.102,-75.214", "role": "observed-position"},
+    {"scheme": "other", "value": "sensor:field:soil-probe-001", "role": "sensor-identity"}
+  ],
+  "temporal_refs": [
+    {"role": "observed_at", "value": "2026-04-27T18:15:00Z"}
+  ],
+  "evidence_refs": [
+    "gaia:sensor-observation:soil-probe-001:2026-04-27T18:15:00Z",
+    "sample-sensorthings-feed:observation:0001"
+  ],
+  "model_refs": ["soil_temperature_c", "soil_moisture_fraction"],
+  "runtime_refs": ["runtime:sensorthings-ingest:v0"],
+  "handling_tags": ["sample", "sensor", "sensorthings", "soil", "field-observation", "standards-bound"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/sensor-observation-envelope.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.79,
+    "semantic": 0.86,
+    "geospatial": 0.84,
+    "temporal": 0.88,
+    "evidence": 0.9,
+    "runtime": 0.46,
+    "final": 0.82
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
