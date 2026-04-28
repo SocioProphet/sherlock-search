@@ -1,0 +1,53 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-space-asset-sample-sat-001-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "WORLD_STATE_FEATURE",
+  "title": "GAIA Sample Earth Observation Satellite 001",
+  "snippet": "Standards-bound GAIA space asset record for a synthetic Earth observation satellite, including orbit reference, source provenance, and sensitive-geospatial governance metadata.",
+  "path_or_uri": "gaia://fixtures/multidomain/space-asset.sample.v1.json",
+  "canonical_format": "gaia/multidomain-space-asset-record+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge"],
+  "permission_ref": "public/sample",
+  "spatial_refs": [
+    {"scheme": "geometry-ref", "value": "ephemeris:sample:sat-001:placeholder", "role": "orbit"},
+    {"scheme": "geometry-ref", "value": "coverage:sample:midatlantic", "role": "coverage"}
+  ],
+  "temporal_refs": [
+    {"role": "catalog_validity", "value": "2026-04-27"}
+  ],
+  "evidence_refs": [
+    "gaia:space-asset:sample-sat-001",
+    "space-asset:sample-sat-001"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:space-catalog-ingest:v0"],
+  "handling_tags": ["sample", "space", "satellite", "earth-observation", "standards-bound", "sensitive-geo-policy"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:fixtures/multidomain/space-asset.sample.v1.json",
+    "SocioProphet/socioprophet-standards-storage:docs/standards/096-multidomain-geospatial-storage-contracts.md",
+    "SocioProphet/socioprophet-standards-knowledge:docs/standards/080-multidomain-geospatial-knowledge-context.md"
+  ],
+  "score": {
+    "lexical": 0.76,
+    "semantic": 0.88,
+    "geospatial": 0.74,
+    "temporal": 0.65,
+    "evidence": 0.91,
+    "runtime": 0.45,
+    "final": 0.8
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
