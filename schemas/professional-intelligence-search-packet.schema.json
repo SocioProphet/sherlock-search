@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/sherlock/professional-intelligence-search-packet.schema.json",
+  "title": "ProfessionalIntelligenceSearchPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "searchPacketId",
+    "workroomRef",
+    "playbookId",
+    "query",
+    "scope",
+    "results",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "searchPacketId": { "type": "string", "minLength": 1 },
+    "workroomRef": { "type": "string", "minLength": 1 },
+    "playbookId": { "type": "string", "minLength": 1 },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "issuedBy", "issuedAt"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "issuedBy": { "type": "string", "minLength": 1 },
+        "issuedAt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedSourceClasses", "sensitivityCeiling"],
+      "properties": {
+        "allowedSourceClasses": { "type": "array", "items": { "type": "string" } },
+        "sensitivityCeiling": { "type": "string", "enum": ["public", "internal", "confidential", "restricted"] },
+        "policyDecisionRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["resultId", "sourceRef", "title", "summary", "confidence", "freshness", "citationRefs"],
+        "properties": {
+          "resultId": { "type": "string", "minLength": 1 },
+          "sourceRef": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "freshness": { "type": "string", "enum": ["current", "recent", "stale", "unknown"] },
+          "sensitivity": { "type": "string", "enum": ["public", "internal", "confidential", "restricted"] },
+          "citationRefs": { "type": "array", "items": { "type": "string" } },
+          "evidenceRef": { "type": "string" }
+        }
+      }
+    },
+    "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+  }
+}
