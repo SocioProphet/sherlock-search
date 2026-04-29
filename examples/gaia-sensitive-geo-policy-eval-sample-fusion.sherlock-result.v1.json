@@ -1,0 +1,55 @@
+{
+  "record_version": "v1",
+  "result_id": "search-gaia-sensitive-geo-policy-eval-sample-fusion-v1",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/gaia-world-model",
+  "entity_type": "EVIDENCE_ARTIFACT",
+  "title": "GAIA Sensitive Geospatial Policy Evaluation — Sample Fusion Event",
+  "snippet": "Runtime evidence artifact for evaluating a sensitive geospatial policy against a multi-domain fusion event, requiring restricted advisory output, authority, human approval, audit, and accountability ledger handling.",
+  "path_or_uri": "gaia://runtime/sensitive-geo-policy-eval/sample-fusion-output.v1.json",
+  "canonical_format": "gaia/sensitive-geo-policy-eval-output+json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["gaia-world-model", "sherlock-search", "socioprophet-standards-storage", "socioprophet-standards-knowledge", "socioprophet-agent-standards"],
+  "permission_ref": "restricted/sample-governance",
+  "spatial_refs": [
+    {"scheme": "other", "value": "scope:sensitive-geo-policy", "role": "policy-domain"},
+    {"scheme": "other", "value": "subject:gaia:fusion:soil-eo-sensor-vessel-air:sample-001", "role": "subject-record"}
+  ],
+  "temporal_refs": [
+    {"role": "policy_eval_sample", "value": "2026-04-27"}
+  ],
+  "evidence_refs": [
+    "policy-eval:policy:sensitive-geo:standard-delay-mask-v1:gaia:fusion:soil-eo-sensor-vessel-air:sample-001",
+    "gaia:sensitive-geo-policy:standard-delay-mask-v1",
+    "gaia:fusion:soil-eo-sensor-vessel-air:sample-001"
+  ],
+  "model_refs": [],
+  "runtime_refs": ["runtime:sensitive-geo-policy-eval:v0"],
+  "handling_tags": ["sample", "sensitive-geo", "policy-evaluation", "governance", "accountability", "approval-required", "standards-bound"],
+  "provenance_refs": [
+    "SocioProphet/gaia-world-model:multidomain/sensitive_geo_policy_eval.py",
+    "SocioProphet/gaia-world-model:docs/integrations/RUNTIME_BOUNDARY_SENSITIVE_GEO_POLICY_EVAL.md",
+    "SocioProphet/lattice-forge:registry/runtime-candidates/gaia-sensitive-geo-policy-eval-runtime.candidate.v1.json",
+    "SocioProphet/socioprophet-agent-standards:schemas/jsonschema/multidomain/geospatial_runtime_evidence_bundle.v1.schema.json"
+  ],
+  "score": {
+    "lexical": 0.83,
+    "semantic": 0.91,
+    "geospatial": 0.74,
+    "temporal": 0.63,
+    "evidence": 0.94,
+    "runtime": 0.82,
+    "final": 0.86
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": true,
+    "summarize": true,
+    "create_task": true,
+    "draft_reply": false,
+    "open_map": true,
+    "show_evidence": true,
+    "open_runtime": true
+  }
+}
