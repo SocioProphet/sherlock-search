@@ -1,0 +1,30 @@
+name: professional-intelligence-search-packet
+
+on:
+  pull_request:
+    paths:
+      - "schemas/professional-intelligence-search-packet.schema.json"
+      - "examples/professional-intelligence/search-packet.example.json"
+      - "scripts/validate_professional_intelligence_search_packet.py"
+      - ".github/workflows/professional-intelligence-search-packet.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "schemas/professional-intelligence-search-packet.schema.json"
+      - "examples/professional-intelligence/search-packet.example.json"
+      - "scripts/validate_professional_intelligence_search_packet.py"
+      - ".github/workflows/professional-intelligence-search-packet.yml"
+
+jobs:
+  validate-search-packet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install validation dependency
+        run: python -m pip install jsonschema
+      - name: Validate Professional Intelligence search packet
+        run: python scripts/validate_professional_intelligence_search_packet.py
