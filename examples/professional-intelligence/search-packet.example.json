@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "v0.1",
+  "searchPacketId": "search-packet://pi-demo-0001",
+  "workroomRef": "workroom://workroom-demo-0001",
+  "playbookId": "client-opportunity-review",
+  "query": {
+    "text": "Find permitted context for the demo client opportunity review workroom.",
+    "issuedBy": "agent://professional-intelligence/opportunity-review-agent",
+    "issuedAt": "2026-04-29T18:20:00Z"
+  },
+  "scope": {
+    "allowedSourceClasses": [
+      "workspace-note",
+      "public-record",
+      "internal-demo-record"
+    ],
+    "sensitivityCeiling": "internal",
+    "policyDecisionRefs": [
+      "policy-decision://ppd-allow-0001"
+    ]
+  },
+  "results": [
+    {
+      "resultId": "search-result://pi-demo-0001/source-channel",
+      "sourceRef": "workspace-note://workroom-demo-0001/source-channel",
+      "title": "Demo source channel context",
+      "summary": "The opportunity entered through a controlled demo source channel and is safe for internal workroom-scoped review.",
+      "confidence": 0.88,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "citation://pi-demo-0001/source-channel"
+      ],
+      "evidenceRef": "evidence://sherlock/pi-demo-0001/source-channel"
+    },
+    {
+      "resultId": "search-result://pi-demo-0001/policy-context",
+      "sourceRef": "policy-decision://ppd-review-0001",
+      "title": "Policy-sensitive review context",
+      "summary": "Generated summary output requires approval before external release when an AI-use obligation applies.",
+      "confidence": 0.92,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "citation://pi-demo-0001/policy-review"
+      ],
+      "evidenceRef": "evidence://sherlock/pi-demo-0001/policy-context"
+    }
+  ],
+  "evidenceRefs": [
+    "evidence://sherlock/pi-demo-0001/search-packet"
+  ]
+}
