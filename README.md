@@ -2,6 +2,26 @@
 
 Canonical repo for Sherlock-related search/discovery work.
 
+## Professional Intelligence search packets
+
+Sherlock now carries the first validated search-packet surface for the Professional Intelligence OS Gate 3 demo path.
+
+The search packet contract and example live at:
+
+- `schemas/professional-intelligence-search-packet.schema.json`
+- `examples/professional-intelligence/search-packet.example.json`
+
+Validate locally:
+
+```bash
+python -m pip install jsonschema
+python scripts/validate_professional_intelligence_search_packet.py
+```
+
+The workflow `.github/workflows/professional-intelligence-search-packet.yml` runs this validation when the search-packet schema, example, validator, or workflow changes.
+
+The seed packet provides workroom-scoped retrieval context for Memory Mesh context packs, Agentplane workflow evidence, Prophet Workspace workrooms, Policy Fabric decisions, and ContractForge obligations.
+
 ## Dossier pointers (2026-04-12)
 
 - Full conversation dossier (Drive Doc ID): 1nxHeAZXSmvXtjg8jU2ZfpzloleO0_VIVDsRefoNYgSM
