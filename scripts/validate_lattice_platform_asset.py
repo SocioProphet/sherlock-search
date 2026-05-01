@@ -8,6 +8,19 @@ import sys
 from pathlib import Path
 from typing import Any
 
+QUERY_ASSET_KINDS = {"federated-query-plane", "query-routing-dry-run-plan"}
+REQUIRED_QUERY_FACET_KEYS = {
+    "facetSchema",
+    "queryLanguages",
+    "backendKinds",
+    "integrationRepos",
+    "queryEnvelopeRoles",
+    "policyRef",
+    "evidenceCorrelationId",
+    "catalogScopes",
+    "catalogScopeSource",
+}
+
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -23,6 +36,34 @@ def validate_document(doc: dict[str, Any]) -> None:
     for key in ["assetKind", "producerRepo", "compatibilitySurfaces"]:
         require(key in metadata, f"metadata missing {key}")
     require(isinstance(metadata["compatibilitySurfaces"], list), "compatibilitySurfaces must be a list")
+    if metadata.get("assetKind") in QUERY_ASSET_KINDS:
+        validate_query_facets(metadata)
+
+
+def validate_query_facets(metadata: dict[str, Any]) -> None:
+    facets = metadata.get("queryFacets")
+    require(isinstance(facets, dict), "query platform asset metadata must include queryFacets")
+    missing = sorted(REQUIRED_QUERY_FACET_KEYS - set(facets))
+    require(not missing, f"queryFacets missing keys: {missing}")
+    require(facets.get("facetSchema") == "sherlock.lattice.query.facets/v1", "queryFacets facetSchema mismatch")
+    for key in ["queryLanguages", "backendKinds", "integrationRepos", "queryEnvelopeRoles", "catalogScopes"]:
+        require(isinstance(facets.get(key), list), f"queryFacets.{key} must be a list")
+    require(isinstance(facets.get("policyRef"), str) and facets["policyRef"], "queryFacets.policyRef must be a non-empty string")
+    require(isinstance(facets.get("evidenceCorrelationId"), str) and facets["evidenceCorrelationId"], "queryFacets.evidenceCorrelationId must be a non-empty string")
+    require(isinstance(facets.get("catalogScopeSource"), str) and facets["catalogScopeSource"], "queryFacets.catalogScopeSource must be a non-empty string")
+    require(facets["queryLanguages"], "queryFacets.queryLanguages must not be empty")
+    require(facets["backendKinds"], "queryFacets.backendKinds must not be empty")
+    require(facets["integrationRepos"], "queryFacets.integrationRepos must not be empty")
+    if metadata.get("assetKind") == "query-routing-dry-run-plan":
+        role_surfaces = set(facets["queryEnvelopeRoles"])
+        for required in [
+            "slash-topics-public-surface",
+            "slash-topics-runtime-alias",
+            "new-hope-runtime-substrate",
+            "new-hope-compatibility",
+            "memory-mesh",
+        ]:
+            require(required in role_surfaces, f"query-routing queryFacets missing envelope role {required}")
 
 
 def validate(path: Path) -> None:
