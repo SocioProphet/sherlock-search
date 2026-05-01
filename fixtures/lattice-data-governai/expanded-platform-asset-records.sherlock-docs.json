@@ -1,0 +1,242 @@
+{
+  "docType": "lattice.platformAssetRecordSet",
+  "setId": "lattice-data-governai-expanded-platform-assets:0001",
+  "sourceRefs": {
+    "umbrellaIssue": "SocioProphet/prophet-platform#291",
+    "modelZooPr": "SocioProphet/prophet-platform#300",
+    "promptRagEvalPr": "SocioProphet/prophet-platform#301",
+    "publicationReviewPr": "SocioProphet/prophet-platform#302",
+    "annotationTrainingPr": "SocioProphet/prophet-platform#303",
+    "activeMetadataPr": "SocioProphet/prophet-platform#304",
+    "trustReputationPr": "SocioProphet/prophet-platform#305"
+  },
+  "documents": [
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:model-zoo-entry:community_truth_demo_candidate",
+      "title": "Community Truth Demo Model Zoo Entry",
+      "body": "ModelZooEntry from SocioProphet/prophet-platform sourceKind=ModelZooEntry promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "model-zoo-entry",
+        "sourceKind": "ModelZooEntry",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:model-eval-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_model_eval",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo", "urn:srcos:annotation-set:community_truth_demo_labels"],
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "trustScore": 0.78,
+        "compatibilitySurfaces": ["lattice-studio", "model-zoo", "sherlock-search", "slash-topics", "policy-fabric", "agentplane"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:model-endpoint:community_truth_demo_candidate_dry_run",
+      "title": "Community Truth Demo Model Endpoint",
+      "body": "ModelEndpoint from SocioProphet/prophet-platform sourceKind=ModelEndpoint promotion=lattice-data-governai-demo state=candidate-dry-run",
+      "metadata": {
+        "assetKind": "model-endpoint",
+        "sourceKind": "ModelEndpoint",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:model-endpoint-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_model_endpoint",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo"],
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["model-zoo", "ray-serve", "kserve", "seldon-core", "policy-fabric", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:prompt:community_truth_demo_grounding",
+      "title": "Community Truth Grounding Prompt",
+      "body": "PromptAsset from SocioProphet/prophet-platform sourceKind=PromptAsset promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "prompt-asset",
+        "sourceKind": "PromptAsset",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:prompt-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:prompt-community-truth-demo",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo"],
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "prompt-lab", "sherlock-search", "slash-topics", "policy-fabric"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:rag-pipeline:community_truth_demo_grounded_answer",
+      "title": "Community Truth Grounded RAG Pipeline",
+      "body": "RAGPipeline from SocioProphet/prophet-platform sourceKind=RAGPipeline promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "rag-pipeline",
+        "sourceKind": "RAGPipeline",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:rag-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_rag_pipeline",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo", "urn:srcos:retrieval-corpus:community_truth_demo"],
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "rag-lab", "new-hope", "policy-fabric", "agentplane", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:vector-index:community_truth_demo",
+      "title": "Community Truth Vector Index",
+      "body": "VectorIndex from SocioProphet/prophet-platform sourceKind=VectorIndex promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "vector-index",
+        "sourceKind": "VectorIndex",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:vector-index-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_vector_index",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:retrieval-corpus:community_truth_demo"],
+        "evaluationStatus": "candidate",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "rag-lab", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:research-package:community_truth_demo_report",
+      "title": "Community Truth Demo Research Package",
+      "body": "ResearchPackage from SocioProphet/prophet-platform sourceKind=ResearchPackage promotion=lattice-data-governai-demo state=under-review",
+      "metadata": {
+        "assetKind": "research-package",
+        "sourceKind": "ResearchPackage",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:publication-review-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_report",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo"],
+        "trustScore": 0.74,
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "under-review",
+        "compatibilitySurfaces": ["lattice-studio", "reproducible-publishing", "sherlock-search", "slash-topics", "policy-fabric"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:dataset:community_truth_demo_training",
+      "title": "Community Truth Training Dataset",
+      "body": "TrainingDataset from SocioProphet/prophet-platform sourceKind=TrainingDataset promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "training-dataset",
+        "sourceKind": "TrainingDataset",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:training-dataset-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_training_dataset",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo", "urn:srcos:annotation-set:community_truth_demo_labels"],
+        "trustScore": 0.81,
+        "evaluationStatus": "not-required",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "model-zoo", "ray", "policy-fabric", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:dataset:community_truth_demo_evaluation",
+      "title": "Community Truth Evaluation Dataset",
+      "body": "EvaluationDataset from SocioProphet/prophet-platform sourceKind=EvaluationDataset promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "evaluation-dataset",
+        "sourceKind": "EvaluationDataset",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:evaluation-dataset-community-truth-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_evaluation_dataset",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo", "urn:srcos:annotation-set:community_truth_demo_labels"],
+        "trustScore": 0.81,
+        "evaluationStatus": "candidate",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "governai", "evaluation-lab", "policy-fabric", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:annotation-reliability:community_truth_demo",
+      "title": "Community Truth Annotation Reliability",
+      "body": "AnnotationReliabilityScore from SocioProphet/prophet-platform sourceKind=AnnotationReliabilityScore promotion=lattice-data-governai-demo",
+      "metadata": {
+        "assetKind": "annotation-reliability-score",
+        "sourceKind": "AnnotationReliabilityScore",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:annotation-training-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_annotations",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:annotation-set:community_truth_demo_labels"],
+        "trustScore": 0.81,
+        "evaluationStatus": "pass",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "governai", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:trust-posture:lattice-data-governai-demo",
+      "title": "Lattice Data/GovernAI Trust Posture",
+      "body": "TrustPostureSummary from SocioProphet/prophet-platform sourceKind=TrustPostureSummary promotion=lattice-data-governai-demo risk=medium",
+      "metadata": {
+        "assetKind": "trust-posture-summary",
+        "sourceKind": "TrustPostureSummary",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:lattice-trust-reputation-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_data_product",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:data-product:community_truth_demo"],
+        "trustScore": 0.788,
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "under-review",
+        "compatibilitySurfaces": ["lattice-studio", "governai", "policy-fabric", "slash-topics", "new-hope", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:trust-signal:rag-grounding-confidence:community_truth_demo",
+      "title": "Community Truth RAG Grounding Confidence",
+      "body": "TrustSignal from SocioProphet/prophet-platform sourceKind=TrustSignal promotion=lattice-data-governai-demo signal=EvaluationConfidence",
+      "metadata": {
+        "assetKind": "trust-signal",
+        "sourceKind": "TrustSignal",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:lattice-trust-reputation-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:community_truth_demo_grounding_eval",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "dataLineageRefs": ["urn:srcos:rag-pipeline:community_truth_demo_grounded_answer"],
+        "trustScore": 0.79,
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "governai", "policy-fabric", "sherlock-search"]
+      }
+    }
+  ]
+}
