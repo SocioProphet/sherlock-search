@@ -25,21 +25,25 @@ def convert_record(record: dict[str, Any]) -> dict[str, Any]:
     version = _required_str(record, "version")
     asset_kind = _required_str(record, "assetKind")
     producer_repo = _required_str(record, "producerRepo")
+    metadata: dict[str, Any] = {
+        "assetKind": asset_kind,
+        "producerRepo": producer_repo,
+        "promotionChannel": record.get("promotionChannel"),
+        "compatibilitySurfaces": record.get("compatibilitySurfaces", []),
+        "policyRef": record.get("policyRef"),
+        "evidenceCorrelationId": record.get("evidenceCorrelationId"),
+        "sourceKind": record.get("sourceKind"),
+        "sourceApiVersion": record.get("sourceApiVersion"),
+    }
+    if record.get("sourceKind") == "FederatedQueryPlane":
+        for facet in ("queryLanguage", "backendKind", "integrationRepo", "catalogScope"):
+            metadata[facet] = record.get(facet)
     return {
         "docType": "lattice.platformAssetRecord",
         "assetId": asset_id,
         "title": f"{name} {version}",
         "body": f"{asset_kind} from {producer_repo} sourceKind={record.get('sourceKind')} promotion={record.get('promotionChannel')}",
-        "metadata": {
-            "assetKind": asset_kind,
-            "producerRepo": producer_repo,
-            "promotionChannel": record.get("promotionChannel"),
-            "compatibilitySurfaces": record.get("compatibilitySurfaces", []),
-            "policyRef": record.get("policyRef"),
-            "evidenceCorrelationId": record.get("evidenceCorrelationId"),
-            "sourceKind": record.get("sourceKind"),
-            "sourceApiVersion": record.get("sourceApiVersion"),
-        },
+        "metadata": metadata,
     }
 
 

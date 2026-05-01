@@ -21,3 +21,7 @@ jobs:
         run: python scripts/convert_platform_records.py examples/lattice/federated-query-platform-record-set.example.json --output build/federated-query-index-documents.json
       - name: Validate federated query index documents
         run: python scripts/validate_lattice_platform_asset.py build/federated-query-index-documents.json
+      - name: Test federated query conversion facets
+        run: python scripts/test_federated_query_conversion.py
+      - name: Validate federated query plane fixture
+        run: python tools/validate_federated_query_fixture.py

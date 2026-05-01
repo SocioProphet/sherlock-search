@@ -15,6 +15,10 @@
       "policyRef": "policy://query/federated",
       "evidenceCorrelationId": "federated-query-plane:demo1234567",
       "promotionChannel": "dry-run",
+      "queryLanguage": "sql",
+      "backendKind": "document-store",
+      "integrationRepo": "SocioProphet/lattice-query-spine",
+      "catalogScope": "project-scoped",
       "compatibilitySurfaces": [
         "lattice-studio",
         "apache-drill",
@@ -32,6 +36,35 @@
         "new-hope",
         "lampstand",
         "ontogenesis"
+      ]
+    },
+    {
+      "apiVersion": "prophet.socioprophet.dev/v1",
+      "kind": "PlatformAssetRecord",
+      "assetId": "federated-query-plane:ontology-demo1234567",
+      "assetKind": "federated-query-plane",
+      "name": "lattice-studio-federated-ontology-query-plane",
+      "version": "0.1.0",
+      "sourceApiVersion": "studio.socioprophet.dev/v1",
+      "sourceKind": "FederatedQueryPlane",
+      "producerRepo": "SocioProphet/prophet-platform",
+      "policyRef": "policy://query/federated",
+      "evidenceCorrelationId": "federated-query-plane:ontology-demo1234567",
+      "promotionChannel": "dry-run",
+      "queryLanguage": "sparql",
+      "backendKind": "ontology-graph",
+      "integrationRepo": "SocioProphet/lattice-query-spine",
+      "catalogScope": "org-scoped",
+      "compatibilitySurfaces": [
+        "lattice-studio",
+        "sparql",
+        "ontology-query",
+        "graphbrain",
+        "opencog",
+        "atomese",
+        "ontogenesis",
+        "sherlock-search",
+        "slash-topics"
       ]
     }
   ]
