@@ -1,0 +1,100 @@
+{
+  "docType": "lattice.platformAssetRecordSet",
+  "setId": "lattice-runtime-profile-platform-assets:0001",
+  "sourceRefs": {
+    "umbrellaIssue": "SocioProphet/prophet-platform#291",
+    "runtimeForgePr": "SocioProphet/lattice-forge#11",
+    "platformRuntimeCatalogPr": "SocioProphet/prophet-platform#306",
+    "agentplaneRuntimeRefsPr": "SocioProphet/agentplane#77",
+    "topologyRuntimePr": "SocioProphet/sociosphere#240"
+  },
+  "documents": [
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "runtime-asset:prophet-python-ml:0.1.0",
+      "title": "Prophet Python ML Notebook Runtime",
+      "body": "RuntimeAsset for notebook sessions, query runs, prompt authoring, and publication reproduction.",
+      "metadata": {
+        "assetKind": "runtime-asset",
+        "sourceKind": "RuntimeAsset",
+        "producerRepo": "SocioProphet/lattice-forge",
+        "sourceApiVersion": "lattice.socioprophet.dev/v1",
+        "policyRef": "policy://runtime/prophet-python-ml-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:runtime-prophet-python-ml-demo",
+        "promotionChannel": "dev",
+        "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
+        "runtimeClass": "notebook",
+        "runtimeRoles": ["NotebookSession", "QueryRun", "PublicationArtifact"],
+        "evaluationStatus": "scan-pass-generated",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["jupyter", "jupyterlab", "lattice-studio", "agentplane", "prophet-platform", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "runtime-asset:prophet-ray-ml:0.1.0",
+      "title": "Prophet Ray ML Runtime",
+      "body": "RuntimeAsset for model training, Ray jobs, model serving candidates, and RAG evaluation.",
+      "metadata": {
+        "assetKind": "runtime-asset",
+        "sourceKind": "RuntimeAsset",
+        "producerRepo": "SocioProphet/lattice-forge",
+        "sourceApiVersion": "lattice.socioprophet.dev/v1",
+        "policyRef": "policy://runtime/prophet-ray-ml-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:runtime-prophet-ray-ml-demo",
+        "promotionChannel": "dev",
+        "runtimeRef": "runtime-asset:prophet-ray-ml:0.1.0",
+        "runtimeClass": "ray",
+        "runtimeRoles": ["ModelZooEntry", "ModelRuntimeProfile", "ModelEndpoint", "RayJobDryRunPlan", "RAGPipeline", "EvaluationBundle"],
+        "evaluationStatus": "scan-pass-generated",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["ray", "lattice-studio", "model-zoo", "agentplane", "prophet-platform", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "runtime-asset:prophet-beam-dataops:0.1.0",
+      "title": "Prophet Beam DataOps Runtime",
+      "body": "RuntimeAsset for Beam pipelines, dataset construction, quality profiles, and vector index construction.",
+      "metadata": {
+        "assetKind": "runtime-asset",
+        "sourceKind": "RuntimeAsset",
+        "producerRepo": "SocioProphet/lattice-forge",
+        "sourceApiVersion": "lattice.socioprophet.dev/v1",
+        "policyRef": "policy://runtime/prophet-beam-dataops-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:runtime-prophet-beam-dataops-demo",
+        "promotionChannel": "dev",
+        "runtimeRef": "runtime-asset:prophet-beam-dataops:0.1.0",
+        "runtimeClass": "beam",
+        "runtimeRoles": ["BeamPipelineDryRunPlan", "TrainingDatasetRecipe", "QualityProfile", "VectorIndex"],
+        "evaluationStatus": "scan-pass-generated",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["beam", "lattice-studio", "data-quality", "agentplane", "prophet-platform", "sherlock-search"]
+      }
+    },
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "runtime-profile-binding:lattice-data-governai:0.1.0",
+      "title": "Lattice Data/GovernAI Runtime Profile Bindings",
+      "body": "RuntimeProfileBinding catalog mapping notebook, Ray, and Beam roles to Lattice Forge RuntimeAssets.",
+      "metadata": {
+        "assetKind": "runtime-profile-binding",
+        "sourceKind": "RuntimeProfileBinding",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "sourceApiVersion": "studio.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:lattice-runtime-profile-bindings-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence:lattice-runtime-profile-bindings-demo",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRefs": [
+          "runtime-asset:prophet-python-ml:0.1.0",
+          "runtime-asset:prophet-ray-ml:0.1.0",
+          "runtime-asset:prophet-beam-dataops:0.1.0"
+        ],
+        "runtimeRoles": ["NotebookSession", "QueryRun", "ModelZooEntry", "RayJobDryRunPlan", "BeamPipelineDryRunPlan", "TrainingDatasetRecipe", "VectorIndex"],
+        "evaluationStatus": "valid",
+        "publicationStatus": "not-published",
+        "compatibilitySurfaces": ["lattice-studio", "sherlock-search", "slash-topics", "policy-fabric", "agentplane"]
+      }
+    }
+  ]
+}
