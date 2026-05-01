@@ -1,0 +1,27 @@
+name: lattice-data-governai-expanded-fixture
+
+on:
+  pull_request:
+    paths:
+      - "fixtures/lattice-data-governai/expanded-platform-asset-records.sherlock-docs.json"
+      - "tools/validate_lattice_data_governai_expanded_fixture.py"
+      - ".github/workflows/lattice-data-governai-expanded-fixture.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-expanded-lattice-data-governai-fixture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate expanded Lattice Data/GovernAI Sherlock fixtures
+        run: python tools/validate_lattice_data_governai_expanded_fixture.py
