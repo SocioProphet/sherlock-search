@@ -50,7 +50,7 @@
         "runtimeRef": "runtime-asset:prophet-python-ml:0.1.0",
         "evaluationStatus": "not-run",
         "publicationStatus": "not-published",
-        "compatibilitySurfaces": ["jupyter", "jupyterlab", "lattice-studio", "ray", "beam", "agentplane", "prophet-platform"]
+        "compatibilitySurfaces": ["jupyter", "jupyterlab", "lattice-studio", "ray", "beam", "agentplane", "prophet-platform", "sherlock-search"]
       }
     },
     {
