@@ -1,0 +1,71 @@
+{
+  "docType": "lattice.platformAssetRecordSet",
+  "setId": "lattice-replay-evidence-platform-assets:0001",
+  "sourceRefs": {
+    "umbrellaIssue": "SocioProphet/prophet-platform#291",
+    "mlopsReplayEvidencePr": "SocioProphet/prophet-platform-fabric-mlops-ts-suite#35",
+    "demoReadinessTopologyPr": "SocioProphet/sociosphere#246",
+    "demoCommandBundlePr": "SocioProphet/cloudshell-fog#32"
+  },
+  "documents": [
+    {
+      "docType": "lattice.platformAssetRecord",
+      "assetId": "urn:srcos:evidence-bundle:lattice-governed-execution-0001",
+      "title": "Lattice Governed Execution Replay Evidence Bundle",
+      "body": "ReplayEvidenceBundle for the Lattice Studio/Data/GovernAI demo path. It links Ray metrics, Beam quality, model candidate outputs, lineage receipts, replay commands, policy refs, and dry-run safety constraints.",
+      "metadata": {
+        "assetKind": "replay-evidence-bundle",
+        "sourceKind": "ReplayEvidenceBundle",
+        "producerRepo": "SocioProphet/prophet-platform-fabric-mlops-ts-suite",
+        "sourceApiVersion": "mlops.socioprophet.dev/v1",
+        "policyRef": "urn:srcos:policy:mlops-governed-execution-demo",
+        "evidenceCorrelationId": "urn:srcos:evidence-bundle:lattice-governed-execution-0001",
+        "promotionChannel": "lattice-data-governai-demo",
+        "runtimeRefs": [
+          "runtime-asset:prophet-ray-ml:0.1.0",
+          "runtime-asset:prophet-beam-dataops:0.1.0"
+        ],
+        "artifactRefs": [
+          "urn:srcos:artifact:community_truth_demo_ray_metrics",
+          "urn:srcos:artifact:community_truth_demo_beam_quality",
+          "urn:srcos:model:community_truth_demo_candidate"
+        ],
+        "lineageReceiptRefs": [
+          "urn:srcos:lineage-receipt:ray-community-truth-demo-0001",
+          "urn:srcos:lineage-receipt:beam-community-truth-demo-0001"
+        ],
+        "metricNames": [
+          "factuality_f1",
+          "grounding_precision",
+          "training_records",
+          "quality_completeness",
+          "annotation_coverage",
+          "duplicate_rate"
+        ],
+        "replayCommandRefs": [
+          "/lattice mlops ray run community_truth_demo --runtime prophet-ray-ml --dry-run",
+          "/lattice dataops beam run community_truth_demo --runtime prophet-beam-dataops --dry-run"
+        ],
+        "dataLineageRefs": [
+          "urn:srcos:data-product:community_truth_demo",
+          "urn:srcos:dataset:community_truth_demo_training",
+          "urn:srcos:dataset:community_truth_demo_evaluation"
+        ],
+        "evaluationStatus": "needs-review",
+        "publicationStatus": "not-published",
+        "network": "none",
+        "secrets": "none",
+        "hostMutation": false,
+        "compatibilitySurfaces": [
+          "agentplane",
+          "sherlock-search",
+          "policy-fabric",
+          "slash-topics",
+          "new-hope",
+          "lattice-studio",
+          "cloudshell-fog"
+        ]
+      }
+    }
+  ]
+}

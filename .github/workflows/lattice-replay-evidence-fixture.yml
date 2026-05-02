@@ -1,0 +1,27 @@
+name: lattice-replay-evidence-fixture
+
+on:
+  pull_request:
+    paths:
+      - "fixtures/lattice-data-governai/replay-evidence-bundle.sherlock-docs.json"
+      - "tools/validate_lattice_replay_evidence_fixture.py"
+      - ".github/workflows/lattice-replay-evidence-fixture.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-lattice-replay-evidence-fixture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Lattice replay evidence Sherlock fixture
+        run: python tools/validate_lattice_replay_evidence_fixture.py
