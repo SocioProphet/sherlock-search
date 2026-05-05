@@ -1,0 +1,76 @@
+{
+  "docType": "telemetry.runtimeRecordSet",
+  "setId": "transparent-telemetry-runtime-slice:0001",
+  "sourceRefs": {
+    "seedPackagePr": "SocioProphet/prophet-platform#78",
+    "consoleSlicePr": "SocioProphet/prophet-platform#272",
+    "policyReducerPr": "SocioProphet/prophet-platform#389"
+  },
+  "documents": [
+    {
+      "docType": "telemetry.runtimeRecord",
+      "assetId": "urn:srcos:telemetry-runtime:transparent-telemetry-console-slice-v0-1",
+      "title": "Transparent Telemetry Runtime Console Slice",
+      "body": "Sherlock index record for the transparent telemetry runtime slice in prophet-platform. The slice binds the evidence-console telemetry route, the evidence-receipts manifest-backed reducer, policy outcomes, receipt bundles, and telemetry manifests/controls.",
+      "metadata": {
+        "assetKind": "telemetry-runtime-slice",
+        "producerRepo": "SocioProphet/prophet-platform",
+        "serviceRefs": [
+          "apps/evidence-console",
+          "apps/evidence-receipts"
+        ],
+        "routeRefs": [
+          "GET /v1/console/telemetry",
+          "GET /console/evidence#RecentTelemetry"
+        ],
+        "runtimeModuleRefs": [
+          "apps/evidence-receipts/app/telemetry_runtime.py",
+          "apps/evidence-console/app/telemetry_view.py"
+        ],
+        "manifestRefs": [
+          "telemetry/manifests/reliability.conversation.stream.completed.json",
+          "telemetry/manifests/analytics.turn.rendered.summary.json",
+          "telemetry/manifests/analytics.citations.rendered.summary.json",
+          "telemetry/manifests/receipts.citation_resolution.summary.json"
+        ],
+        "controlRefs": [
+          "telemetry/controls/global_controls.json"
+        ],
+        "policyOutcomeKinds": [
+          "ALLOW",
+          "TRANSFORM_ALLOW",
+          "BLOCK"
+        ],
+        "proofCases": [
+          "optional analytics blocked when product_analytics is disabled",
+          "optional analytics blocked when product_analytics is high_privacy",
+          "reliability telemetry recorded while analytics is disabled",
+          "missing required fields blocked before optional-control state",
+          "payload/event/receipt bundle files materialized"
+        ],
+        "receiptRefs": [
+          "file://state/prophet-platform/receipts/telemetry-runtime/{correlation_id}.receipt.json",
+          "file://state/prophet-platform/events/telemetry-runtime/{correlation_id}.event.json",
+          "file://state/prophet-platform/payloads/telemetry-runtime/{correlation_id}.payload.json"
+        ],
+        "validationRefs": [
+          "apps/evidence-receipts/tests/test_telemetry_runtime.py",
+          "apps/evidence-receipts/tests/test_telemetry_runtime_policy_reducer.py",
+          ".github/workflows/telemetry-runtime-slice.yml"
+        ],
+        "downstreamSurfaces": [
+          "sherlock-search",
+          "global-devsecops-intelligence",
+          "sociosphere",
+          "policy-fabric",
+          "agentplane",
+          "memory-mesh"
+        ],
+        "network": "none",
+        "secrets": "none",
+        "hostMutation": false,
+        "status": "indexed-runtime-slice"
+      }
+    }
+  ]
+}
