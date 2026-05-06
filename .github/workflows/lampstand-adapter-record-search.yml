@@ -1,0 +1,28 @@
+name: lampstand-adapter-record-search
+
+on:
+  pull_request:
+    paths:
+      - "tools/search_lampstand_adapter_records.py"
+      - "tools/smoke_lampstand_adapter_records_search.py"
+      - ".github/workflows/lampstand-adapter-record-search.yml"
+      - "README.md"
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/search_lampstand_adapter_records.py"
+      - "tools/smoke_lampstand_adapter_records_search.py"
+      - ".github/workflows/lampstand-adapter-record-search.yml"
+      - "README.md"
+
+jobs:
+  lampstand-adapter-record-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run Sherlock Lampstand adapter-record search smoke
+        run: python tools/smoke_lampstand_adapter_records_search.py

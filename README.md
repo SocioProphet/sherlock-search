@@ -2,6 +2,23 @@
 
 Canonical repo for Sherlock-related search/discovery work.
 
+## Lampstand adapter-record search
+
+Sherlock can now consume Lampstand governed adapter records as local evidence packets.
+
+The search helper and smoke test live at:
+
+- `tools/search_lampstand_adapter_records.py`
+- `tools/smoke_lampstand_adapter_records_search.py`
+
+Validate locally:
+
+```bash
+python tools/smoke_lampstand_adapter_records_search.py
+```
+
+This lane consumes records produced through Lampstand's `adapter_records` authority, including Smart Tree records published by `sourceos-context lampstand-publish --publish`. It preserves `policy_decision`, `source`, `classification`, `handling_tags`, and generated evidence refs. It does not claim durable Memory Mesh promotion or semantic/vector certainty.
+
 ## Professional Intelligence search packets
 
 Sherlock now carries the first validated search-packet surface for the Professional Intelligence OS Gate 3 demo path.
