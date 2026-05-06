@@ -39,6 +39,29 @@ The workflow `.github/workflows/professional-intelligence-search-packet.yml` run
 
 The seed packet provides workroom-scoped retrieval context for Memory Mesh context packs, Agentplane workflow evidence, Prophet Workspace workrooms, Policy Fabric decisions, and ContractForge obligations.
 
+## Personal Intelligence Cell search packets
+
+Sherlock can now consume a Personal Intelligence Cell search packet that is compatible with the existing Professional Intelligence search-packet schema.
+
+The example and validator live at:
+
+- `examples/personal-intelligence-cell/search-packet.example.json`
+- `scripts/validate_personal_intelligence_cell_search_packet.py`
+
+Validate locally:
+
+```bash
+python scripts/validate_personal_intelligence_cell_search_packet.py
+```
+
+This packet maps `prophet-platform` cell-service lineage into Sherlock search/discovery:
+
+```text
+Cell -> Watch -> Signal -> FeedItem -> SherlockSearchPacket
+```
+
+It preserves workroom scope, playbook ID, policy decision refs, citation refs, evidence refs, result confidence, freshness, and sensitivity ceiling.
+
 ## Dossier pointers (2026-04-12)
 
 - Full conversation dossier (Drive Doc ID): 1nxHeAZXSmvXtjg8jU2ZfpzloleO0_VIVDsRefoNYgSM
