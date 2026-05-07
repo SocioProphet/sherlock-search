@@ -1,0 +1,11 @@
+policy_id: policy.search-backend-graph.guard@0.1.0
+version: 1
+defaults:
+  decision: deny
+
+actions:
+  - graph.reason.upsert
+  - graph.reason.query
+  - graph.reason.health
+
+rules: []

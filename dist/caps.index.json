@@ -1,6 +1,18 @@
 {
   "capabilities": [
     {
+      "directory": "caps/search-backend-graph",
+      "name": "search.backend.graph",
+      "package_name": "search-backend-graph",
+      "version": "0.1.0",
+      "kind": "contract-only",
+      "aliases": [
+        "graph-reasoning",
+        "search-backend-graph"
+      ],
+      "validator": "caps/search-backend-graph/tools/validate_package.py"
+    },
+    {
       "directory": "caps/search-backend-lexical",
       "name": "search.backend.lexical",
       "package_name": "search-backend-lexical",
@@ -11,6 +23,18 @@
         "search-backend-lexical"
       ],
       "validator": "caps/search-backend-lexical/tools/validate_package.py"
+    },
+    {
+      "directory": "caps/search-backend-vector",
+      "name": "search.backend.vector",
+      "package_name": "search-backend-vector",
+      "version": "0.1.0",
+      "kind": "contract-only",
+      "aliases": [
+        "vector-index",
+        "search-backend-vector"
+      ],
+      "validator": "caps/search-backend-vector/tools/validate_package.py"
     },
     {
       "directory": "caps/semantic-search-bi",

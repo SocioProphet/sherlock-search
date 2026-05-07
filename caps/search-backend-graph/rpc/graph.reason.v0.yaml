@@ -1,0 +1,32 @@
+service: graph.reason.v0
+version: 0
+
+methods:
+  Upsert:
+    request_schema: schemas/graph_upsert.schema.json
+    response_schema: schemas/graph_query_response.schema.json
+    semantics:
+      - "Registers or updates graph nodes/edges or assertions."
+      - "MUST emit evidence events for allow, deny, and error."
+
+  Query:
+    request_schema: schemas/graph_query.schema.json
+    response_schema: schemas/graph_query_response.schema.json
+    semantics:
+      - "Executes a graph traversal or reasoning query against the backend graph."
+      - "MUST include correlation_id and trace_id echo."
+
+  GetStatus:
+    request_schema: schemas/graph_query.schema.json
+    response_schema: schemas/graph_query_response.schema.json
+    semantics:
+      - "Returns readiness and graph backend health summary."
+
+errors:
+  codes:
+    - INVALID_ARGUMENT
+    - PERMISSION_DENIED
+    - QUOTA_EXCEEDED
+    - NOT_FOUND
+    - UNAVAILABLE
+    - INTERNAL

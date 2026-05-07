@@ -1,0 +1,28 @@
+topics:
+  - name: vector.index.upsert.requested
+    direction: emit
+    notes: "A vector upsert request was submitted (pre-policy)."
+
+  - name: vector.index.upsert.accepted
+    direction: emit
+    notes: "Vector upsert accepted and applied."
+
+  - name: vector.index.upsert.denied
+    direction: emit
+    notes: "Vector upsert denied by policy guard."
+
+  - name: vector.index.query.requested
+    direction: emit
+    notes: "A vector query request was submitted (pre-policy)."
+
+  - name: vector.index.query.completed
+    direction: emit
+    notes: "Vector query completed successfully."
+
+  - name: vector.index.query.denied
+    direction: emit
+    notes: "Vector query denied by policy guard."
+
+  - name: governance.evidence.emitted
+    direction: emit
+    notes: "Evidence event emitted for audit pipeline ingestion."
