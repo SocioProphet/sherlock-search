@@ -1,0 +1,83 @@
+{
+  "contract": "sherlock-search.semantic-enterprise.index",
+  "version": "0.1.0",
+  "source": {
+    "repository": "SocioProphet/ontogenesis",
+    "release": "semantic-enterprise-v0.1.0",
+    "manifest_path": "manifests/semantic_enterprise_v0_1_manifest.json",
+    "rollup_registry_path": "catalog/semantic_enterprise_v0_1_registry.ttl"
+  },
+  "index_policy": {
+    "treat_source_as_authoritative": true,
+    "preserve_source_path": true,
+    "preserve_registry_reference": true,
+    "preserve_named_graph_metadata": true,
+    "do_not_promote_examples_to_runtime_truth": true
+  },
+  "records": [
+    {
+      "id": "semantic-enterprise:scenario:finance",
+      "kind": "scenario",
+      "sector": "finance",
+      "title": "Finance AML KYC scenario",
+      "source_path": "examples/scenarios/finance_aml_kyc_demo.ttl",
+      "query_path": "examples/queries/finance_aml_kyc.rq",
+      "named_graph_uri_fragment": "graphs/scenarios/finance-aml-kyc",
+      "evidence_terms": ["AMLAlert", "FinancialTransaction", "RiskScore", "BeneficialOwnershipRelation"]
+    },
+    {
+      "id": "semantic-enterprise:scenario:threat-intel",
+      "kind": "scenario",
+      "sector": "threat-intel",
+      "title": "Threat intelligence lifecycle scenario",
+      "source_path": "examples/scenarios/threat_intel_lifecycle_demo.ttl",
+      "query_path": "examples/queries/threat_intel_lifecycle.rq",
+      "named_graph_uri_fragment": "graphs/scenarios/threat-intel-lifecycle",
+      "evidence_terms": ["Indicator", "Observable", "ThreatActor", "DefensiveTechnique"]
+    },
+    {
+      "id": "semantic-enterprise:scenario:investigation",
+      "kind": "scenario",
+      "sector": "investigation",
+      "title": "Investigation custody timeline scenario",
+      "source_path": "examples/scenarios/investigation_custody_timeline_demo.ttl",
+      "query_path": "examples/queries/investigation_custody_timeline.rq",
+      "named_graph_uri_fragment": "graphs/scenarios/investigation-custody",
+      "evidence_terms": ["Case", "EvidenceItem", "ChainOfCustodyEvent", "Hypothesis"]
+    },
+    {
+      "id": "semantic-enterprise:scenario:supply-chain",
+      "kind": "scenario",
+      "sector": "supply-chain",
+      "title": "Supply-chain resilience scenario",
+      "source_path": "examples/scenarios/supply_chain_resilience_demo.ttl",
+      "query_path": "examples/queries/supply_chain_resilience.rq",
+      "named_graph_uri_fragment": "graphs/scenarios/supply-chain-resilience",
+      "evidence_terms": ["SupplyRisk", "Shipment", "AlternateSource", "MitigationAction"]
+    },
+    {
+      "id": "semantic-enterprise:scenario:defense-c2",
+      "kind": "scenario",
+      "sector": "defense-c2",
+      "title": "Defense C2 common operational picture scenario",
+      "source_path": "examples/scenarios/defense_c2_cop_demo.ttl",
+      "query_path": "examples/queries/defense_c2_cop.rq",
+      "named_graph_uri_fragment": "graphs/scenarios/defense-c2-cop",
+      "evidence_terms": ["Mission", "CommonOperationalPicture", "ReadinessAssessment", "CyberState"]
+    }
+  ],
+  "closure_fields": [
+    "inside_source",
+    "outside_runtime",
+    "boundary_membrane",
+    "feedback_surface"
+  ],
+  "search_surfaces": [
+    "module",
+    "scenario",
+    "query",
+    "named_graph",
+    "mapping",
+    "provenance"
+  ]
+}
