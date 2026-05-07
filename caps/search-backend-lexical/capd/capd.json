@@ -1,0 +1,41 @@
+{
+  "capability": {
+    "kind": "contract-only",
+    "name": "search.backend.lexical",
+    "package_name": "search-backend-lexical",
+    "aliases": [
+      "lexical-index",
+      "search-backend-lexical"
+    ],
+    "version": "0.1.0",
+    "description": "Contract-only capability package defining the triRPC surface, topic taxonomy, and JSON schemas for a lexical indexing/search backend. No implementation is included.",
+    "license": "MIT",
+    "address": {
+      "scheme": "merkle-placeholder",
+      "digest": "TODO"
+    }
+  },
+  "requires": {
+    "trirpc_bus": true,
+    "policy_guard": true,
+    "evidence_emission": true
+  },
+  "provides": {
+    "rpc": [
+      "rpc/lexical.index.v0.yaml"
+    ],
+    "schemas": [
+      "schemas/index_upsert.schema.json",
+      "schemas/lexical_query.schema.json",
+      "schemas/lexical_query_response.schema.json",
+      "schemas/evidence_event.schema.json"
+    ],
+    "topics": [
+      "topics/lexical.index.topics.v0.yaml"
+    ]
+  },
+  "policy": {
+    "default_decision": "deny",
+    "guard": "policy/guard-dsl-v0.yaml"
+  }
+}

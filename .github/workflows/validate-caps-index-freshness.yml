@@ -1,0 +1,43 @@
+name: validate-caps-index-freshness
+
+on:
+  pull_request:
+    paths:
+      - 'caps/**'
+      - 'tools/cap_index.py'
+      - 'dist/caps.index.json'
+      - '.github/workflows/validate-caps-index-freshness.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'caps/**'
+      - 'tools/cap_index.py'
+      - 'dist/caps.index.json'
+      - '.github/workflows/validate-caps-index-freshness.yml'
+  workflow_dispatch:
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install cap tooling dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml jsonschema
+
+      - name: Rebuild cap index
+        run: |
+          python3 tools/cap_index.py --output dist/caps.index.generated.json
+
+      - name: Check cap index freshness
+        run: |
+          diff -u dist/caps.index.json dist/caps.index.generated.json

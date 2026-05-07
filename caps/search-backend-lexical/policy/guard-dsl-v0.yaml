@@ -1,0 +1,11 @@
+policy_id: policy.search-backend-lexical.guard@0.1.0
+version: 1
+defaults:
+  decision: deny
+
+actions:
+  - lexical.index.upsert
+  - lexical.index.query
+  - lexical.index.health
+
+rules: []

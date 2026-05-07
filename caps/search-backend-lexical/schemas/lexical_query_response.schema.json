@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LexicalQueryResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "results"],
+  "properties": {
+    "correlation_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["doc_id", "score"],
+        "properties": {
+          "doc_id": {"type": "string"},
+          "score": {"type": "number"},
+          "snippet": {"type": "string"}
+        }
+      }
+    },
+    "backend": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "kind": {"type": "string", "enum": ["lexical"]},
+        "version": {"type": "string"}
+      }
+    }
+  }
+}

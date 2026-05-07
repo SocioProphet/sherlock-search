@@ -1,0 +1,28 @@
+topics:
+  - name: lexical.index.upsert.requested
+    direction: emit
+    notes: "A lexical index upsert request was submitted (pre-policy)."
+
+  - name: lexical.index.upsert.accepted
+    direction: emit
+    notes: "Lexical upsert accepted and applied."
+
+  - name: lexical.index.upsert.denied
+    direction: emit
+    notes: "Lexical upsert denied by policy guard."
+
+  - name: lexical.index.query.requested
+    direction: emit
+    notes: "A lexical query request was submitted (pre-policy)."
+
+  - name: lexical.index.query.completed
+    direction: emit
+    notes: "Lexical query completed successfully."
+
+  - name: lexical.index.query.denied
+    direction: emit
+    notes: "Lexical query denied by policy guard."
+
+  - name: governance.evidence.emitted
+    direction: emit
+    notes: "Evidence event emitted for audit pipeline ingestion."
