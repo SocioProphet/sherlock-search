@@ -1,0 +1,32 @@
+service: lexical.index.v0
+version: 0
+
+methods:
+  Upsert:
+    request_schema: schemas/index_upsert.schema.json
+    response_schema: schemas/lexical_query_response.schema.json
+    semantics:
+      - "Registers or updates a document in the lexical index."
+      - "MUST emit evidence events for allow, deny, and error."
+
+  Query:
+    request_schema: schemas/lexical_query.schema.json
+    response_schema: schemas/lexical_query_response.schema.json
+    semantics:
+      - "Executes a lexical query against the backend index."
+      - "MUST include correlation_id and trace_id echo."
+
+  GetStatus:
+    request_schema: schemas/lexical_query.schema.json
+    response_schema: schemas/lexical_query_response.schema.json
+    semantics:
+      - "Returns readiness and lexical backend health summary."
+
+errors:
+  codes:
+    - INVALID_ARGUMENT
+    - PERMISSION_DENIED
+    - QUOTA_EXCEEDED
+    - NOT_FOUND
+    - UNAVAILABLE
+    - INTERNAL
