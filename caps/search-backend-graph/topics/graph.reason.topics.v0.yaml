@@ -1,0 +1,28 @@
+topics:
+  - name: graph.reason.upsert.requested
+    direction: emit
+    notes: "A graph upsert request was submitted (pre-policy)."
+
+  - name: graph.reason.upsert.accepted
+    direction: emit
+    notes: "Graph upsert accepted and applied."
+
+  - name: graph.reason.upsert.denied
+    direction: emit
+    notes: "Graph upsert denied by policy guard."
+
+  - name: graph.reason.query.requested
+    direction: emit
+    notes: "A graph query request was submitted (pre-policy)."
+
+  - name: graph.reason.query.completed
+    direction: emit
+    notes: "Graph query completed successfully."
+
+  - name: graph.reason.query.denied
+    direction: emit
+    notes: "Graph query denied by policy guard."
+
+  - name: governance.evidence.emitted
+    direction: emit
+    notes: "Evidence event emitted for audit pipeline ingestion."

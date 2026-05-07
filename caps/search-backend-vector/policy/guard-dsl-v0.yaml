@@ -1,0 +1,11 @@
+policy_id: policy.search-backend-vector.guard@0.1.0
+version: 1
+defaults:
+  decision: deny
+
+actions:
+  - vector.index.upsert
+  - vector.index.query
+  - vector.index.health
+
+rules: []
