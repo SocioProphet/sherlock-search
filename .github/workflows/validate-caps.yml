@@ -1,0 +1,43 @@
+name: validate-caps
+
+on:
+  pull_request:
+    paths:
+      - 'caps/**'
+      - 'tools/cap_index.py'
+      - '.github/workflows/validate-caps.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'caps/**'
+      - 'tools/cap_index.py'
+      - '.github/workflows/validate-caps.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-all-caps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install cap tooling dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml jsonschema
+
+      - name: Build cap index and validate all packages
+        run: |
+          python3 tools/cap_index.py --validate-all --output dist/caps.index.json
+
+      - name: Upload cap index artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: caps-index
+          path: dist/caps.index.json

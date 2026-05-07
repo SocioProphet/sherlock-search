@@ -1,7 +1,16 @@
 {
   "capability": {
     "kind": "contract-only",
-    "name": "semantic-search-bi",
+    "name": "semantic.search",
+    "package_name": "semantic-search-bi",
+    "aliases": [
+      "semantic-search",
+      "semantic-search-bi"
+    ],
+    "naming": {
+      "bi_expansion": "Behavioral Indexing",
+      "note": "In this repository, BI means Behavioral Indexing, not Business Intelligence. The package path retains -bi for compatibility."
+    },
     "version": "0.1.0",
     "description": "Contract-only capability package for semantic search: query/ingest surfaces, schema salad anchors, topic glossary, and governance hooks. No runtime included.",
     "license": "MIT",
