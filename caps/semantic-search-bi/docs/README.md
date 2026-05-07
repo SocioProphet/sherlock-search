@@ -1,5 +1,7 @@
 # semantic.search — Contract Only
 
+Canonical upstream for this contract package lives in `SocioProphet/sherlock-search`.
+
 This package defines contracts for a semantic search capability:
 - triRPC service surface (rpc/semantic.search.v0.yaml)
 - topic taxonomy for event bus integration (topics/*.yaml)
@@ -20,3 +22,7 @@ Implementations MAY provide:
 - Symbolic graph store (e.g., AtomSpace)
 
 But contract conformance does not require any backend beyond the triRPC surface.
+
+## Naming note
+The package path retains `semantic-search-bi` for compatibility, and here **BI means Behavioral Indexing**.
+The canonical capability name remains `semantic.search`.

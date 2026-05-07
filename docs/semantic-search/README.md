@@ -1,10 +1,12 @@
 # Semantic Search Capability Contract (Contract-Only)
 
+Canonical upstream for these contracts lives in `SocioProphet/sherlock-search`.
+
 This directory explains the **Semantic Search** capability contract in plain English.
 
 ## What this is
 This package defines a **contract-only capability**: it specifies *interfaces* (schemas, RPC surface, topics, governance hooks),
-but **does not ship an implementation**. It’s like a “power outlet standard” — vendors can build compatible devices, but the
+but **does not ship an implementation**. It’s like a "power outlet standard" — vendors can build compatible devices, but the
 contract itself isn’t the device.
 
 ## Why we do it this way
@@ -37,6 +39,6 @@ Start at:
 - `schemas/evidence_event.schema.json` — what we log as auditable evidence
 - `topics/semantic.search.topics.v0.yaml` — pubsub surfaces
 
-## “BI” naming note
-If the folder is `caps/semantic-search-bi`, “bi” should mean *behavioral indexing* (or whatever we intended),
-not “business intelligence”. If that’s not what we mean, we should rename now while it’s early.
+## Naming note
+The folder path is `caps/semantic-search-bi`, where **BI means Behavioral Indexing**.
+It does **not** mean Business Intelligence. We are retaining the `-bi` package path for compatibility while keeping the canonical capability name as `semantic.search`.
