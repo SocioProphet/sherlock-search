@@ -1,0 +1,28 @@
+name: event-capability-record-search
+
+on:
+  pull_request:
+    paths:
+      - "tools/search_event_capability_records.py"
+      - "tools/smoke_event_capability_records_search.py"
+      - ".github/workflows/event-capability-record-search.yml"
+      - "README.md"
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/search_event_capability_records.py"
+      - "tools/smoke_event_capability_records_search.py"
+      - ".github/workflows/event-capability-record-search.yml"
+      - "README.md"
+
+jobs:
+  event-capability-record-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run Sherlock event-capability record search smoke
+        run: python tools/smoke_event_capability_records_search.py
