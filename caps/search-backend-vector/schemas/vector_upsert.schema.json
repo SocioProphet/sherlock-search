@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VectorUpsertRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "actor", "document"],
+  "properties": {
+    "correlation_id": {"type": "string", "minLength": 8},
+    "trace_id": {"type": "string"},
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string"},
+        "roles": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["doc_id", "vector"],
+      "properties": {
+        "doc_id": {"type": "string"},
+        "vector": {"type": "array", "items": {"type": "number"}},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

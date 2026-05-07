@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphUpsertRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "actor", "assertion"],
+  "properties": {
+    "correlation_id": {"type": "string", "minLength": 8},
+    "trace_id": {"type": "string"},
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string"},
+        "roles": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "predicate", "object"],
+      "properties": {
+        "subject": {"type": "string"},
+        "predicate": {"type": "string"},
+        "object": {"type": "string"},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

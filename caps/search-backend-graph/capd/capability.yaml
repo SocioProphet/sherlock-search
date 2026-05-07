@@ -1,0 +1,29 @@
+capability:
+  kind: contract-only
+  name: search.backend.graph
+  package_name: search-backend-graph
+  aliases:
+    - graph-reasoning
+    - search-backend-graph
+  version: 0.1.0
+  title: "Graph Reasoning Backend (Contract Only)"
+  description: >
+    Contract-only capability package defining the triRPC surface, topic taxonomy,
+    and JSON schemas for a graph reasoning/search backend.
+    No implementation is included.
+
+requires:
+  trirpc_bus: true
+  policy_guard: true
+  evidence_emission: true
+
+artifacts:
+  rpc:
+    - rpc/graph.reason.v0.yaml
+  topics:
+    - topics/graph.reason.topics.v0.yaml
+  schemas:
+    - schemas/graph_upsert.schema.json
+    - schemas/graph_query.schema.json
+    - schemas/graph_query_response.schema.json
+    - schemas/evidence_event.schema.json

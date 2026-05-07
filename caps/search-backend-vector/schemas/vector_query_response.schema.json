@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VectorQueryResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "results"],
+  "properties": {
+    "correlation_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["doc_id", "score"],
+        "properties": {
+          "doc_id": {"type": "string"},
+          "score": {"type": "number"},
+          "distance": {"type": "number"}
+        }
+      }
+    },
+    "backend": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "kind": {"type": "string", "enum": ["vector"]},
+        "version": {"type": "string"}
+      }
+    }
+  }
+}

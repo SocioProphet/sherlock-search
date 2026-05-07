@@ -1,0 +1,34 @@
+capability:
+  kind: contract-only
+  name: search.backend.vector
+  package_name: search-backend-vector
+  aliases:
+    - vector-index
+    - search-backend-vector
+  version: 0.1.0
+  title: "Vector Search Backend (Contract Only)"
+  description: >
+    Contract-only capability package defining the triRPC surface, topic taxonomy,
+    and JSON schemas for a vector indexing/search backend.
+    No implementation is included.
+  license: MIT
+  address:
+    scheme: merkle-placeholder
+    digest: "TODO"
+requires:
+  trirpc_bus: true
+  policy_guard: true
+  evidence_emission: true
+provides:
+  rpc:
+    - rpc/vector.index.v0.yaml
+  topics:
+    - topics/vector.index.topics.v0.yaml
+  schemas:
+    - schemas/vector_upsert.schema.json
+    - schemas/vector_query.schema.json
+    - schemas/vector_query_response.schema.json
+    - schemas/evidence_event.schema.json
+policy:
+  default_decision: deny
+  guard: policy/guard-dsl-v0.yaml
