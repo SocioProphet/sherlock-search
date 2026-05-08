@@ -1,0 +1,28 @@
+name: evidence-answer-contract-fixtures
+
+on:
+  pull_request:
+    paths:
+      - "docs/evidence-answer-contract.md"
+      - "fixtures/evidence-answer-contract/**"
+      - "tools/validate_evidence_answer_contract_fixture.py"
+      - ".github/workflows/evidence-answer-contract-fixtures.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-evidence-answer-contract-fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Sherlock evidence-answer contract fixtures
+        run: python tools/validate_evidence_answer_contract_fixture.py

@@ -2,6 +2,24 @@
 
 Canonical repo for Sherlock-related search/discovery work.
 
+## Evidence-answer contract fixtures
+
+Sherlock now defines a reference evidence-answer contract for `Anchor -> Normalize -> Propose` handoff to Holmes and Policy Fabric.
+
+Contract reference and deterministic fixtures:
+
+- `docs/evidence-answer-contract.md`
+- `fixtures/evidence-answer-contract/technical-document-answer.sherlock-contract.json`
+- `fixtures/evidence-answer-contract/vector-candidate.sherlock-contract.json`
+
+Validate locally:
+
+```bash
+python tools/validate_evidence_answer_contract_fixture.py
+```
+
+This contract boundary is what Holmes, Sociosphere, GAIA, and Agentplane should consume for Sherlock-side responsibilities around anchors, evidence, proposed claims, vector candidates, explanation status, and policy status display.
+
 ## Lampstand adapter-record search
 
 Sherlock can now consume Lampstand governed adapter records as local evidence packets.

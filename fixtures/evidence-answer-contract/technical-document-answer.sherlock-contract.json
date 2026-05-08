@@ -1,0 +1,53 @@
+{
+  "fixtureVersion": "sherlock.evidence-answer-contract.v0.1",
+  "scenario": "technical_document_answer",
+  "query": {
+    "text": "What retry strategy should a batch worker use for transient dependency failures?",
+    "entityCandidates": ["batch worker", "transient dependency failure", "retry strategy"],
+    "relationCandidates": ["uses", "backs off", "caps"]
+  },
+  "anchors": [
+    {
+      "anchorId": "anchor:batch-worker-design:retry-section",
+      "sourceRef": "doc://platform/worker-design.md#retry-strategy",
+      "kind": "section",
+      "locators": {
+        "heading": "Retry strategy",
+        "lineStart": 88,
+        "lineEnd": 126
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "evidence:batch-worker-design:retry-guidance",
+      "anchorRefs": ["anchor:batch-worker-design:retry-section"],
+      "stance": "supports",
+      "freshness": "fresh",
+      "score": 0.94,
+      "snippet": "Use exponential backoff with jitter and max retries=5 for transient dependency failures."
+    }
+  ],
+  "proposedClaims": [
+    {
+      "claimId": "claim:retry-transient-failures",
+      "text": "Use exponential backoff with jitter and cap retries at 5 for transient dependency failures.",
+      "status": "proposed",
+      "evidenceRefs": ["evidence:batch-worker-design:retry-guidance"],
+      "confidenceBounds": {
+        "lower": 0.76,
+        "upper": 0.89
+      }
+    }
+  ],
+  "explanationTrace": {
+    "traceId": "explanation-trace:pending:retry-transient-failures",
+    "status": "pending_holmes",
+    "summary": "Awaiting Holmes verification."
+  },
+  "policyDecision": {
+    "decisionId": "policy-decision:pending:retry-transient-failures",
+    "status": "pending_policy",
+    "summary": "Awaiting Policy Fabric admission decision."
+  }
+}
