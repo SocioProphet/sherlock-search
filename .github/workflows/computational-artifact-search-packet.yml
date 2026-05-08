@@ -16,6 +16,9 @@ on:
       - "scripts/validate_computational_artifact_search_packet.py"
       - ".github/workflows/computational-artifact-search-packet.yml"
 
+permissions:
+  contents: read
+
 jobs:
   validate-search-packet:
     runs-on: ubuntu-latest
