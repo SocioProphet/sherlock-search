@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/sherlock/computational-artifact-search-packet.schema.json",
+  "title": "ComputationalArtifactSearchPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "searchPacketId",
+    "artifactRef",
+    "query",
+    "scope",
+    "results",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "searchPacketId": { "type": "string", "minLength": 1 },
+    "artifactRef": { "type": "string", "minLength": 1 },
+    "ownerRepo": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+    "runtimeProfile": { "type": "string" },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "issuedBy", "issuedAt"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "issuedBy": { "type": "string", "minLength": 1 },
+        "issuedAt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedArtifactKinds", "safetyCeiling", "sensitivityCeiling"],
+      "properties": {
+        "allowedArtifactKinds": {
+          "type": "array",
+          "items": { "enum": ["workflow", "dataset", "model", "benchmark", "notebook", "runtime", "paper", "agent-skill", "scoreboard"] }
+        },
+        "safetyCeiling": { "enum": ["advisory", "bounded", "privileged"] },
+        "sensitivityCeiling": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "policyDecisionRefs": { "type": "array", "items": { "type": "string" } },
+        "slashTopics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["resultId", "sourceRef", "title", "summary", "confidence", "freshness", "citationRefs", "evidenceRef"],
+        "properties": {
+          "resultId": { "type": "string", "minLength": 1 },
+          "sourceRef": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "artifactKind": { "enum": ["workflow", "dataset", "model", "benchmark", "notebook", "runtime", "paper", "agent-skill", "scoreboard"] },
+          "safetyClass": { "enum": ["advisory", "bounded", "privileged", "prohibited"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "freshness": { "enum": ["current", "recent", "stale", "drifted", "unknown"] },
+          "sensitivity": { "enum": ["public", "internal", "confidential", "restricted"] },
+          "citationRefs": { "type": "array", "items": { "type": "string" } },
+          "evidenceRef": { "type": "string" },
+          "metricRefs": { "type": "array", "items": { "type": "string" } },
+          "lineageRefs": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "evidenceRefs": { "type": "array", "items": { "type": "string" } }
+  }
+}
