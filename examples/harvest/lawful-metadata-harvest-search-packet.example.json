@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "v0.1",
+  "searchPacketId": "search-packet:harvest:oai-pmh:archive-org:001",
+  "workroomRef": "workroom:procybernetica:lawful-metadata-harvest",
+  "query": {
+    "text": "find OAI-PMH harvest receipts and promotion decisions for archive.org public metadata run",
+    "issuedBy": "agent:sherlock-search:harvest-indexer",
+    "issuedAt": "2026-05-13T10:30:00Z"
+  },
+  "scope": {
+    "allowedSourceClasses": ["harvest_receipt", "validation_report", "promotion_decision"],
+    "sensitivityCeiling": "public",
+    "policyDecisionRefs": ["policy.decision:oai_pmh_public_metadata:allow:v0"]
+  },
+  "harvestRun": {
+    "runId": "harvest_run:oai_pmh:archive_org:001",
+    "protocol": "OAI-PMH",
+    "endpointId": "endpoint:archive_org:oai",
+    "actorId": "import_bridge:oai_pmh:archive_org",
+    "harvestEnvelopeRef": "procybernetica.harvest.envelope:oai_pmh:archive_org:001",
+    "validationReportRef": "validation.report:oai_pmh:archive_org:001",
+    "replayArtifactRef": "agentplane.replay:oai_pmh:archive_org:001",
+    "status": "completed",
+    "ledgerRootHash": "sha256:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  },
+  "receiptResults": [
+    {
+      "resultId": "result:harvest:receipt:batch:001",
+      "batchId": "batch:001",
+      "title": "OAI-PMH batch 001 receipt",
+      "summary": "First batch receipt for public OAI-PMH ListRecords harvest; 100 records observed; next continuation cursor stored by hash only.",
+      "confidence": 0.99,
+      "freshness": "current",
+      "sensitivity": "public",
+      "evidenceRefs": ["harvest.receipt:batch:001", "sha256:4444444444444444444444444444444444444444444444444444444444444444"],
+      "policyDecisionRefs": ["policy.decision:oai_pmh_public_metadata:allow:v0"],
+      "handlingTags": ["metadata", "external", "replayable"],
+      "citationRefs": ["procybernetica.pr:59"]
+    },
+    {
+      "resultId": "result:harvest:receipt:batch:003",
+      "batchId": "batch:003",
+      "title": "OAI-PMH terminal batch receipt",
+      "summary": "Terminal batch receipt for public OAI-PMH ListRecords harvest; 67 records observed; final continuation cursor state is empty.",
+      "confidence": 0.99,
+      "freshness": "current",
+      "sensitivity": "public",
+      "evidenceRefs": ["harvest.receipt:batch:003", "sha256:cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"],
+      "policyDecisionRefs": ["policy.decision:oai_pmh_public_metadata:allow:v0"],
+      "handlingTags": ["metadata", "external", "replayable"],
+      "citationRefs": ["procybernetica.pr:59"]
+    }
+  ],
+  "anomalyResults": [],
+  "promotionResults": [
+    {
+      "decisionId": "promotion:sherlock_index:oai_pmh:archive_org:001",
+      "targetSurface": "sherlock_index",
+      "outcome": "promoted",
+      "policyDecisionRefs": ["policy.decision:oai_pmh_public_metadata:allow:v0"],
+      "validationReportRef": "validation.report:oai_pmh:archive_org:001",
+      "recordRefs": ["record:oai:example:001", "record:oai:example:002"]
+    }
+  ],
+  "evidenceRefs": [
+    "procybernetica.pr:59",
+    "procybernetica.harvest.envelope:oai_pmh:archive_org:001",
+    "validation.report:oai_pmh:archive_org:001",
+    "agentplane.replay:oai_pmh:archive_org:001"
+  ]
+}
