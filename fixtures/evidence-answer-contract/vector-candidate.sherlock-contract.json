@@ -1,0 +1,49 @@
+{
+  "fixtureVersion": "sherlock.evidence-answer-contract.v0.1",
+  "scenario": "vector_candidate_only",
+  "query": {
+    "text": "How should transient failures be handled in worker retries?",
+    "entityCandidates": ["transient failures", "worker retries"],
+    "relationCandidates": ["handles", "backs off"]
+  },
+  "evidence": [
+    {
+      "evidenceId": "evidence:platform-runbook:retry-patterns",
+      "anchorRefs": ["anchor:platform-runbook:retry-patterns"],
+      "stance": "supports",
+      "freshness": "stale",
+      "score": 0.79,
+      "snippet": "Legacy runbook references exponential retry windows but is not current authority."
+    }
+  ],
+  "vectorCandidates": [
+    {
+      "candidateId": "vector-candidate:retry-strategy-0001",
+      "status": "candidate_only",
+      "score": 0.88,
+      "evidenceRefs": ["evidence:platform-runbook:retry-patterns"],
+      "roleLevelMatchMetadata": [
+        {
+          "role": "subject",
+          "queryText": "worker retries",
+          "matchedText": "retry windows"
+        },
+        {
+          "role": "predicate",
+          "queryText": "handled",
+          "matchedText": "exponential retry"
+        }
+      ]
+    }
+  ],
+  "explanationTrace": {
+    "traceId": "explanation-trace:pending:vector-candidate-0001",
+    "status": "pending_holmes",
+    "summary": "Vector candidate remains provisional until Holmes verification."
+  },
+  "policyDecision": {
+    "decisionId": "policy-decision:pending:vector-candidate-0001",
+    "status": "pending_policy",
+    "summary": "No policy admission until Holmes output is available."
+  }
+}
