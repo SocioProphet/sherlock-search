@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SocioProphet/sherlock-search/schemas/source-quality-answer-trace.v0.schema.json",
+  "title": "Sherlock Source Quality Answer Trace v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "bundle_id",
+    "sources",
+    "claims",
+    "diagnostic_findings",
+    "answer_trace"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "kind": {"const": "source_quality_answer_trace"},
+    "bundle_id": {"type": "string", "minLength": 3},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "diagnostic_findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/diagnosticFinding"}
+    },
+    "answer_trace": {"$ref": "#/$defs/answerTrace"}
+  },
+  "$defs": {
+    "sourceQuality": {
+      "enum": [
+        "confirmed_official",
+        "confirmed_bibliographic",
+        "confirmed_pdf",
+        "confirmed_artifact",
+        "plausible_needs_source",
+        "speculative_do_not_use"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_quality", "source_ref", "summary"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_quality": {"$ref": "#/$defs/sourceQuality"},
+        "source_ref": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "citation": {"type": "string"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "text", "claim_status", "evidence_refs"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "claim_status": {"enum": ["proposed", "research_only", "rejected"]},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "diagnosticFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finding_id", "finding_type", "evidence_refs", "finding_status"],
+      "properties": {
+        "finding_id": {"type": "string", "minLength": 1},
+        "finding_type": {"type": "string", "minLength": 1},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "finding_status": {"enum": ["candidate", "confirmed", "research_only"]}
+      }
+    },
+    "answerTrace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query", "claim_refs", "evidence_refs", "evidence_grade", "implementation_safe"],
+      "properties": {
+        "query": {"type": "string", "minLength": 1},
+        "claim_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "diagnostic_refs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "evidence_grade": {"enum": ["implementation_safe", "research_only", "blocked"]},
+        "implementation_safe": {"type": "boolean"}
+      }
+    }
+  }
+}

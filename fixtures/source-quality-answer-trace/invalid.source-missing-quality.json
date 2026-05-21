@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "kind": "source_quality_answer_trace",
+  "bundle_id": "watson-cyc-chronos.synthetic.invalid.source",
+  "sources": [
+    {
+      "source_id": "src-001",
+      "source_ref": "SocioProphet/sociosphere#334:papers/index.jsonl",
+      "summary": "Source quality is missing."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-001",
+      "text": "This claim points to a source missing quality metadata.",
+      "claim_status": "proposed",
+      "evidence_refs": ["src-001"]
+    }
+  ],
+  "diagnostic_findings": [],
+  "answer_trace": {
+    "query": "Invalid query",
+    "claim_refs": ["claim-001"],
+    "evidence_refs": ["src-001"],
+    "evidence_grade": "implementation_safe",
+    "implementation_safe": true
+  }
+}
