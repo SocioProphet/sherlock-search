@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1",
+  "kind": "source_quality_answer_trace",
+  "bundle_id": "watson-cyc-chronos.synthetic.bundle.001",
+  "sources": [
+    {
+      "source_id": "src-001",
+      "source_quality": "confirmed_bibliographic",
+      "source_ref": "SocioProphet/sociosphere#334:papers/index.jsonl",
+      "summary": "Confirmed bibliographic seed from the Watson/Cyc/Semantic-Web/CHRONOS corpus substrate.",
+      "citation": "SocioProphet/sociosphere#334"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-001",
+      "text": "The CHRONOS corpus substrate contains deployable event-schema evaluation scaffolding.",
+      "claim_status": "proposed",
+      "evidence_refs": ["src-001"]
+    }
+  ],
+  "diagnostic_findings": [
+    {
+      "finding_id": "finding-001",
+      "finding_type": "source-quality-check",
+      "evidence_refs": ["src-001"],
+      "finding_status": "candidate"
+    }
+  ],
+  "answer_trace": {
+    "query": "What evidence supports the first CHRONOS event-schema slice?",
+    "claim_refs": ["claim-001"],
+    "evidence_refs": ["src-001"],
+    "diagnostic_refs": ["finding-001"],
+    "evidence_grade": "implementation_safe",
+    "implementation_safe": true
+  }
+}
