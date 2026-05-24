@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "kind": "citance_claim_candidate",
+  "candidate_id": "whitbrock-echoes-citations-unverified-001",
+  "source_status": "unverified_literature_candidate",
+  "source_quality": "plausible_needs_source",
+  "implementation_safe": false,
+  "paper": {
+    "title": "Echoes of Citations: Automated Extraction of Claims from Full Scientific Papers",
+    "author_string": "NÖ Tan, N Tandon, O Tafjord, M Whitbrock, P Clark, et al.",
+    "venue_hint": "AAAI 2026 candidate from pasted search-result snippet",
+    "source_ref": "user-pasted-search-result-snippet:2026-05-24"
+  },
+  "claim_candidate": {
+    "text": "The paper may provide a citance-based method for extracting concise core scientific claims from full scientific papers.",
+    "claim_status": "research_only",
+    "confidence": 0.41
+  },
+  "citance_evidence": {
+    "citance_available": false,
+    "citing_context_ref": "",
+    "cited_paper_ref": ""
+  },
+  "boundary": {
+    "candidate_not_truth": true,
+    "requires_metadata_verification": true,
+    "requires_pdf_verification": true
+  }
+}
