@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SocioProphet/sherlock-search/schemas/citance-claim-candidate.v0.schema.json",
+  "title": "Citance Claim Candidate v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "candidate_id",
+    "source_status",
+    "source_quality",
+    "implementation_safe",
+    "paper",
+    "claim_candidate",
+    "citance_evidence",
+    "boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "kind": {"const": "citance_claim_candidate"},
+    "candidate_id": {"type": "string", "minLength": 3},
+    "source_status": {"enum": ["unverified_literature_candidate", "verified_metadata", "verified_pdf"]},
+    "source_quality": {"enum": ["plausible_needs_source", "confirmed_bibliographic", "confirmed_pdf"]},
+    "implementation_safe": {"type": "boolean"},
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "author_string", "venue_hint", "source_ref"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "author_string": {"type": "string", "minLength": 1},
+        "venue_hint": {"type": "string", "minLength": 1},
+        "source_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "claim_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "claim_status", "confidence"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "claim_status": {"enum": ["research_only", "candidate", "rejected"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "citance_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["citance_available", "citing_context_ref", "cited_paper_ref"],
+      "properties": {
+        "citance_available": {"type": "boolean"},
+        "citing_context_ref": {"type": "string"},
+        "cited_paper_ref": {"type": "string"}
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_not_truth", "requires_metadata_verification", "requires_pdf_verification"],
+      "properties": {
+        "candidate_not_truth": {"const": true},
+        "requires_metadata_verification": {"type": "boolean"},
+        "requires_pdf_verification": {"type": "boolean"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"source_status": {"const": "unverified_literature_candidate"}}},
+      "then": {
+        "properties": {
+          "source_quality": {"const": "plausible_needs_source"},
+          "implementation_safe": {"const": false},
+          "boundary": {
+            "properties": {
+              "requires_metadata_verification": {"const": true},
+              "requires_pdf_verification": {"const": true}
+            }
+          }
+        }
+      }
+    }
+  ]
+}
