@@ -1,6 +1,6 @@
-.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate
+.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate
 
-validate: prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate
+validate: prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate
 	@echo "OK: sherlock-search validate"
 
 prophet-understand-smoke:
@@ -11,3 +11,6 @@ semantic-enterprise-index-smoke:
 
 source-quality-answer-trace-validate:
 	python3 tools/validate_source_quality_answer_trace.py
+
+citance-claim-candidate-validate:
+	python3 tools/validate_citance_claim_candidate.py
