@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "sherlock-search.wallguard-retrieval-filter.v0.1",
+  "recordType": "WallGuardRetrievalFilter",
+  "filterId": "wallguard-retrieval-filter:missing-wall-invalid-001",
+  "phase": "pre_rank",
+  "queryRef": "query://unknown/search-003",
+  "workroomRef": "workroom://unknown",
+  "wallRef": "unknown",
+  "subjectRef": "agent-wall-context://agent-alpha/unknown",
+  "wallDecisionRef": "wallguard-decision://missing-wall-invalid-001",
+  "wallDecisionOutcome": "allow",
+  "retrievalDecision": "allow",
+  "resources": [
+    {
+      "resourceRef": "resource://client-a/matter-x/doc-001",
+      "resourceWallRef": "wall://client-a/matter-x",
+      "visibility": "visible",
+      "rankEligible": true
+    }
+  ],
+  "evidenceRefs": ["SocioProphet/ProCybernetica#103"],
+  "policyDecisionRefs": ["policy-fabric://wallguard.professional-workroom.v0"]
+}
