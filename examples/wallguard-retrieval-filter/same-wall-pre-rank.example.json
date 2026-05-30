@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "sherlock-search.wallguard-retrieval-filter.v0.1",
+  "recordType": "WallGuardRetrievalFilter",
+  "filterId": "wallguard-retrieval-filter:same-wall-001",
+  "phase": "pre_rank",
+  "queryRef": "query://client-a/matter-x/search-001",
+  "workroomRef": "workroom://client-a/matter-x",
+  "wallRef": "wall://client-a/matter-x",
+  "subjectRef": "agent-wall-context://agent-alpha/client-a/matter-x",
+  "wallDecisionRef": "wallguard-decision://same-wall-retrieval-allow-001",
+  "wallDecisionOutcome": "allow",
+  "retrievalDecision": "allow",
+  "resources": [
+    {
+      "resourceRef": "resource://client-a/matter-x/doc-001",
+      "resourceWallRef": "wall://client-a/matter-x",
+      "visibility": "visible",
+      "rankEligible": true
+    }
+  ],
+  "evidenceRefs": ["SocioProphet/memory-mesh#33", "SocioProphet/guardrail-fabric#32"],
+  "policyDecisionRefs": ["policy-fabric://wallguard.professional-workroom.v0"]
+}
