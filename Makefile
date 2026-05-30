@@ -1,6 +1,6 @@
-.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate
+.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate validate-wallguard-retrieval-filter
 
-validate: prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate
+validate: prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate validate-wallguard-retrieval-filter
 	@echo "OK: sherlock-search validate"
 
 prophet-understand-smoke:
@@ -14,3 +14,6 @@ source-quality-answer-trace-validate:
 
 citance-claim-candidate-validate:
 	python3 tools/validate_citance_claim_candidate.py
+
+validate-wallguard-retrieval-filter:
+	python3 scripts/validate_wallguard_retrieval_filter.py
