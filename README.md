@@ -37,6 +37,27 @@ python tools/smoke_lampstand_adapter_records_search.py
 
 This lane consumes records produced through Lampstand's `adapter_records` authority, including Smart Tree records published by `sourceos-context lampstand-publish --publish`. It preserves `policy_decision`, `source`, `classification`, `handling_tags`, and generated evidence refs. It does not claim durable Memory Mesh promotion or semantic/vector certainty.
 
+## Lawful metadata harvest search packets
+
+Sherlock can now index lawful metadata harvesting receipts as governed search packets. The seed lane binds ProCybernetica's lawful metadata harvest contract to Sherlock discovery without treating harvested records as canonical truth.
+
+The search packet contract, example, and validator live at:
+
+- `schemas/lawful-metadata-harvest-search-packet.schema.json`
+- `examples/harvest/lawful-metadata-harvest-search-packet.example.json`
+- `scripts/validate_lawful_metadata_harvest_search_packet.py`
+
+Validate locally:
+
+```bash
+python -m pip install jsonschema
+python scripts/validate_lawful_metadata_harvest_search_packet.py
+```
+
+The workflow `.github/workflows/lawful-metadata-harvest-search-packet.yml` runs this validation when the harvest search-packet schema, example, validator, or workflow changes.
+
+This packet preserves harvest envelope refs, policy decision refs, validation report refs, replay refs, receipt evidence refs, classification/sensitivity ceilings, handling tags, anomaly results, and promotion decisions. It intentionally indexes evidence about the harvest path; durable Memory Mesh, Knowledge Graph, GAIA, SourceOS state, or Prophet Platform promotion remains governed by explicit promotion decisions.
+
 ## Professional Intelligence search packets
 
 Sherlock now carries the first validated search-packet surface for the Professional Intelligence OS Gate 3 demo path.

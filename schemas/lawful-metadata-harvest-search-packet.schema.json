@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.io/schemas/sherlock/lawful-metadata-harvest-search-packet.schema.json",
+  "title": "LawfulMetadataHarvestSearchPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "searchPacketId",
+    "workroomRef",
+    "query",
+    "scope",
+    "harvestRun",
+    "receiptResults",
+    "evidenceRefs"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "v0.1" },
+    "searchPacketId": { "type": "string", "minLength": 1 },
+    "workroomRef": { "type": "string", "minLength": 1 },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "issuedBy", "issuedAt"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "issuedBy": { "type": "string", "minLength": 1 },
+        "issuedAt": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedSourceClasses", "sensitivityCeiling", "policyDecisionRefs"],
+      "properties": {
+        "allowedSourceClasses": { "type": "array", "items": { "type": "string" } },
+        "sensitivityCeiling": { "type": "string", "enum": ["public", "internal", "confidential", "restricted"] },
+        "policyDecisionRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "harvestRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runId", "protocol", "endpointId", "actorId", "harvestEnvelopeRef", "validationReportRef", "status"],
+      "properties": {
+        "runId": { "type": "string", "minLength": 1 },
+        "protocol": { "type": "string", "enum": ["OAI-PMH", "generic_metadata_harvest"] },
+        "endpointId": { "type": "string", "minLength": 1 },
+        "actorId": { "type": "string", "minLength": 1 },
+        "harvestEnvelopeRef": { "type": "string", "minLength": 1 },
+        "validationReportRef": { "type": "string", "minLength": 1 },
+        "replayArtifactRef": { "type": ["string", "null"] },
+        "status": { "type": "string", "enum": ["planned", "running", "completed", "failed", "cancelled"] },
+        "ledgerRootHash": { "type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$" }
+      }
+    },
+    "receiptResults": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["resultId", "batchId", "title", "summary", "confidence", "freshness", "sensitivity", "evidenceRefs", "policyDecisionRefs", "handlingTags"],
+        "properties": {
+          "resultId": { "type": "string", "minLength": 1 },
+          "batchId": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "freshness": { "type": "string", "enum": ["current", "recent", "stale", "unknown"] },
+          "sensitivity": { "type": "string", "enum": ["public", "internal", "confidential", "restricted"] },
+          "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "policyDecisionRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "handlingTags": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "citationRefs": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "anomalyResults": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["anomalyCode", "severity", "evidenceRefs", "summary"],
+        "properties": {
+          "anomalyCode": { "type": "string", "minLength": 1 },
+          "severity": { "type": "string", "enum": ["info", "notice", "warning", "error", "critical"] },
+          "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "summary": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "promotionResults": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decisionId", "targetSurface", "outcome", "policyDecisionRefs", "validationReportRef", "recordRefs"],
+        "properties": {
+          "decisionId": { "type": "string", "minLength": 1 },
+          "targetSurface": { "type": "string", "enum": ["sourceos_state", "memory_mesh", "knowledge_graph", "gaia", "prophet_platform", "sherlock_index", "none"] },
+          "outcome": { "type": "string", "enum": ["promoted", "denied", "deferred"] },
+          "policyDecisionRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "validationReportRef": { "type": "string", "minLength": 1 },
+          "recordRefs": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}
