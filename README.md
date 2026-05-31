@@ -80,6 +80,29 @@ Cell -> Watch -> Signal -> FeedItem -> SherlockSearchPacket
 
 It preserves workroom scope, playbook ID, policy decision refs, citation refs, evidence refs, result confidence, freshness, and sensitivity ceiling.
 
+## Computational artifact search packets
+
+Sherlock now includes a validated indexing path for Prophet computational artifact evidence packets.
+
+The schema, example, and validator live at:
+
+- `schemas/computational-artifact-search-packet.schema.json`
+- `examples/computational-artifact/search-packet.example.json`
+- `scripts/validate_computational_artifact_search_packet.py`
+
+Validate locally:
+
+```bash
+python -m pip install jsonschema
+python scripts/validate_computational_artifact_search_packet.py
+```
+
+The workflow `.github/workflows/computational-artifact-search-packet.yml` validates this packet when the schema/example/validator path changes.
+
+After Prophet Platform executes `artifact://gaia.bounded-osm-ingest@0.1.0`, it emits this packet for Sherlock indexing with artifact ID, owner repo, runtime profile, safety class, provenance/source receipt refs, validation report refs, benchmark metric refs, lineage refs, citation refs, evidence refs, policy decision refs, freshness, and sensitivity ceilings.
+
+Sherlock retrieval remains evidence-grounded: Holmes can apply semantic interpretation over these indexed packets, while Sociosphere registry health checks can verify cited source and lineage readiness without asserting vector/semantic certainty at indexing time.
+
 ## Dossier pointers (2026-04-12)
 
 - Full conversation dossier (Drive Doc ID): 1nxHeAZXSmvXtjg8jU2ZfpzloleO0_VIVDsRefoNYgSM

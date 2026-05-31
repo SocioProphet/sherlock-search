@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "v0.1",
+  "searchPacketId": "search-packet://artifact/gaia.bounded-osm-ingest@0.1.0",
+  "artifactRef": "artifact://gaia.bounded-osm-ingest@0.1.0",
+  "ownerRepo": "SocioProphet/gaia-bounded-osm-ingest",
+  "runtimeProfile": "runtime-profile://gaia.bounded-osm-ingest/cpu-bounded-v1",
+  "query": {
+    "text": "Find validated evidence for artifact://gaia.bounded-osm-ingest@0.1.0 runtime and benchmark safety posture.",
+    "issuedBy": "agent://prophet-platform/artifact-exec-indexer",
+    "issuedAt": "2026-05-08T21:55:00Z"
+  },
+  "scope": {
+    "allowedArtifactKinds": [
+      "workflow",
+      "dataset",
+      "benchmark",
+      "runtime"
+    ],
+    "safetyCeiling": "bounded",
+    "sensitivityCeiling": "internal",
+    "policyDecisionRefs": [
+      "policy-decision://policy-fabric/gaia-bounded-osm-ingest@0.1.0/allow-indexing"
+    ],
+    "slashTopics": [
+      "/artifact-evidence",
+      "/bounded-osm-ingest"
+    ]
+  },
+  "results": [
+    {
+      "resultId": "search-result://artifact/gaia.bounded-osm-ingest@0.1.0/validation-report",
+      "sourceRef": "validation-report://gaia.bounded-osm-ingest@0.1.0/report-2026-05-08",
+      "title": "Bounded OSM ingest validation report",
+      "summary": "Validation report confirms safety-bounded execution path and policy-compliant artifact emissions.",
+      "artifactRef": "artifact://gaia.bounded-osm-ingest@0.1.0",
+      "ownerRepo": "SocioProphet/gaia-bounded-osm-ingest",
+      "runtimeProfile": "runtime-profile://gaia.bounded-osm-ingest/cpu-bounded-v1",
+      "artifactKind": "workflow",
+      "safetyClass": "bounded",
+      "confidence": 0.94,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "citation://gaia.bounded-osm-ingest@0.1.0/validation-report"
+      ],
+      "provenanceReceiptRefs": [
+        "receipt://gaia.bounded-osm-ingest@0.1.0/exec-trace",
+        "receipt://gaia.bounded-osm-ingest@0.1.0/source-materialization"
+      ],
+      "validationReportRef": "validation-report://gaia.bounded-osm-ingest@0.1.0/report-2026-05-08",
+      "benchmarkMetricRefs": [
+        "metric://gaia.bounded-osm-ingest@0.1.0/p95-runtime-seconds",
+        "metric://gaia.bounded-osm-ingest@0.1.0/coverage-percent"
+      ],
+      "lineageRefs": [
+        "lineage://gaia.bounded-osm-ingest@0.1.0/input-dataset",
+        "lineage://gaia.bounded-osm-ingest@0.1.0/output-bundle"
+      ],
+      "evidenceRef": "evidence://sherlock/artifact/gaia.bounded-osm-ingest@0.1.0/validation-report"
+    }
+  ],
+  "evidenceRefs": [
+    "evidence://sherlock/artifact/gaia.bounded-osm-ingest@0.1.0/search-packet",
+    "evidence://sherlock/artifact/gaia.bounded-osm-ingest@0.1.0/policy-decision"
+  ]
+}
