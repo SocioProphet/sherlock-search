@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1",
+  "packet_id": "sherlock:trust-chain-admission-search-packet:demo-runtime-asset-allowed",
+  "packet_type": "TrustChainAdmissionSearchPacket",
+  "admission_response_ref": "trust-chain:admit-artifact-response:demo-runtime-asset-001:allowed",
+  "artifact": {
+    "artifact_type": "RuntimeAsset",
+    "artifact_ref": "runtime-asset://lattice-forge/prophet-python-ml@0.1.0",
+    "owner_repo": "SocioProphet/lattice-forge"
+  },
+  "decision": "allow",
+  "posture": {
+    "source_posture": "provenance_present",
+    "package_posture": "acceptable",
+    "runtime_posture": "acceptable",
+    "vulnerability_posture": "no_known_blocking_findings",
+    "patch_posture": "current_for_scope",
+    "policy_posture": "satisfied",
+    "agentplane_posture": "validated",
+    "promotion_posture": "preview_allowed"
+  },
+  "evidence_refs": [
+    "sbom://lattice-forge/prophet-python-ml/0.1.0/spdx.json",
+    "vex://lattice-forge/prophet-python-ml/0.1.0/vex.json",
+    "scan://lattice-forge/prophet-python-ml/0.1.0/osv-scan.json",
+    "policy://trust-chain/dependency-admission/regulated-enterprise-preview",
+    "guardrail:decision:trust-chain-runtime-allow-001",
+    "agentplane:supply-chain-validation-artifact:runtime-asset-demo-001"
+  ],
+  "receipt_refs": [
+    "runtime-receipt://trust-chain/demo-runtime-asset-001"
+  ],
+  "remediation": [],
+  "query_facets": {
+    "decision": "allow",
+    "artifact_type": "RuntimeAsset",
+    "environment": "preview",
+    "risk_tier": "regulated_enterprise",
+    "missing_evidence": [],
+    "remediation_required": false
+  },
+  "source_links": [
+    {"label": "platform-admission-response", "ref": "trust-chain:admit-artifact-response:demo-runtime-asset-001:allowed"},
+    {"label": "runtime-evidence", "ref": "runtime-asset://lattice-forge/prophet-python-ml@0.1.0"}
+  ],
+  "non_claims": [
+    "Sherlock indexes admission evidence for retrieval and explanation; it is not the admission authority.",
+    "This packet does not flatten evidence refs into ungrounded vulnerability truth."
+  ]
+}
