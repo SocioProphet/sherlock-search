@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.socioprophet.dev/sherlock-search/trust-chain-admission-search-packet.v0.1.schema.json",
+  "title": "Trust Chain Admission Search Packet v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "packet_id", "packet_type", "admission_response_ref", "artifact", "decision", "posture", "evidence_refs", "receipt_refs", "query_facets", "non_claims"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "packet_id": {"type": "string", "pattern": "^sherlock:trust-chain-admission-search-packet:"},
+    "packet_type": {"const": "TrustChainAdmissionSearchPacket"},
+    "admission_response_ref": {"type": "string", "pattern": "^trust-chain:admit-artifact-response:"},
+    "artifact": {"type": "object", "additionalProperties": false, "required": ["artifact_type", "artifact_ref"], "properties": {"artifact_type": {"enum": ["RuntimeAsset", "BootReleaseSet", "ModelArtifact", "AgentArtifact", "WorkflowArtifact", "ToolArtifact", "DatasetArtifact", "PackageArtifact"]}, "artifact_ref": {"type": "string"}, "owner_repo": {"type": ["string", "null"]}}},
+    "decision": {"enum": ["allow", "deny", "escalate", "quarantine", "allow_with_context", "provisional"]},
+    "posture": {"type": "object", "additionalProperties": true, "minProperties": 1},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "receipt_refs": {"type": "array", "items": {"type": "string"}},
+    "remediation": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["step_id", "authority", "instruction"], "properties": {"step_id": {"type": "string"}, "authority": {"type": "string"}, "instruction": {"type": "string"}, "required_before_admission": {"type": "boolean"}}}},
+    "query_facets": {"type": "object", "additionalProperties": false, "required": ["decision", "artifact_type", "environment", "risk_tier", "missing_evidence", "remediation_required"], "properties": {"decision": {"type": "string"}, "artifact_type": {"type": "string"}, "environment": {"enum": ["preview", "staging", "production"]}, "risk_tier": {"enum": ["internal", "enterprise", "regulated_enterprise"]}, "missing_evidence": {"type": "array", "items": {"type": "string"}}, "remediation_required": {"type": "boolean"}}},
+    "source_links": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["label", "ref"], "properties": {"label": {"type": "string"}, "ref": {"type": "string"}}}},
+    "non_claims": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+  }
+}
