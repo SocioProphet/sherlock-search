@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1.0",
+  "packet_id": "workspace_prophet_value_claim_search_packet_v0",
+  "value_claim_id": "value_claim_workspace_prophet_fixture_validation_demo",
+  "claim_id": "claim_workspace_readonly_diagnostics_completed_demo",
+  "receipt_id": "receipt_workspace_diagnostics_completed_demo",
+  "evidence_thread_id": "thread_workspace_readonly_diagnostics_completed_demo",
+  "value_driver": {
+    "primary": "productivity",
+    "secondary": [
+      "risk_reduction"
+    ]
+  },
+  "production_ready": false,
+  "lookup_keys": {
+    "value_claim_id": "value_claim_workspace_prophet_fixture_validation_demo",
+    "claim_id": "claim_workspace_readonly_diagnostics_completed_demo",
+    "receipt_id": "receipt_workspace_diagnostics_completed_demo",
+    "evidence_thread_id": "thread_workspace_readonly_diagnostics_completed_demo",
+    "primary_value_driver": "productivity"
+  },
+  "evidence_refs": [
+    "prophet-core-contracts:examples/prophet/value-claim-workspace-prophet.json",
+    "prophet-platform:contracts/workspace-prophet/e2e/value-claim-projection-workspace-prophet-v0.json",
+    "sherlock-search:examples/workspace-prophet/evidence-index.example.json"
+  ],
+  "search_facets": {
+    "value_driver": "productivity",
+    "production_ready": false,
+    "observation_window": "fixture_validation_only",
+    "falsification_required": true
+  },
+  "summary": "Search packet for the bounded Workspace PROPHET value claim. It is fixture-validated only and must not be treated as production ROI evidence."
+}

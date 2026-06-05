@@ -20,3 +20,8 @@ validate-wallguard-retrieval-filter:
 
 validate-workspace-prophet-evidence-index:
 	python3 scripts/validate_workspace_prophet_evidence_index.py
+
+.PHONY: validate-workspace-prophet-value-claim-search
+validate-workspace-prophet-value-claim-search:
+	python3 scripts/validate_workspace_prophet_value_claim_search_packet.py
+
