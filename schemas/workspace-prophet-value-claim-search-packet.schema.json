@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.ai/sherlock/schemas/workspace-prophet-value-claim-search-packet.schema.json",
+  "title": "WorkspaceProphetValueClaimSearchPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_id",
+    "value_claim_id",
+    "claim_id",
+    "receipt_id",
+    "evidence_thread_id",
+    "value_driver",
+    "production_ready",
+    "lookup_keys",
+    "evidence_refs",
+    "search_facets"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "0.1.0"},
+    "packet_id": {"type": "string"},
+    "value_claim_id": {"type": "string"},
+    "claim_id": {"type": "string"},
+    "receipt_id": {"type": "string"},
+    "evidence_thread_id": {"type": "string"},
+    "value_driver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {"type": "string"},
+        "secondary": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "production_ready": {"type": "boolean", "const": false},
+    "lookup_keys": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_claim_id", "claim_id", "receipt_id", "evidence_thread_id", "primary_value_driver"],
+      "properties": {
+        "value_claim_id": {"type": "string"},
+        "claim_id": {"type": "string"},
+        "receipt_id": {"type": "string"},
+        "evidence_thread_id": {"type": "string"},
+        "primary_value_driver": {"type": "string"}
+      }
+    },
+    "evidence_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "search_facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_driver", "production_ready", "observation_window", "falsification_required"],
+      "properties": {
+        "value_driver": {"type": "string"},
+        "production_ready": {"type": "boolean", "const": false},
+        "observation_window": {"type": "string"},
+        "falsification_required": {"type": "boolean"}
+      }
+    },
+    "summary": {"type": "string"}
+  }
+}
