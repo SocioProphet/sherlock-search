@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "v0.1",
+  "searchPacketId": "workspace-prophet-search-packet-v0",
+  "workroomRef": "workroom://workspace-prophet/e2e",
+  "playbookId": "workspace-prophet-membrane-v0",
+  "query": {
+    "text": "Find evidence for the completed read-only diagnostic operation governed by a scoped capability.",
+    "issuedBy": "sherlock-fixture",
+    "issuedAt": "2026-06-04T00:00:10Z"
+  },
+  "scope": {
+    "allowedSourceClasses": [
+      "action_receipt",
+      "workspace_operation",
+      "scoped_capability",
+      "claim_record",
+      "evidence_thread"
+    ],
+    "sensitivityCeiling": "internal"
+  },
+  "results": [
+    {
+      "resultId": "result_operation_op_readonly_diagnostics_demo",
+      "sourceRef": "op_readonly_diagnostics_demo",
+      "title": "WorkspaceOperation completed under scoped capability",
+      "summary": "The read-only diagnostic WorkspaceOperation completed with a valid scoped capability and an allow receipt.",
+      "confidence": 1.0,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "receipt_workspace_diagnostics_completed_demo"
+      ],
+      "evidenceRef": "op_readonly_diagnostics_demo"
+    },
+    {
+      "resultId": "result_capability_cap_local_command_readonly_demo",
+      "sourceRef": "cap_local_command_readonly_demo",
+      "title": "ScopedCapability authorized read-only diagnostics",
+      "summary": "The scoped capability was bound to the operation, actor, operation type, and export diagnostics verb.",
+      "confidence": 1.0,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "cap_local_command_readonly_demo"
+      ],
+      "evidenceRef": "cap_local_command_readonly_demo"
+    },
+    {
+      "resultId": "result_claim_workspace_readonly_diagnostics_completed_demo",
+      "sourceRef": "claim_workspace_readonly_diagnostics_completed_demo",
+      "title": "Observation claim for governed diagnostic export",
+      "summary": "The runtime receipt was projected into an observation claim with supporting evidence thread entries.",
+      "confidence": 1.0,
+      "freshness": "current",
+      "sensitivity": "internal",
+      "citationRefs": [
+        "thread_workspace_readonly_diagnostics_completed_demo"
+      ],
+      "evidenceRef": "claim_workspace_readonly_diagnostics_completed_demo"
+    }
+  ],
+  "evidenceRefs": [
+    "receipt_workspace_diagnostics_completed_demo",
+    "op_readonly_diagnostics_demo",
+    "cap_local_command_readonly_demo",
+    "claim_workspace_readonly_diagnostics_completed_demo",
+    "thread_workspace_readonly_diagnostics_completed_demo"
+  ]
+}
