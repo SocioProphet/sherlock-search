@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.1.0",
+  "index_id": "workspace_prophet_membrane_evidence_index_v0",
+  "source_repos": [
+    "SocioProphet/prophet-core-contracts",
+    "SocioProphet/prophet-platform"
+  ],
+  "operation_id": "op_readonly_diagnostics_demo",
+  "capability_id": "cap_local_command_readonly_demo",
+  "receipt_id": "receipt_workspace_diagnostics_completed_demo",
+  "claim_id": "claim_workspace_readonly_diagnostics_completed_demo",
+  "evidence_thread_id": "thread_workspace_readonly_diagnostics_completed_demo",
+  "lookup_keys": {
+    "operation_id": "op_readonly_diagnostics_demo",
+    "capability_id": "cap_local_command_readonly_demo",
+    "receipt_id": "receipt_workspace_diagnostics_completed_demo",
+    "claim_id": "claim_workspace_readonly_diagnostics_completed_demo"
+  },
+  "documents": [
+    {
+      "document_id": "op_readonly_diagnostics_demo",
+      "document_type": "workspace_operation",
+      "title": "Read-only diagnostic WorkspaceOperation",
+      "refs": [
+        "operation:op_readonly_diagnostics_demo",
+        "capability:cap_local_command_readonly_demo"
+      ],
+      "summary": "A local read-only diagnostic export operation bound to a scoped capability."
+    },
+    {
+      "document_id": "cap_local_command_readonly_demo",
+      "document_type": "scoped_capability",
+      "title": "Scoped capability for read-only diagnostics",
+      "refs": [
+        "capability:cap_local_command_readonly_demo",
+        "operation:op_readonly_diagnostics_demo"
+      ],
+      "summary": "Capability permits inspect, summarize, and export_diagnostics for the demo workspace root."
+    },
+    {
+      "document_id": "receipt_workspace_diagnostics_completed_demo",
+      "document_type": "action_receipt",
+      "title": "Completed read-only diagnostic action receipt",
+      "refs": [
+        "receipt:receipt_workspace_diagnostics_completed_demo",
+        "operation:op_readonly_diagnostics_demo",
+        "capability:cap_local_command_readonly_demo"
+      ],
+      "summary": "Receipt records allow/completed result under the scoped capability."
+    },
+    {
+      "document_id": "claim_workspace_readonly_diagnostics_completed_demo",
+      "document_type": "claim_record",
+      "title": "Observation claim for completed read-only diagnostics",
+      "refs": [
+        "claim:claim_workspace_readonly_diagnostics_completed_demo",
+        "receipt:receipt_workspace_diagnostics_completed_demo"
+      ],
+      "summary": "Observation claim derived from the completed action receipt."
+    },
+    {
+      "document_id": "thread_workspace_readonly_diagnostics_completed_demo",
+      "document_type": "evidence_thread",
+      "title": "Evidence thread for completed read-only diagnostics",
+      "refs": [
+        "thread:thread_workspace_readonly_diagnostics_completed_demo",
+        "claim:claim_workspace_readonly_diagnostics_completed_demo",
+        "receipt:receipt_workspace_diagnostics_completed_demo"
+      ],
+      "summary": "Evidence thread connects the operation, scoped capability, receipt, and observation claim."
+    }
+  ]
+}
