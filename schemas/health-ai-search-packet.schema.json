@@ -7,91 +7,54 @@
   "required": [
     "schema_version",
     "packet_id",
-    "source_class",
     "readiness_state",
     "production_ready",
     "patient_care_action",
-    "customer_facing_claim",
-    "source_material",
-    "lookup_keys",
-    "evidence_refs",
-    "facets",
-    "summary"
+    "source_claim_class",
+    "source_refs",
+    "contract_refs",
+    "search_facets",
+    "blocked_from"
   ],
   "properties": {
     "schema_version": { "type": "string", "const": "0.1.0" },
     "packet_id": { "type": "string" },
-    "source_class": {
-      "type": "string",
-      "enum": [
-        "external_competitor_claim",
-        "benchmark_design_claim",
-        "socioprophet_validated_claim"
-      ]
-    },
-    "readiness_state": {
-      "type": "string",
-      "enum": [
-        "planning_only",
-        "fixture_validated",
-        "runtime_observed",
-        "production_ready"
-      ]
-    },
+    "readiness_state": { "type": "string", "enum": ["planning_only", "fixture_validated", "runtime_observed", "production_ready"] },
     "production_ready": { "type": "boolean", "const": false },
     "patient_care_action": { "type": "boolean", "const": false },
-    "customer_facing_claim": { "type": "boolean", "const": false },
-    "source_material": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "ambience_healthcare",
-          "healthbench_openai"
-        ]
-      },
-      "minItems": 1
-    },
-    "lookup_keys": {
-      "type": "object",
-      "additionalProperties": { "type": "string" }
-    },
-    "evidence_refs": {
-      "type": "array",
-      "items": { "type": "string" },
-      "minItems": 1
-    },
-    "facets": {
+    "source_claim_class": { "type": "string", "enum": ["external_competitor_claim", "benchmark_design_claim", "socioprophet_validated_claim"] },
+    "source_refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "contract_refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "search_facets": {
       "type": "object",
       "additionalProperties": false,
       "required": [
         "domain",
-        "value_domains",
-        "eval_themes",
-        "eval_axes",
-        "benchmark_boundary"
+        "health_eval_axes",
+        "clinical_value_domains",
+        "benchmark_boundary",
+        "production_ready",
+        "patient_care_action"
       ],
       "properties": {
-        "domain": { "type": "string", "const": "healthcare_ai" },
-        "value_domains": { "type": "array", "items": { "type": "string" } },
-        "eval_themes": { "type": "array", "items": { "type": "string" } },
-        "eval_axes": { "type": "array", "items": { "type": "string" } },
+        "domain": { "type": "string", "const": "health_ai" },
+        "health_eval_axes": { "type": "array", "items": { "type": "string" } },
+        "clinical_value_domains": { "type": "array", "items": { "type": "string" } },
         "benchmark_boundary": {
           "type": "object",
           "additionalProperties": false,
-          "required": [
-            "protected_examples_reproduced",
-            "answer_keys_reproduced",
-            "canary_reproduced"
-          ],
+          "required": ["protected_examples_reproduced", "answer_keys_reproduced", "canary_reproduced"],
           "properties": {
             "protected_examples_reproduced": { "type": "boolean", "const": false },
             "answer_keys_reproduced": { "type": "boolean", "const": false },
             "canary_reproduced": { "type": "boolean", "const": false }
           }
-        }
+        },
+        "production_ready": { "type": "boolean", "const": false },
+        "patient_care_action": { "type": "boolean", "const": false }
       }
     },
+    "blocked_from": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
     "summary": { "type": "string" }
   }
 }
