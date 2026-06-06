@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://socioprophet.ai/sherlock/schemas/health-ai-search-packet.schema.json",
+  "title": "HealthAISearchPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_id",
+    "source_class",
+    "readiness_state",
+    "production_ready",
+    "patient_care_action",
+    "customer_facing_claim",
+    "source_material",
+    "lookup_keys",
+    "evidence_refs",
+    "facets",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1.0" },
+    "packet_id": { "type": "string" },
+    "source_class": {
+      "type": "string",
+      "enum": [
+        "external_competitor_claim",
+        "benchmark_design_claim",
+        "socioprophet_validated_claim"
+      ]
+    },
+    "readiness_state": {
+      "type": "string",
+      "enum": [
+        "planning_only",
+        "fixture_validated",
+        "runtime_observed",
+        "production_ready"
+      ]
+    },
+    "production_ready": { "type": "boolean", "const": false },
+    "patient_care_action": { "type": "boolean", "const": false },
+    "customer_facing_claim": { "type": "boolean", "const": false },
+    "source_material": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ambience_healthcare",
+          "healthbench_openai"
+        ]
+      },
+      "minItems": 1
+    },
+    "lookup_keys": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain",
+        "value_domains",
+        "eval_themes",
+        "eval_axes",
+        "benchmark_boundary"
+      ],
+      "properties": {
+        "domain": { "type": "string", "const": "healthcare_ai" },
+        "value_domains": { "type": "array", "items": { "type": "string" } },
+        "eval_themes": { "type": "array", "items": { "type": "string" } },
+        "eval_axes": { "type": "array", "items": { "type": "string" } },
+        "benchmark_boundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "protected_examples_reproduced",
+            "answer_keys_reproduced",
+            "canary_reproduced"
+          ],
+          "properties": {
+            "protected_examples_reproduced": { "type": "boolean", "const": false },
+            "answer_keys_reproduced": { "type": "boolean", "const": false },
+            "canary_reproduced": { "type": "boolean", "const": false }
+          }
+        }
+      }
+    },
+    "summary": { "type": "string" }
+  }
+}
