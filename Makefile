@@ -1,4 +1,4 @@
-.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate validate-wallguard-retrieval-filter validate-workspace-prophet-evidence-index validate-health-ai-search-packets
+.PHONY: validate prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate validate-wallguard-retrieval-filter validate-workspace-prophet-evidence-index validate-health-ai-search-packets status-health-ai-search-packets
 
 validate: prophet-understand-smoke semantic-enterprise-index-smoke source-quality-answer-trace-validate citance-claim-candidate-validate validate-wallguard-retrieval-filter validate-workspace-prophet-evidence-index validate-health-ai-search-packets
 	@echo "OK: sherlock-search validate"
@@ -28,3 +28,7 @@ validate-workspace-prophet-value-claim-search:
 .PHONY: validate-health-ai-search-packets
 validate-health-ai-search-packets:
 	python3 scripts/validate_health_ai_search_packets.py
+
+.PHONY: status-health-ai-search-packets
+status-health-ai-search-packets:
+	python3 scripts/status_health_ai_search_packets.py
