@@ -1,0 +1,34 @@
+{
+  "version": "v0",
+  "date": "2026-06-06",
+  "repository": "SocioProphet/sherlock-search",
+  "tranche": "health-ai-search-packets-v0",
+  "state": "prototype_only",
+  "proof_document": "docs/operations/health-ai-search-packets-proof-2026-06-06.md",
+  "commands_proven": [
+    "make validate-health-ai-search-packets",
+    "make validate"
+  ],
+  "validation_results": {
+    "health_ai_search_packets": "passed",
+    "prophet_understanding_search_smoke": "passed",
+    "semantic_enterprise_search_index": "passed",
+    "source_quality_answer_trace": "passed",
+    "citance_claim_candidate": "passed",
+    "wallguard_retrieval_filter": "passed",
+    "workspace_prophet_evidence_index": "passed",
+    "aggregate_validate": "passed"
+  },
+  "wallguard_examples": {
+    "cross_wall_rank_exposed": "rejected",
+    "missing_wall_context": "rejected",
+    "same_wall_pre_rank": "accepted"
+  },
+  "status_flags": {
+    "production_ready": false,
+    "clinical_use": false,
+    "patient_specific_guidance": false,
+    "protected_benchmark_disclosure": false,
+    "live_search_deployment": false
+  }
+}
