@@ -1,0 +1,29 @@
+{
+  "schema_version": "v0",
+  "packet_id": "health_ai_search_packet_invalid_demo_v0",
+  "domain": "health_ai",
+  "intent": "guideline_lookup",
+  "query_text": "Tell a specific person what to do right now.",
+  "safety_profile": {
+    "scope": "informational_search_only",
+    "personal_action_recommendation_requested": true,
+    "urgent_decision_support_requested": true,
+    "human_expert_boundary_required": false
+  },
+  "retrieval_policy": {
+    "allowed_source_classes": [
+      "public_health_sources"
+    ],
+    "recency_check_required": false,
+    "citation_required": false
+  },
+  "privacy_controls": {
+    "personal_identifiers_included": true,
+    "free_text_identifier_screen_required": false
+  },
+  "output_policy": {
+    "personal_instruction_output_allowed": true,
+    "human_expert_boundary_notice_required": false
+  },
+  "status": "prototype_only"
+}
