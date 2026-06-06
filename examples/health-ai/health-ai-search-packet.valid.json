@@ -1,0 +1,31 @@
+{
+  "schema_version": "v0",
+  "packet_id": "health_ai_search_packet_guideline_lookup_demo_v0",
+  "domain": "health_ai",
+  "intent": "guideline_lookup",
+  "query_text": "Find current public guidance sources for sleep hygiene information.",
+  "safety_profile": {
+    "scope": "informational_search_only",
+    "personal_action_recommendation_requested": false,
+    "urgent_decision_support_requested": false,
+    "human_expert_boundary_required": true
+  },
+  "retrieval_policy": {
+    "allowed_source_classes": [
+      "peer_reviewed_literature",
+      "guideline_publishers",
+      "public_health_sources"
+    ],
+    "recency_check_required": true,
+    "citation_required": true
+  },
+  "privacy_controls": {
+    "personal_identifiers_included": false,
+    "free_text_identifier_screen_required": true
+  },
+  "output_policy": {
+    "personal_instruction_output_allowed": false,
+    "human_expert_boundary_notice_required": true
+  },
+  "status": "prototype_only"
+}
