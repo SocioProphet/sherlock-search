@@ -25,3 +25,7 @@ validate-workspace-prophet-evidence-index:
 validate-workspace-prophet-value-claim-search:
 	python3 scripts/validate_workspace_prophet_value_claim_search_packet.py
 
+.PHONY: validate-health-ai-search-packets
+validate-health-ai-search-packets:
+	python3 scripts/validate_health_ai_search_packets.py
+

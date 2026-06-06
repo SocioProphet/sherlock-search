@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "packet_id": "health_ai_eval_design_search_packet_v0",
+  "source_class": "benchmark_design_claim",
+  "readiness_state": "planning_only",
+  "production_ready": false,
+  "patient_care_action": false,
+  "customer_facing_claim": false,
+  "source_material": [
+    "healthbench_openai"
+  ],
+  "lookup_keys": {
+    "rubric_id": "health_eval_rubric_planning_v0",
+    "source_class": "benchmark_design_claim",
+    "primary_domain": "health_ai_evaluation",
+    "readiness_state": "planning_only"
+  },
+  "evidence_refs": [
+    "prophet-core-contracts:schemas/health-eval-rubric.schema.json",
+    "prophet-core-contracts:examples/health-ai/health-eval-rubric.planning.example.json",
+    "source:healthbench-openai-pdf"
+  ],
+  "facets": {
+    "domain": "healthcare_ai",
+    "value_domains": [
+      "evaluation_quality",
+      "safety_reliability",
+      "risk_reduction"
+    ],
+    "eval_themes": [
+      "emergency_referrals",
+      "expertise_tailored_communication",
+      "responding_under_uncertainty",
+      "response_depth",
+      "health_data_tasks",
+      "global_health",
+      "context_seeking"
+    ],
+    "eval_axes": [
+      "accuracy",
+      "communication_quality",
+      "context_seeking",
+      "context_awareness",
+      "completeness",
+      "instruction_following",
+      "reliability"
+    ],
+    "benchmark_boundary": {
+      "protected_examples_reproduced": false,
+      "answer_keys_reproduced": false,
+      "canary_reproduced": false
+    }
+  },
+  "summary": "Search packet for HealthBench-derived evaluation design concepts. It preserves rubric/theme/axis concepts without reproducing protected benchmark examples, answer keys, or canary content."
+}
