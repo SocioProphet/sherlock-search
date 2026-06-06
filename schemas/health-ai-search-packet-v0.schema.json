@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.socioprophet.local/sherlock-search/health-ai-search-packet-v0.schema.json",
+  "title": "Health AI Search Packet v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_id",
+    "domain",
+    "intent",
+    "query_text",
+    "safety_profile",
+    "retrieval_policy",
+    "privacy_controls",
+    "output_policy",
+    "status"
+  ],
+  "properties": {
+    "schema_version": { "const": "v0" },
+    "packet_id": { "type": "string", "pattern": "^health_ai_search_packet_[a-z0-9_]+_v0$" },
+    "domain": { "const": "health_ai" },
+    "intent": {
+      "enum": [
+        "health_information_retrieval",
+        "guideline_lookup",
+        "care_navigation_information",
+        "risk_literature_search"
+      ]
+    },
+    "query_text": { "type": "string", "minLength": 8 },
+    "safety_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "personal_action_recommendation_requested",
+        "urgent_decision_support_requested",
+        "human_expert_boundary_required"
+      ],
+      "properties": {
+        "scope": { "const": "informational_search_only" },
+        "personal_action_recommendation_requested": { "const": false },
+        "urgent_decision_support_requested": { "const": false },
+        "human_expert_boundary_required": { "const": true }
+      }
+    },
+    "retrieval_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_source_classes",
+        "recency_check_required",
+        "citation_required"
+      ],
+      "properties": {
+        "allowed_source_classes": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "enum": [
+              "peer_reviewed_literature",
+              "guideline_publishers",
+              "public_health_sources",
+              "academic_medical_sources"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "recency_check_required": { "const": true },
+        "citation_required": { "const": true }
+      }
+    },
+    "privacy_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "personal_identifiers_included",
+        "free_text_identifier_screen_required"
+      ],
+      "properties": {
+        "personal_identifiers_included": { "const": false },
+        "free_text_identifier_screen_required": { "const": true }
+      }
+    },
+    "output_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "personal_instruction_output_allowed",
+        "human_expert_boundary_notice_required"
+      ],
+      "properties": {
+        "personal_instruction_output_allowed": { "const": false },
+        "human_expert_boundary_notice_required": { "const": true }
+      }
+    },
+    "status": { "const": "prototype_only" }
+  }
+}
