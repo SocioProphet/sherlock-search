@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "packet_id": "health_ai_search_packet_planning_v0",
+  "readiness_state": "planning_only",
+  "production_ready": false,
+  "patient_care_action": false,
+  "source_claim_class": "external_competitor_claim",
+  "source_refs": [
+    "source:ambience-healthcare-pdf",
+    "source:healthbench-openai-pdf"
+  ],
+  "contract_refs": [
+    "prophet-core-contracts:schemas/health-eval-rubric.schema.json",
+    "prophet-core-contracts:schemas/clinical-value-claim.schema.json",
+    "prophet-core-contracts:examples/health-ai/health-eval-rubric.planning.example.json",
+    "prophet-core-contracts:examples/health-ai/clinical-value-claim.ambience-source.example.json"
+  ],
+  "search_facets": {
+    "domain": "health_ai",
+    "health_eval_axes": [
+      "accuracy",
+      "communication_quality",
+      "context_seeking",
+      "context_awareness",
+      "completeness",
+      "instruction_following",
+      "reliability"
+    ],
+    "clinical_value_domains": [
+      "documentation_burden",
+      "coding_accuracy",
+      "revenue_integrity",
+      "audit_defensibility",
+      "clinician_productivity",
+      "workflow_integration",
+      "risk_reduction"
+    ],
+    "benchmark_boundary": {
+      "protected_examples_reproduced": false,
+      "answer_keys_reproduced": false,
+      "canary_reproduced": false
+    },
+    "production_ready": false,
+    "patient_care_action": false
+  },
+  "blocked_from": [
+    "production_ready",
+    "patient_care_action",
+    "autonomous_clinical_action",
+    "customer_facing_healthcare_claim",
+    "benchmark_example_reproduction"
+  ],
+  "summary": "Planning-only Sherlock search packet for healthcare AI evaluation and clinical value claims. Captures source and contract references without reproducing protected benchmark content or validating external competitor claims."
+}
