@@ -6,7 +6,9 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "node src/server.ts",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "test": "ts-node test/scopeDGraphIndex.test.ts",
+    "test:scope-d-graph": "ts-node test/scopeDGraphIndex.test.ts"
   },
   "dependencies": {
     "@socioprophet/hellgraph": "file:../hellgraph",
