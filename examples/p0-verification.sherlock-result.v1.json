@@ -1,0 +1,39 @@
+{
+  "record_version": "v1",
+  "result_id": "search-p0-verification-demo-0001",
+  "source": "GAIA",
+  "authority_ref": "SocioProphet/sherlock-search",
+  "entity_type": "EVIDENCE_ARTIFACT",
+  "title": "P0 Geospatial Result Verification Marker",
+  "snippet": "Non-product marker record used to trigger PR-scoped Sherlock geospatial result validation.",
+  "path_or_uri": "verification://p0/sherlock-geospatial-results",
+  "canonical_format": "verification/json",
+  "source_format": "json",
+  "owner_ref": "SocioProphet",
+  "project_refs": ["sherlock-search"],
+  "permission_ref": "internal/verification",
+  "spatial_refs": [
+    {"scheme": "h3", "value": "8928308280fffff", "role": "verification"}
+  ],
+  "temporal_refs": [
+    {"role": "verification", "value": "2026-04-28T11:40:00Z"}
+  ],
+  "evidence_refs": ["p0-verification-marker"],
+  "model_refs": [],
+  "runtime_refs": [],
+  "handling_tags": ["verification", "p0", "non-product-artifact"],
+  "provenance_refs": ["verification://p0/sherlock-geospatial-results"],
+  "score": {
+    "final": 0.01
+  },
+  "actions": {
+    "open_local": false,
+    "open_cloud": false,
+    "summarize": false,
+    "create_task": false,
+    "draft_reply": false,
+    "open_map": false,
+    "show_evidence": false,
+    "open_runtime": false
+  }
+}
