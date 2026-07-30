@@ -7,6 +7,7 @@
 use serde::Deserialize;
 use serde_json::json;
 use std::collections::{BTreeMap, HashMap};
+use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::Duration;
 use tantivy::collector::TopDocs;
 use tantivy::query::QueryParser;
@@ -112,6 +113,81 @@ fn embed(agent: &ureq::Agent, url: &str, model: &str, text: &str) -> Option<Vec<
     let v: serde_json::Value = resp.into_json().ok()?;
     let arr = v.get("data")?.get(0)?.get("embedding")?.as_array()?;
     Some(arr.iter().filter_map(|x| x.as_f64().map(|f| f as f32)).collect())
+}
+
+// ── SP-RETR-TRUTH-001: honest, request-time provenance ──────────────────────
+// The retrieval label MUST reflect what the dense path actually produced THIS
+// request, not the boot-time `dense` flag. If dense was configured-on but
+// contributed nothing (embed failed / qdrant error / empty result), RRF over an
+// empty second list is a monotone reindex of BM25 — i.e. the ordering is
+// BM25-only, so the response must say so instead of claiming hybrid fusion.
+struct RetrievalMode {
+    engine: String,          // backward-compat string, now DERIVED FROM OUTCOME
+    lexical: bool,
+    dense: bool,             // did the dense path return >=1 result THIS request
+    fusion: &'static str,    // "rrf_k60" only when dense actually contributed
+    degraded: Option<String>, // set iff dense was configured-on but produced nothing
+}
+
+fn retrieval_mode(dense_configured: bool, dense_hits: usize, degrade_reason: Option<&str>) -> RetrievalMode {
+    let contributed = dense_hits > 0;
+    RetrievalMode {
+        engine: if contributed { "tantivy+qdrant(rrf)".into() } else { "tantivy".into() },
+        lexical: true,
+        dense: contributed,
+        fusion: if contributed { "rrf_k60" } else { "none" },
+        degraded: if dense_configured && !contributed {
+            Some(degrade_reason.unwrap_or("dense_unavailable: empty_result").to_string())
+        } else {
+            None
+        },
+    }
+}
+
+// Monotonic per-process event sequence so event_ids are unique within a run.
+static EVT_SEQ: AtomicU64 = AtomicU64::new(1);
+
+fn now_secs() -> u64 {
+    std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|d| d.as_secs())
+        .unwrap_or(0)
+}
+
+// Dep-free RFC3339 (UTC, seconds precision) via Howard Hinnant's civil-from-days.
+// Kept local so the dense-failure audit trail needs no new crate / compile cost.
+fn rfc3339_utc(secs: u64) -> String {
+    let days = (secs / 86_400) as i64;
+    let sod = secs % 86_400;
+    let (h, mi, s) = (sod / 3600, (sod % 3600) / 60, sod % 60);
+    let z = days + 719_468;
+    let era = if z >= 0 { z } else { z - 146_096 } / 146_097;
+    let doe = z - era * 146_097; // [0, 146096]
+    let yoe = (doe - doe / 1460 + doe / 36_524 - doe / 146_096) / 365; // [0, 399]
+    let y = yoe + era * 400;
+    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100); // [0, 365]
+    let mp = (5 * doy + 2) / 153; // [0, 11]
+    let d = doy - (153 * mp + 2) / 5 + 1; // [1, 31]
+    let m = if mp < 10 { mp + 3 } else { mp - 9 }; // [1, 12]
+    let y = if m <= 2 { y + 1 } else { y };
+    format!("{:04}-{:02}-{:02}T{:02}:{:02}:{:02}Z", y, m, d, h, mi, s)
+}
+
+// Build an EvidenceEvent conforming to caps/semantic-search-bi/schemas/evidence_event.schema.json
+// (additionalProperties:false — only the fields below are permitted; schema is NOT modified).
+// The semantic.search.v0 contract requires an evidence_event on error; the human-readable
+// degrade reason rides in `notes`.
+fn evidence_event(action: &str, decision: &str, correlation_id: &str, notes: &str) -> serde_json::Value {
+    let secs = now_secs();
+    let seq = EVT_SEQ.fetch_add(1, Ordering::Relaxed);
+    json!({
+        "event_id": format!("evt-{}-{}", secs, seq),
+        "ts": rfc3339_utc(secs),
+        "action": action,
+        "decision": decision,
+        "correlation_id": correlation_id,
+        "notes": notes
+    })
 }
 
 fn main() {
@@ -234,30 +310,53 @@ fn main() {
                         }
                     }
                 }
-                // dense
+                // correlation id: echo caller's `cid` if provided, else mint one (contract:
+                // "MUST include correlation_id ... echo"; required by evidence_event schema).
+                let cid = qparam(&url, "cid")
+                    .unwrap_or_else(|| format!("sherlock-{}-{}", now_secs(), EVT_SEQ.load(Ordering::Relaxed)));
+                // dense — each failure is now RECORDED (degrade reason), not silently swallowed.
                 let mut dense_ranked: Vec<usize> = Vec::new();
                 let mut dense_score: HashMap<usize, f32> = HashMap::new();
+                let mut degrade_reason: Option<&'static str> = None;
                 if dense {
-                    if let Some(qv) = embed(&agent, &emb_url, &emb_model, q.trim()) {
-                        if let Ok(resp) = agent
+                    match embed(&agent, &emb_url, &emb_model, q.trim()) {
+                        None => degrade_reason = Some("dense_unavailable: embed_failed"),
+                        Some(qv) => match agent
                             .post(&format!("{}/collections/{}/points/search", qdrant_url, coll))
                             .send_json(json!({ "vector": qv, "limit": limit * 2, "with_payload": false }))
                         {
-                            if let Ok(jv) = resp.into_json::<serde_json::Value>() {
-                                if let Some(res) = jv.get("result").and_then(|r| r.as_array()) {
-                                    for item in res {
-                                        if let Some(id) = item.get("id").and_then(|x| x.as_u64()) {
-                                            let idx = id as usize;
-                                            dense_ranked.push(idx);
-                                            if let Some(s) = item.get("score").and_then(|x| x.as_f64()) {
-                                                dense_score.insert(idx, s as f32);
+                            Err(_) => degrade_reason = Some("dense_unavailable: qdrant_error"),
+                            Ok(resp) => match resp.into_json::<serde_json::Value>() {
+                                Err(_) => degrade_reason = Some("dense_unavailable: qdrant_error"),
+                                Ok(jv) => match jv.get("result").and_then(|r| r.as_array()) {
+                                    None => degrade_reason = Some("dense_unavailable: empty_result"),
+                                    Some(res) => {
+                                        for item in res {
+                                            if let Some(id) = item.get("id").and_then(|x| x.as_u64()) {
+                                                let idx = id as usize;
+                                                dense_ranked.push(idx);
+                                                if let Some(s) = item.get("score").and_then(|x| x.as_f64()) {
+                                                    dense_score.insert(idx, s as f32);
+                                                }
                                             }
                                         }
+                                        if dense_ranked.is_empty() {
+                                            degrade_reason = Some("dense_unavailable: empty_result");
+                                        }
                                     }
-                                }
-                            }
-                        }
+                                },
+                            },
+                        },
                     }
+                }
+                // Contract semantic.search.v0: MUST emit evidence_event on error. The dense
+                // tier failing is an `error` decision for the dense backend; log it to the
+                // audit sink (stderr) AND surface it in the response so it can't be hidden.
+                let mut evidence: Vec<serde_json::Value> = Vec::new();
+                if let Some(reason) = degrade_reason {
+                    let ev = evidence_event("semantic.search.query", "error", &cid, reason);
+                    eprintln!("evidence_event {}", ev);
+                    evidence.push(ev);
                 }
                 // RRF fusion (k=60)
                 let mut rrf: HashMap<usize, f64> = HashMap::new();
@@ -282,7 +381,23 @@ fn main() {
                         })
                     })
                     .collect();
-                json!({"query": raw, "engine": if dense {"tantivy+qdrant(rrf)"} else {"tantivy"}, "total": hits.len(), "hits": hits}).to_string()
+                // Honest provenance: label derives from THIS request's dense outcome, not the boot flag.
+                let rm = retrieval_mode(dense, dense_ranked.len(), degrade_reason);
+                let mut out = json!({
+                    "query": raw,
+                    "engine": rm.engine, // backward-compat; now "tantivy" on a real fallback, never a false hybrid claim
+                    "retrieval_mode": { "lexical": rm.lexical, "dense": rm.dense, "fusion": rm.fusion },
+                    "correlation_id": cid,
+                    "total": hits.len(),
+                    "hits": hits
+                });
+                if let Some(reason) = &rm.degraded {
+                    out["degraded"] = json!(reason);
+                }
+                if !evidence.is_empty() {
+                    out["evidence"] = json!(evidence);
+                }
+                out.to_string()
             }
         } else {
             json!({"error": "not found"}).to_string()
@@ -295,5 +410,103 @@ fn main() {
             tiny_http::Header::from_bytes(&b"Access-Control-Allow-Origin"[..], &b"*"[..]).unwrap(),
         );
         let _ = request.respond(resp);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // Reproduction of the OLD (buggy) label logic — keyed off the BOOT flag only.
+    // Included so the red→green is explicit and can't silently rot: with dense
+    // configured-on it ALWAYS returns the hybrid string, even for 0 dense hits.
+    fn old_engine_label(dense_boot_flag: bool) -> &'static str {
+        if dense_boot_flag { "tantivy+qdrant(rrf)" } else { "tantivy" }
+    }
+
+    #[test]
+    fn red_old_logic_lies_when_dense_configured_but_empty() {
+        // dense configured-on at boot, but request-time dense produced 0 hits.
+        // The old code labels this "hybrid" — the false-provenance defect (D1).
+        assert_eq!(old_engine_label(true), "tantivy+qdrant(rrf)");
+    }
+
+    // --- GREEN: request-time-derived label can no longer make that claim ---
+
+    #[test]
+    fn green_embed_failed_is_lexical_only_not_hybrid() {
+        let rm = retrieval_mode(true, 0, Some("dense_unavailable: embed_failed"));
+        assert_ne!(rm.engine, "tantivy+qdrant(rrf)", "must NOT claim hybrid when dense contributed nothing");
+        assert_eq!(rm.engine, "tantivy");
+        assert!(rm.lexical);
+        assert!(!rm.dense);
+        assert_eq!(rm.fusion, "none");
+        assert_eq!(rm.degraded.as_deref(), Some("dense_unavailable: embed_failed"));
+    }
+
+    #[test]
+    fn green_qdrant_error_is_lexical_only_not_hybrid() {
+        let rm = retrieval_mode(true, 0, Some("dense_unavailable: qdrant_error"));
+        assert_ne!(rm.engine, "tantivy+qdrant(rrf)");
+        assert_eq!(rm.engine, "tantivy");
+        assert_eq!(rm.fusion, "none");
+        assert_eq!(rm.degraded.as_deref(), Some("dense_unavailable: qdrant_error"));
+    }
+
+    #[test]
+    fn green_empty_result_is_lexical_only_not_hybrid() {
+        let rm = retrieval_mode(true, 0, Some("dense_unavailable: empty_result"));
+        assert_ne!(rm.engine, "tantivy+qdrant(rrf)");
+        assert_eq!(rm.engine, "tantivy");
+        assert_eq!(rm.degraded.as_deref(), Some("dense_unavailable: empty_result"));
+    }
+
+    #[test]
+    fn green_genuine_hybrid_still_reports_hybrid() {
+        // dense actually returned results this request → the hybrid claim is now EARNED.
+        let rm = retrieval_mode(true, 3, None);
+        assert_eq!(rm.engine, "tantivy+qdrant(rrf)");
+        assert!(rm.dense);
+        assert_eq!(rm.fusion, "rrf_k60");
+        assert_eq!(rm.degraded, None);
+    }
+
+    #[test]
+    fn green_dense_never_configured_is_lexical_without_degrade() {
+        // dense not configured at all → lexical-only, but NOT "degraded" (nothing was promised).
+        let rm = retrieval_mode(false, 0, None);
+        assert_eq!(rm.engine, "tantivy");
+        assert!(!rm.dense);
+        assert_eq!(rm.fusion, "none");
+        assert_eq!(rm.degraded, None);
+    }
+
+    #[test]
+    fn evidence_event_conforms_to_contract_shape() {
+        let ev = evidence_event("semantic.search.query", "error", "corr-x", "dense_unavailable: embed_failed");
+        // Only schema-permitted keys, required ones present, decision in enum.
+        assert_eq!(ev["decision"], "error");
+        assert_eq!(ev["action"], "semantic.search.query");
+        assert_eq!(ev["correlation_id"], "corr-x");
+        assert_eq!(ev["notes"], "dense_unavailable: embed_failed");
+        assert!(ev.get("event_id").and_then(|v| v.as_str()).is_some());
+        let ts = ev["ts"].as_str().unwrap();
+        assert!(ts.ends_with('Z') && ts.len() == 20, "ts not RFC3339: {ts}");
+        // no field outside the frozen schema's allow-list
+        let allowed = ["event_id", "ts", "action", "decision", "correlation_id", "notes"];
+        for k in ev.as_object().unwrap().keys() {
+            assert!(allowed.contains(&k.as_str()), "evidence_event emitted non-schema key: {k}");
+        }
+    }
+
+    #[test]
+    fn rfc3339_epoch_zero_is_1970() {
+        assert_eq!(rfc3339_utc(0), "1970-01-01T00:00:00Z");
+    }
+
+    #[test]
+    fn rfc3339_known_timestamp() {
+        // 1_600_000_000 == 2020-09-13T12:26:40Z (independently verifiable)
+        assert_eq!(rfc3339_utc(1_600_000_000), "2020-09-13T12:26:40Z");
     }
 }
