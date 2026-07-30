@@ -1,0 +1,11 @@
+Lab,Region bucket,Dossier class,POA,EGA,Composite,Evidence confidence,Scoring basis
+SocioProphet,Sovereign,Verified-compute,84,88,86.0,High,Proof-carrying
+Anthropic,US,Frontier,86,85,85.5,High,Evidence-backed
+OpenAI,US,Frontier,88,82,85.0,High,Evidence-backed
+Google DeepMind,US/UK,Frontier,87,80,83.5,High,Evidence-backed
+DeepSeek,CN,Open-weight,80,71,75.5,Medium,Heuristic seed
+Meta AI,US,Open-weight,78,72,75.0,Medium,Heuristic seed
+xAI,US,Frontier,76,68,72.0,Medium,Heuristic seed
+Mistral,EU,Open-weight,74,70,72.0,Medium,Heuristic seed
+Cohere,CA,Enterprise,70,66,68.0,Medium,Heuristic seed
+AI21,IL,Enterprise,65,62,63.5,Low,Heuristic seed

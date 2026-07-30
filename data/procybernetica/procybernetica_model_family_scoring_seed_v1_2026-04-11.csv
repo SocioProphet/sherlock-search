@@ -1,0 +1,9 @@
+Model family,POA,EGA,Composite,Evidence confidence
+Claude,87,86,86.5,High
+GPT,88,82,85.0,High
+Gemini,86,80,83.0,High
+DeepSeek,80,72,76.0,Medium
+Llama,78,73,75.5,Medium
+Qwen,79,71,75.0,Medium
+Grok,76,68,72.0,Medium
+Mistral,74,70,72.0,Medium
