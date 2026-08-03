@@ -36,13 +36,13 @@ def build_index(repo_root: Path):
         data = load_yaml(capd) or {}
         cap = data.get("capability", {})
         items.append({
-            "directory": cap_dir.as_posix(),
+            "directory": cap_dir.relative_to(repo_root).as_posix(),
             "name": cap.get("name"),
             "package_name": cap.get("package_name", cap_dir.name),
             "version": cap.get("version"),
             "kind": cap.get("kind"),
             "aliases": cap.get("aliases", []),
-            "validator": (cap_dir / "tools" / "validate_package.py").as_posix() if (cap_dir / "tools" / "validate_package.py").exists() else None,
+            "validator": (cap_dir / "tools" / "validate_package.py").relative_to(repo_root).as_posix() if (cap_dir / "tools" / "validate_package.py").exists() else None,
         })
     return items
 
@@ -67,6 +67,12 @@ def main() -> None:
     index_items = build_index(repo_root)
     if not index_items:
         fail("no capability packages found under caps/")
+
+    for _it in index_items:
+        for _k in ("directory", "validator"):
+            _v = _it.get(_k)
+            if _v is not None and Path(_v).is_absolute():
+                fail(f"{_k} must be repo-relative, got absolute path: {_v} (the committed index must be portable)")
 
     out_path = repo_root / args.output
     out_path.parent.mkdir(parents=True, exist_ok=True)
