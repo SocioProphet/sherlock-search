@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SituateRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "actor", "document"],
+  "properties": {
+    "correlation_id": {"type": "string", "minLength": 8},
+    "trace_id": {"type": "string"},
+    "actor": {"type": "object", "additionalProperties": false, "required": ["id"],
+      "properties": {"id": {"type": "string"}, "roles": {"type": "array", "items": {"type": "string"}}}},
+    "document": {"type": "object", "additionalProperties": false, "required": ["doc_id", "chunks"],
+      "properties": {
+        "doc_id": {"type": "string"},
+        "chunks": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false,
+          "required": ["chunk_id", "text"], "properties": {"chunk_id": {"type": "string"}, "text": {"type": "string"}}}}
+      }},
+    "options": {"type": "object", "additionalProperties": false,
+      "properties": {
+        "index_lexical": {"type": "boolean", "default": true},
+        "index_vector": {"type": "boolean", "default": true},
+        "context_model_ref": {"type": "string", "description": "model-catalog-entry id used to generate situating context"}
+      }}
+  }
+}

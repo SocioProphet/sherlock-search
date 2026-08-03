@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "action", "decision"],
+  "properties": {
+    "correlation_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "action": {"type": "string"},
+    "decision": {"type": "string", "enum": ["allow", "deny", "error"]},
+    "emitted_at": {"type": "string"}
+  }
+}

@@ -1,0 +1,8 @@
+policy_id: policy.contextual-preprocessor.guard@0.1.0
+version: 1
+defaults:
+  decision: deny
+actions:
+  - contextual.preprocess.situate
+  - contextual.preprocess.health
+rules: []

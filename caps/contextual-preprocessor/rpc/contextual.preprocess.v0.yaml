@@ -1,0 +1,25 @@
+service: contextual.preprocess.v0
+version: 0
+
+methods:
+  Situate:
+    request_schema: schemas/situate_request.schema.json
+    response_schema: schemas/situate_response.schema.json
+    semantics:
+      - "Situates each chunk within its parent document and returns ContextualChunks."
+      - "Fans situated_text to lexical and/or vector backends per index_targets."
+      - "MUST emit evidence events for allow, deny, and error."
+  GetStatus:
+    request_schema: schemas/situate_request.schema.json
+    response_schema: schemas/situate_response.schema.json
+    semantics:
+      - "Returns readiness and context-model health summary."
+
+errors:
+  codes:
+    - INVALID_ARGUMENT
+    - PERMISSION_DENIED
+    - QUOTA_EXCEEDED
+    - NOT_FOUND
+    - UNAVAILABLE
+    - INTERNAL

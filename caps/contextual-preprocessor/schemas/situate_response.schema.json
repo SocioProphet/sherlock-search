@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SituateResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correlation_id", "doc_id", "chunks"],
+  "properties": {
+    "correlation_id": {"type": "string"},
+    "trace_id": {"type": "string"},
+    "doc_id": {"type": "string"},
+    "chunks": {"type": "array", "items": {"$ref": "contextual_chunk.schema.json"}}
+  }
+}

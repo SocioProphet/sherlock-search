@@ -1,0 +1,19 @@
+{
+  "capability": {
+    "kind": "contract-only",
+    "name": "search.preprocess.contextual",
+    "package_name": "contextual-preprocessor",
+    "aliases": ["contextual-retrieval", "situate-chunk"],
+    "version": "0.1.0",
+    "description": "Contract-only: situate each chunk within its parent document then fan out to lexical+vector backends (hybrid). No implementation.",
+    "license": "MIT",
+    "address": { "scheme": "merkle-placeholder", "digest": "TODO" }
+  },
+  "requires": { "trirpc_bus": true, "policy_guard": true, "evidence_emission": true },
+  "provides": {
+    "rpc": ["rpc/contextual.preprocess.v0.yaml"],
+    "schemas": ["schemas/situate_request.schema.json","schemas/contextual_chunk.schema.json","schemas/situate_response.schema.json","schemas/evidence_event.schema.json"],
+    "topics": ["topics/contextual.preprocess.topics.v0.yaml"]
+  },
+  "policy": { "default_decision": "deny", "guard": "policy/guard-dsl-v0.yaml" }
+}

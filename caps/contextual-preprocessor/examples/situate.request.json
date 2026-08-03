@@ -1,0 +1,4 @@
+{ "correlation_id": "corr-0001abcd", "actor": {"id": "svc:ingest", "roles": ["indexer"]},
+  "document": {"doc_id": "doc:sp-compute-001", "chunks": [
+    {"chunk_id": "c1", "text": "price = time x complexity x market_rate under a ResourceContract."}]},
+  "options": {"index_lexical": true, "index_vector": true, "context_model_ref": "mz:situate-small"} }
