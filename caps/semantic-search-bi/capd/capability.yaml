@@ -30,6 +30,16 @@ optional_backends:
   graph_atomspace:
     required: false
     notes: "Symbolic graph backend; implementations MAY provide."
+  graph_crystal_atlas:
+    required: false
+    notes: >
+      Concrete graph binding: projects assertions via search-backend-graph
+      (GraphUpsertRequest) into the Crystal Atlas platform lane
+      (graph-upsert-request.v0), and reverse-indexes Atlas enrichment events.
+      See bindings/crystal-atlas-graph.binding.v0.yaml. Optional (required:false).
+
+bindings:
+  - bindings/crystal-atlas-graph.binding.v0.yaml
 
 artifacts:
   rpc:
