@@ -1,7 +1,7 @@
 {
   "capabilities": [
     {
-      "directory": "/home/runner/work/sherlock-search/sherlock-search/caps/contextual-preprocessor",
+      "directory": "caps/contextual-preprocessor",
       "name": "search.preprocess.contextual",
       "package_name": "contextual-preprocessor",
       "version": "0.1.0",
@@ -10,10 +10,10 @@
         "contextual-retrieval",
         "situate-chunk"
       ],
-      "validator": "/home/runner/work/sherlock-search/sherlock-search/caps/contextual-preprocessor/tools/validate_package.py"
+      "validator": "caps/contextual-preprocessor/tools/validate_package.py"
     },
     {
-      "directory": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-graph",
+      "directory": "caps/search-backend-graph",
       "name": "search.backend.graph",
       "package_name": "search-backend-graph",
       "version": "0.1.0",
@@ -22,10 +22,10 @@
         "graph-reasoning",
         "search-backend-graph"
       ],
-      "validator": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-graph/tools/validate_package.py"
+      "validator": "caps/search-backend-graph/tools/validate_package.py"
     },
     {
-      "directory": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-lexical",
+      "directory": "caps/search-backend-lexical",
       "name": "search.backend.lexical",
       "package_name": "search-backend-lexical",
       "version": "0.1.0",
@@ -34,10 +34,10 @@
         "lexical-index",
         "search-backend-lexical"
       ],
-      "validator": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-lexical/tools/validate_package.py"
+      "validator": "caps/search-backend-lexical/tools/validate_package.py"
     },
     {
-      "directory": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-vector",
+      "directory": "caps/search-backend-vector",
       "name": "search.backend.vector",
       "package_name": "search-backend-vector",
       "version": "0.1.0",
@@ -46,10 +46,10 @@
         "vector-index",
         "search-backend-vector"
       ],
-      "validator": "/home/runner/work/sherlock-search/sherlock-search/caps/search-backend-vector/tools/validate_package.py"
+      "validator": "caps/search-backend-vector/tools/validate_package.py"
     },
     {
-      "directory": "/home/runner/work/sherlock-search/sherlock-search/caps/semantic-search-bi",
+      "directory": "caps/semantic-search-bi",
       "name": "semantic.search",
       "package_name": "semantic-search-bi",
       "version": "0.1.0",
@@ -58,7 +58,7 @@
         "semantic-search",
         "semantic-search-bi"
       ],
-      "validator": "/home/runner/work/sherlock-search/sherlock-search/caps/semantic-search-bi/tools/validate_package.py"
+      "validator": "caps/semantic-search-bi/tools/validate_package.py"
     }
   ]
 }
