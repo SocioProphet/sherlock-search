@@ -1,0 +1,13 @@
+topics:
+  - name: contextual.preprocess.situate.requested
+    direction: emit
+    notes: "A situate request was submitted (pre-policy)."
+  - name: contextual.preprocess.situate.completed
+    direction: emit
+    notes: "Chunks situated and fanned out to backends."
+  - name: contextual.preprocess.situate.denied
+    direction: emit
+    notes: "Situate request denied by policy guard."
+  - name: governance.evidence.emitted
+    direction: emit
+    notes: "Evidence event emitted for audit pipeline ingestion."

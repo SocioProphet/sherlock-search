@@ -1,0 +1,6 @@
+{ "correlation_id": "corr-0001abcd", "doc_id": "doc:sp-compute-001", "chunks": [
+  {"chunk_id": "c1", "parent_doc_id": "doc:sp-compute-001",
+   "chunk_text": "price = time x complexity x market_rate under a ResourceContract.",
+   "situating_context": "From SP-COMPUTE-001 §pricing, defining the Deliverable pricing formula.",
+   "situated_text": "From SP-COMPUTE-001 §pricing, defining the Deliverable pricing formula. price = time x complexity x market_rate under a ResourceContract.",
+   "context_source": "mz:situate-small", "index_targets": {"lexical": true, "vector": true}}] }

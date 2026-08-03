@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContextualChunk",
+  "description": "A chunk situated within its parent document. situated_text = situating_context + original chunk; fanned out to lexical + vector backends.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["chunk_id", "parent_doc_id", "chunk_text", "situating_context", "situated_text", "index_targets"],
+  "properties": {
+    "chunk_id": {"type": "string"},
+    "parent_doc_id": {"type": "string"},
+    "chunk_text": {"type": "string"},
+    "situating_context": {"type": "string", "description": "short generated context locating the chunk in the document (~50-100 tokens)"},
+    "situated_text": {"type": "string", "description": "situating_context + chunk_text; the string actually indexed"},
+    "context_source": {"type": ["string","null"], "description": "model-catalog-entry id that produced situating_context (provenance)"},
+    "index_targets": {"type": "object", "additionalProperties": false, "required": ["lexical", "vector"],
+      "properties": {"lexical": {"type": "boolean"}, "vector": {"type": "boolean"}}}
+  }
+}

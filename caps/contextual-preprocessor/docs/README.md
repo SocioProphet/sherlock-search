@@ -1,0 +1,2 @@
+# contextual-preprocessor (search.preprocess.contextual)
+Contract-only cap. Implements **contextual retrieval preprocessing**: each chunk is *situated* in its parent document (a short generated context prepended), producing `situated_text` which is indexed into **both** the lexical (BM25) backend and the vector (dense) backend — the hybrid retrieval already provided by `search-backend-lexical` + `search-backend-vector`. `situating_context` carries `context_source` (the model-catalog-entry that generated it) for provenance. Validate: `python3 tools/validate_package.py`.

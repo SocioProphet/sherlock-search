@@ -1,0 +1,31 @@
+capability:
+  kind: contract-only
+  name: search.preprocess.contextual
+  package_name: contextual-preprocessor
+  aliases:
+    - contextual-retrieval
+    - situate-chunk
+  version: 0.1.0
+  title: "Contextual Retrieval Preprocessor (Contract Only)"
+  description: >
+    Contract-only capability. Before indexing, each document chunk is SITUATED within its
+    parent document (a short generated context string prepended to the chunk), then the
+    situated text is fanned out to BOTH the lexical (BM25) and vector (dense) backends —
+    the hybrid retrieval already provided by search-backend-lexical + search-backend-vector.
+    Reduces retrieval failures from context-free chunks. No implementation is included.
+
+requires:
+  trirpc_bus: true
+  policy_guard: true
+  evidence_emission: true
+
+artifacts:
+  rpc:
+    - rpc/contextual.preprocess.v0.yaml
+  topics:
+    - topics/contextual.preprocess.topics.v0.yaml
+  schemas:
+    - schemas/situate_request.schema.json
+    - schemas/contextual_chunk.schema.json
+    - schemas/situate_response.schema.json
+    - schemas/evidence_event.schema.json
