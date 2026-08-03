@@ -1,0 +1,88 @@
+binding: crystal-atlas-graph.binding.v0
+version: 0
+status: draft
+title: "semantic.search -> search-backend-graph -> Crystal Atlas graph-upsert binding"
+summary: >
+  Contract-first binding that wires the (previously abstract) graph backend of the
+  semantic.search capability to the estate's real graph plane, and projects graph
+  assertions into the Crystal Atlas platform lane. Contract-only: no runtime; an
+  implementation MUST speak triRPC, enforce policy_guard (default deny), and emit
+  evidence for every projection. Nothing here mutates the participating contracts.
+
+participants:
+  search_surface:
+    contract: semantic.search.v0
+    repo: SocioProphet/sherlock-search
+    path: caps/semantic-search-bi/rpc/semantic.search.v0.yaml
+    role: source of ingest/enrichment that yields graph assertions
+  graph_backend:
+    contract: GraphUpsertRequest            # search-backend-graph
+    repo: SocioProphet/sherlock-search
+    path: caps/search-backend-graph/schemas/graph_upsert.schema.json
+    role: fine-grained subject/predicate/object assertion sink (search lane)
+  crystal_atlas:
+    contract: graph-upsert-request.v0
+    repo: SocioProphet/prophet-platform
+    path: contracts/crystal-atlas/schemas/graph-upsert-request.v0.schema.json
+    role: batch node/edge/claim/evidence graph sink (platform intelligence lane)
+
+# ---------------------------------------------------------------------------
+# Forward projection: search-backend-graph assertion  ->  Crystal Atlas upsert
+# One S/P/O assertion becomes 2 nodes + 1 edge, with actor/correlation as evidence.
+# ---------------------------------------------------------------------------
+forward:
+  direction: "sherlock search lane -> Crystal Atlas platform lane"
+  from: GraphUpsertRequest            # {correlation_id, trace_id, actor{id,roles}, assertion{subject,predicate,object,metadata}}
+  to: graph-upsert-request.v0         # {tenant_id, nodes[], edges[], claims[], evidence[]}
+  tenancy:
+    tenant_id: "resolved from the semantic.search request policy context (default-deny if absent)"
+  field_map:
+    - to: nodes[].id
+      from: assertion.subject
+      note: "subject becomes a graph node"
+    - to: nodes[].id
+      from: assertion.object
+      note: "object becomes a graph node"
+    - to: edges[].from
+      from: assertion.subject
+    - to: edges[].to
+      from: assertion.object
+    - to: edges[].type
+      from: assertion.predicate
+    - to: edges[].attributes
+      from: assertion.metadata
+      note: "predicate qualifiers / weights carried as edge attributes"
+    - to: claims[]
+      from: assertion.metadata
+      note: "assertion-level claims (confidence, source) when present in metadata"
+    - to: evidence[]
+      from: "{actor, correlation_id, trace_id}"
+      note: "provenance: who asserted it and under which search correlation/trace"
+  invariants:
+    - "FB-1 every projected edge's from/to MUST also appear as nodes[] (no dangling edge)"
+    - "FB-2 every projection MUST carry >=1 evidence entry (actor + correlation_id); unattributed upserts are rejected"
+    - "FB-3 tenant_id MUST be present and policy-cleared; else deny (no cross-tenant graph writes)"
+    - "FB-4 projection is idempotent per (tenant_id, subject, predicate, object, correlation_id)"
+
+# ---------------------------------------------------------------------------
+# Reverse subscription: Crystal Atlas enrichment  ->  semantic.search reindex
+# ---------------------------------------------------------------------------
+reverse:
+  direction: "Crystal Atlas platform lane -> sherlock search lane"
+  subscribes_to:
+    - enrichment.emitted.v0            # prophet-platform/contracts/crystal-atlas/events
+    - entities.resolved.v0
+    - entities.resolved.crossdoc.v0
+  effect:
+    - "on entities.resolved*: emit semantic.search IngestDocument/reindex for the affected doc_ids so resolved-entity signal is retrievable"
+    - "on enrichment.emitted: attach enrichment as a retrievable behavioral-index (BI) signal"
+  invariants:
+    - "RB-1 reverse ingest MUST re-run policy_guard; Atlas enrichment does not bypass search-side redaction"
+    - "RB-2 reverse ingest MUST emit evidence_event linking the Atlas event id to the reindex"
+
+policy:
+  policy_guard: default-deny
+  evidence_emission: required
+  notes:
+    - "This binding declares the wire only. Runtime lives in an implementation package."
+    - "Crystal Atlas node/edge/claim/evidence item schemas ($ref graph-node.v0 / graph-edge.v0 / claim.v0 / evidence.v0) are owned by prophet-platform; this binding references them by version, does not redefine them."
